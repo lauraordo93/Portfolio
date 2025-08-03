@@ -1,0 +1,685 @@
+/* Fuente predeterminada y ajustes generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    --color_azul: #00bcd4;
+    --color_naranja: rgb(255, 148, 18);
+
+}
+
+body {
+    font-family: 'Fira Code', monospace, Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #0e0e0e;
+    color: #f0f0f0;
+    line-height: 1.6;
+    padding-bottom: 50px;
+}
+
+a {
+    color: #00bcd4;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #1de9b6;
+}
+ /* BARRA DE NAVEGACIÓN */
+    .nav-header {
+      background-color: #0e0e0e;
+      border-bottom: 1px solid #00bcd4;
+      padding: 10px 0;
+    }
+
+    .navbar {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 2em;
+      color: white;
+      background: none;
+      border: none;
+      cursor: pointer;
+      position: absolute;
+      left: 20px;
+      top: 5px;
+      z-index: 10;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-links a {
+      color: #00bcd4;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1em;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background-color: rgb(255, 148, 18);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-links a:hover {
+      color: rgb(255, 148, 18);
+    }
+
+    /* ENCABEZADO */
+    .encabezado {
+      position: relative;
+      height: 650px;
+      overflow: hidden;
+      background-image: url('../img/laura_mejorada.jpg'); /* usa tu imagen */
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      text-align: left;
+      padding: 140px 15px 190px 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      margin-bottom: 40px;
+    }
+
+    .encabezado::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.55);
+      z-index: 1;
+    }
+
+    .contenido-texto {
+      margin-left: 1em;
+      position: relative;
+      z-index: 2;
+    }
+
+    .encabezado h1 {
+      font-family: 'Orbitron', monospace;
+      font-size: 2.5em;
+      color: #d0d0d0;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+    }
+
+    .encabezado p.subtitulo {
+      font-size: 1.3em;
+      color: #ffffff;
+      margin-top: 10px;
+    }
+
+    .btn-descarga {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #00bcd4;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+
+    .btn-descarga:hover {
+      background-color: #009cb4;
+    }
+
+ @media (max-width: 768px) {
+  .nav-links {
+    position: fixed;
+    top: 0;
+    left: -100%; /* empieza oculto a la izquierda */
+    height: 100vh;
+    width: 250px;
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(4px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    padding: 40px 20px;
+    transition: left 0.3s ease;
+    z-index: 1000;
+    font-family: monospace; /* fuente tipo código */
+  }
+
+  .nav-links.active {
+    left: 0; /* se desliza desde la izquierda */
+  }
+
+  .nav-links li {
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: white;
+    font-size: 1.5em;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover {
+    color: #00ffff;
+  }
+
+  .menu-toggle {
+    display: block;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: 2rem;
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1100;
+  }
+
+  .navbar {
+    position: relative;
+    z-index: 100;
+  }
+}
+
+p {
+    text-align: justify;
+}
+
+/* Secciones generales */
+section {
+    max-width: 900px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+section h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    border-left: 4px solid #00bcd4;
+    padding-left: 10px;
+    color: #00bcd4;
+}
+
+.redes-sociales {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.redes-sociales li {
+    display: flex;
+    align-items: center;
+}
+
+.redes-sociales i {
+    margin-right: 10px;
+    color: #00bcd4;
+    font-size: 1.2em;
+}
+
+.github-icon {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.github-icon a {
+    color: #00bcd4;
+    font-size: 1.2em;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.github-icon a:hover {
+    color: rgb(255, 148, 18);
+}
+
+.github-icon i {
+    margin-right: 8px;
+    font-size: 1.5em;
+}
+
+.proyecto {
+    margin-bottom: 40px;
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 188, 212, 0.2);
+    color: #eee;
+}
+
+.proyecto h3 {
+    color: #00bcd4;
+    margin-bottom: 10px;
+}
+
+.proyecto p {
+    line-height: 1.6;
+
+}
+
+.proyecto a {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 10px;
+    background-color: #00bcd4;
+    /* Color de fondo azul claro */
+    color: #000000;
+    /* Texto blanco para buen contraste */
+    text-decoration: none;
+    /* Quitamos subrayado */
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s;
+
+}
+
+.proyecto a:hover {
+    background-color: #0097a7;
+    /* Azul más oscuro al pasar el ratón */
+    transform: scale(1.05);
+    /* Efecto suave de agrandamiento */
+}
+
+/* Video */
+.video {
+    margin-top: 20px;
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+}
+
+.video iframe {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.iconos-tecnologia {
+    display: flex;
+    justify-content: left;
+    gap: 20px;
+    /* menos espacio para que quepan más */
+    flex-wrap: nowrap;
+    /* forzar que estén en una sola fila */
+    overflow-x: auto;
+    /* para que se pueda hacer scroll si no caben */
+}
+
+.icono {
+ 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70px;
+    /* menos ancho para que entren más */
+    flex-shrink: 0;
+    /* evitar que se reduzcan demasiado */
+}
+
+.icono img {
+    width: 50px;
+    /* iconos más pequeños */
+    height: 60px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+/* Filtro para el icono GitHub (puedes agregar una clase específica en el HTML si quieres) */
+.icono.github img {
+    filter: invert(1) brightness(1.2);
+}
+
+.icono p {
+    margin-top: 6px;
+    font-size: 1em;
+    color: #fff;
+}
+
+.icono img:hover {
+    filter: drop-shadow(0 0 5px #03e2ff);
+    cursor: pointer;
+    position: relative;
+    z-index: 10;
+}
+
+/* Contacto */
+.contacto h2 {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+    color: var(--color_azul);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.contacto p {
+    margin-bottom: 10px;
+    color: #ddd;
+}
+
+.contacto a {
+    color: var(--color_azul);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.contacto a:hover {
+    color: var(--color_naranja);
+}
+
+
+
+.redes-sociales {
+    list-style: none;
+    padding: 0;
+}
+
+.redes-sociales li {
+    margin-bottom: 10px;
+}
+
+.redes-sociales a {
+    color: inherit;
+    /* Mantiene el color original */
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.3s ease;
+    /* Transición suave */
+    display: inline-flex;
+    /* Para que el transform se aplique bien */
+    align-items: center;
+    /* Centrar íconos y texto verticalmente */
+}
+
+.redes-sociales a:hover {
+    color: var(--color_naranja);
+    /* Cambia el color al pasar el ratón, puedes poner el color que prefieras */
+    transform: scale(1.1);
+    /* Amplía un 10% */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .encabezado h1 {
+        font-size: 2em;
+    }
+
+    section h2 {
+        font-size: 1.5em;
+    }
+
+    .video iframe {
+        width: 100%;
+        height: 100%;
+    }
+
+
+}
+#footer {
+    border-radius: 20px;
+    position: relative;
+    background-color: #184a50;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: white;
+    padding: 60px 0 30px;
+    font-size: 0.95rem;
+    z-index: 1;
+    overflow: hidden;
+}
+
+
+/* Capa oscura encima de la imagen */
+#footer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 10, 10, 0.6);
+    /* oscuridad suave */
+    z-index: 0;
+    backdrop-filter: blur(1px);
+    /* difumina un poco la imagen */
+}
+
+.footer-contenedor {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    max-width: 900px;
+    margin: 0 auto;
+    gap: 40px;
+    padding: 0 20px;
+}
+
+.footer-contenedor>div {
+    flex: 1;
+    min-width: 280px;
+}
+
+.footer-contenedor h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #00e5ff;
+    border-left: 2px solid #00e5ff;
+    padding-bottom: 5px;
+}
+
+.footer-contenedor a {
+    color: #dddddd;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.btn-descarga {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    border: 2px solid #00e5ff;
+    color: #00e5ff;
+    background: transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.btn-descarga:hover {
+    background-color: #184a50;
+    color: #0e0e0e;
+    transform: translateY(-2px);
+    box-shadow: 0 0 8px #00e5ff66;
+}
+.encabezado-btn {
+    background-color: var(--color_naranja);
+    color: #000;
+    border: none;
+    padding: 12px 20px;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: 0.3s ease all;
+}
+
+.encabezado-btn:hover {
+    background-color: #ffaa00;
+    transform: scale(1.05);
+    color: #fff;
+}
+.contenido-texto {
+    position: relative;
+    z-index: 2;
+}
+
+.btn-descarga {
+    position: relative;
+    z-index: 2;
+}
+
+.copy {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    margin: 30px auto 0 auto;
+    text-align: center;
+    color: #aaaaaa;
+    font-style: italic;
+    font-size: 0.85rem;
+}
+
+/* Móviles pequeños */
+@media (max-width: 480px) {
+    .encabezado {
+        height: auto;
+        /* Ajustar altura variable para pantallas pequeñas */
+        padding: 80px 10px 100px 10px;
+    }
+
+    .encabezado h1 {
+        font-size: 1.5em;
+        margin-left: 0.5em;
+    }
+
+    .encabezado p {
+        font-size: 1.1em;
+        margin-left: 1em;
+    }
+
+    section {
+        margin: 30px 10px;
+        padding: 0 10px;
+    }
+
+    .redes-sociales {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .redes-sociales li {
+        flex: 1 1 45%;
+        margin-bottom: 10px;
+    }
+
+    .footer-contenedor {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+
+    /* Ya tienes algunos ajustes, añade más para flexibles */
+    .footer-contenedor {
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .proyecto {
+        padding: 15px;
+        margin-bottom: 30px;
+    }
+
+    .proyecto a {
+        padding: 8px 12px;
+        font-size: 0.9em;
+    }
+}
+
+/* Escritorio pequeño / laptops */
+@media (max-width: 1024px) {
+    section {
+        max-width: 700px;
+    }
+
+    .encabezado {
+        height: 450px;
+        padding: 100px 15px 140px 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .redes-sociales {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .redes-sociales li {
+        flex: 0 0 48%;
+    }
+}
+
+@media (max-width: 768px) {
+    .encabezado {
+        background-attachment: scroll;
+        /* Evita fixed en pantallas pequeñas */
+    }
+}
+
+@media (max-width: 768px) {
+    .encabezado h1 {
+        font-size: 2em;
+    }
+}
+
+@media (max-width: 480px) {
+    .encabezado h1 {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .proyecto a,
+    .btn-descarga {
+        padding: 14px 18px;
+        font-size: 1.1em;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-contenedor {
+        flex-direction: column;
+        gap: 25px;
+    }
+}
