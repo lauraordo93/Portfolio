@@ -92,11 +92,12 @@ a:hover {
 
 /* ENCABEZADO */
 .encabezado {
+    /*Fijar imagen*/
+    background-attachment: fixed;
     position: relative;
     height: 650px;
     overflow: hidden;
     background-image: url('../img/laura_mejorada.jpg');
-    /* usa tu imagen */
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
@@ -152,6 +153,69 @@ a:hover {
 .btn-descarga:hover {
     background-color: #009cb4;
 }
+
+.typewriter-subtitulo {
+   
+    overflow: hidden;
+    white-space: nowrap;
+    letter-spacing: 0.3px;
+    width: 0;
+    animation: typing-subtitulo 3s steps(40, end) forwards, blink-caret 0.7s step-end infinite;
+    animation-delay: 0.5s;
+    opacity: 1;
+    animation-fill-mode: forwards;
+    font-size: 1em;
+}
+
+/* Animación de escribir h3 */
+@keyframes typing-subtitulo {
+    from {
+        width: 0;
+        border-right-color: #03e2ff;
+    }
+
+    to {
+        width: 100%;
+        border-right-color: transparent;
+    }
+
+    
+}
+
+/* Para móviles (ejemplo: max-width 600px), activamos la animación */
+@media (max-width: 600px) {
+  .typewriter-subtitulo {
+    width: 0;
+    /* border-right: 2px solid #03e2ff; */
+    animation: typing-subtitulo 3s steps(40, end) forwards, blink-caret 0.7s step-end infinite;
+    animation-delay: 0.5s;
+    animation-fill-mode: forwards;
+    font-size: 0.63em;
+  }
+}
+
+/* Animación typing-subtitulo y blink-caret igual que antes */
+
+@keyframes typing-subtitulo {
+  from {
+    width: 0;
+    border-right-color: #03e2ff;
+  }
+  to {
+    width: 100%;
+    border-right-color: transparent;
+  }
+}
+
+@keyframes blink-caret {
+  0%, 100% {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #03e2ff;
+  }
+}
+
 
 @media (max-width: 768px) {
     .nav-links {
@@ -332,6 +396,7 @@ section h2 {
     border: none;
 }
 
+
 .iconos-tecnologia {
     display: flex;
     justify-content: left;
@@ -378,6 +443,17 @@ section h2 {
     cursor: pointer;
     position: relative;
     z-index: 10;
+}
+
+/*oculta barra debajo de imagenes*/
+@media (max-width: 768px) {
+    .iconos-tecnologia {
+        scrollbar-width: none;
+    }
+
+    .iconos-tecnologia::-webkit-scrollbar {
+        display: none;
+    }
 }
 
 /* Contacto */
@@ -438,7 +514,7 @@ section h2 {
 
 /* Responsive */
 @media (max-width: 768px) {
-   
+
     section h2 {
         font-size: 1.5em;
     }
@@ -691,16 +767,20 @@ section h2 {
         gap: 25px;
     }
 }
+
 @media (max-width: 768px) {
-  h3 {
-    margin: 0; /* Márgenes laterales iguales al padding de secciones */
-    padding: 0;
-    font-size: 1.3em; /* Ajusta tamaño si quieres */
-  }
+    h3 {
+        margin: 0;
+        /* Márgenes laterales iguales al padding de secciones */
+        padding: 0;
+        font-size: 1.3em;
+        /* Ajusta tamaño si quieres */
+    }
 }
+
 @media (max-width: 480px) {
-  h3 {
-    margin: 0;
-    font-size: 1.1em;
-  }
-} 
+    h3 {
+        margin: 0;
+        font-size: 1.1em;
+    }
+}
