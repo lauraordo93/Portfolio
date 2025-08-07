@@ -133,11 +133,7 @@ a:hover {
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
 }
 
-.encabezado p.subtitulo {
-    font-size: 1.3em;
-    color: #ffffff;
-    margin-top: 10px;
-}
+
 
 .btn-descarga {
     display: inline-block;
@@ -155,16 +151,20 @@ a:hover {
 }
 
 .typewriter-subtitulo {
-   
+    color: #cbcaca;
+    /*espacio de h1/h3*/
+    margin-top: 10px;
+    font-family: monospace;
     overflow: hidden;
     white-space: nowrap;
+    /*No permite salto de línea*/
     letter-spacing: 0.3px;
     width: 0;
     animation: typing-subtitulo 3s steps(40, end) forwards, blink-caret 0.7s step-end infinite;
     animation-delay: 0.5s;
     opacity: 1;
     animation-fill-mode: forwards;
-    font-size: 1em;
+    font-size: 1.5em;
 }
 
 /* Animación de escribir h3 */
@@ -179,14 +179,27 @@ a:hover {
         border-right-color: transparent;
     }
 
-    
 }
 
-/* Para móviles (ejemplo: max-width 600px), activamos la animación */
+@media (max-width: 600px) {
+    .typewriter-subtitulo {
+        white-space: normal;
+        /* salto de línea */
+        font-size: 0.95em;
+        width: 100%;
+        animation: none !important;
+        /* Desactivar animación */
+        border-right: none !important;
+        /* Quitar cursor máquina */
+    }
+}
+
+/* 
+/* Para móviles (ejemplo: max-width 600px), activamos la animación 
 @media (max-width: 600px) {
   .typewriter-subtitulo {
     width: 0;
-    /* border-right: 2px solid #03e2ff; */
+   
     animation: typing-subtitulo 3s steps(40, end) forwards, blink-caret 0.7s step-end infinite;
     animation-delay: 0.5s;
     animation-fill-mode: forwards;
@@ -194,7 +207,7 @@ a:hover {
   }
 }
 
-/* Animación typing-subtitulo y blink-caret igual que antes */
+
 
 @keyframes typing-subtitulo {
   from {
@@ -214,7 +227,7 @@ a:hover {
   50% {
     border-color: #03e2ff;
   }
-}
+} */
 
 
 @media (max-width: 768px) {
