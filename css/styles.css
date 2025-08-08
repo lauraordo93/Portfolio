@@ -185,7 +185,7 @@ a:hover {
     .typewriter-subtitulo {
         white-space: normal;
         /* salto de línea */
-        font-size: 0.95em;
+        font-size: 1.1em;
         width: 100%;
         animation: none !important;
         /* Desactivar animación */
@@ -193,41 +193,6 @@ a:hover {
         /* Quitar cursor máquina */
     }
 }
-
-/* 
-/* Para móviles (ejemplo: max-width 600px), activamos la animación 
-@media (max-width: 600px) {
-  .typewriter-subtitulo {
-    width: 0;
-   
-    animation: typing-subtitulo 3s steps(40, end) forwards, blink-caret 0.7s step-end infinite;
-    animation-delay: 0.5s;
-    animation-fill-mode: forwards;
-    font-size: 0.63em;
-  }
-}
-
-
-
-@keyframes typing-subtitulo {
-  from {
-    width: 0;
-    border-right-color: #03e2ff;
-  }
-  to {
-    width: 100%;
-    border-right-color: transparent;
-  }
-}
-
-@keyframes blink-caret {
-  0%, 100% {
-    border-color: transparent;
-  }
-  50% {
-    border-color: #03e2ff;
-  }
-} */
 
 
 @media (max-width: 768px) {
