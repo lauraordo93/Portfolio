@@ -211,6 +211,7 @@ a:hover {
         gap: 20px;
         padding: 40px 20px;
         transition: left 0.3s ease;
+        box-shadow: 3px 0 10px rgba(0, 255, 255, 0.2);
         z-index: 1000;
         font-family: monospace;
         /* fuente tipo código */
@@ -761,4 +762,34 @@ section h2 {
         margin: 0;
         font-size: 1.1em;
     }
+}
+
+.footer-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-nav li {
+  display: inline;
+  margin: 0 0.5rem;
+}
+
+.footer-nav a {
+  color: #00ffff; /* o el color principal de tu portfolio */
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.footer-nav a:hover {
+  color: #fff;
+}
+
+/* Responsive si quieres que sea horizontal en pantallas grandes */
+@media (min-width: 600px) {
+  .footer-content {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 }
