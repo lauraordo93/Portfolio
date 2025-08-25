@@ -337,6 +337,7 @@ section h2 {
 
 }
 
+/* Estilos generales para todos los enlaces de proyecto */
 .proyecto a {
     display: inline-block;
     margin-top: 15px;
@@ -359,6 +360,28 @@ section h2 {
     transform: scale(1.05);
     /* Efecto suave de agrandamiento */
 }
+
+
+/* --- Estilo más discreto solo para el enlace con clase "web" --- */
+.proyecto a.web {
+    background-color: transparent;
+    color: #00bcd4;
+    /* Texto azul en lugar de botón */
+    font-weight: normal;
+    padding: 0;
+    /* Quitar relleno tipo botón */
+    box-shadow: none;
+    /* Sin sombra */
+}
+
+.proyecto a.web:hover {
+    color: #0097a7;
+    text-decoration: underline;
+    /* Subrayado sutil al pasar el ratón */
+    transform: none;
+    /* Sin efecto de escala */
+}
+
 
 /* Video */
 .video {
@@ -765,31 +788,51 @@ section h2 {
 }
 
 .footer-nav {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .footer-nav li {
-  display: inline;
-  margin: 0 0.5rem;
+    display: inline;
+    margin: 0 0.5rem;
 }
 
 .footer-nav a {
-  color: #00ffff; /* o el color principal de tu portfolio */
-  text-decoration: none;
-  font-weight: bold;
-  transition: color 0.3s ease;
+    color: #00ffff;
+    /* o el color principal de tu portfolio */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
 }
 
 .footer-nav a:hover {
-  color: #fff;
+    color: #fff;
 }
 
 /* Responsive si quieres que sea horizontal en pantallas grandes */
 @media (min-width: 600px) {
-  .footer-content {
-    flex-direction: row;
-    justify-content: space-between;
-  }
+    .footer-content {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+/* Tablets (481px a 1024px) */
+@media (min-width: 481px) and (max-width: 1024px) {
+
+    .encabezado {
+        background-image: url('../img/laura_mejorada.jpg');
+        background-size: cover;
+        /* Ocupa todo el ancho */
+        background-position: center;
+        /* Centrado */
+        background-repeat: no-repeat;
+        background-attachment: scroll;
+        /* 🔹 Desactiva el fixed */
+
+        height: 60vh;
+        /* Ajusta altura (puedes subir a 70vh si quieres más imagen) */
+        padding: 30px 10px;
+    }
 }
