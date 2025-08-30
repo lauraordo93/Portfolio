@@ -265,9 +265,9 @@ a:hover {
 
 /* Secciones generales */
 section {
-    max-width: 900px;
-    margin: 60px auto;
-    padding: 0 20px;
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 10px;
 }
 
 section h2 {
@@ -381,6 +381,12 @@ section h2 {
     transform: none;
     /* Sin efecto de escala */
 }
+@media (max-width: 600px) {
+    .proyecto a.web {
+        font-size: 16px; /* o el tamaño que mejor quede */
+    }
+}
+
 
 
 /* Video */
@@ -399,53 +405,69 @@ section h2 {
 }
 
 
-.iconos-tecnologia {
-    display: flex;
-    justify-content: left;
-    gap: 20px;
-    /* menos espacio para que quepan más */
-    flex-wrap: nowrap;
-    /* forzar que estén en una sola fila */
-    overflow-x: auto;
-    /* para que se pueda hacer scroll si no caben */
+/*Herramientas, tecnologias*/
+.tecnologias {
+    color: #fff;
+    padding: 1rem;
 }
 
-.icono {
+/* Cada fila (Frontend, Backend, Herramientas) */
+.categoria {
+    margin-bottom: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* alineado a la izquierda */
+}
 
+/* Título de cada fila */
+.categoria h3 {
+    color: var(--color_naranja);
+    margin-bottom: 1.5rem;
+    text-align: left; /* título alineado a la izquierda */
+    
+}
+
+/* Contenedor de iconos dentro de cada fila */
+.iconos-tecnologia {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start; /* iconos alineados a la izquierda */
+}
+
+/* Iconos individuales */
+.icono {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 70px;
-    /* menos ancho para que entren más */
-    flex-shrink: 0;
-    /* evitar que se reduzcan demasiado */
 }
 
 .icono img {
     width: 50px;
-    /* iconos más pequeños */
-    height: 60px;
+    height: 50px;
     object-fit: contain;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, filter 0.3s ease;
 }
 
-/* Filtro para el icono GitHub (puedes agregar una clase específica en el HTML si quieres) */
+/* Hover sobre los iconos */
+.icono img:hover {
+    transform: scale(1.2);
+    filter: drop-shadow(0 0 10px #03e2ff);
+    cursor: pointer;
+}
+
+/* Texto debajo del icono */
+.icono p {
+    margin-top: 6px;
+    font-size: 1em;
+    text-align: center;
+}
+
 .icono.github img {
     filter: invert(1) brightness(1.2);
 }
 
-.icono p {
-    margin-top: 6px;
-    font-size: 1em;
-    color: #fff;
-}
-
-.icono img:hover {
-    filter: drop-shadow(0 0 5px #03e2ff);
-    cursor: pointer;
-    position: relative;
-    z-index: 10;
-}
 
 /*oculta barra debajo de imagenes*/
 @media (max-width: 768px) {
@@ -835,4 +857,25 @@ section h2 {
         /* Ajusta altura (puedes subir a 70vh si quieres más imagen) */
         padding: 30px 10px;
     }
+}
+
+
+
+
+/* Hacemos que #particles-js ocupe toda la pantalla */
+#particles-js {
+  position: fixed; /* o absolute si quieres que solo cubra el scroll */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* lo ponemos detrás del contenido */
+  overflow: hidden;
+}
+
+/* Para que el contenido principal tenga padding si es necesario */
+.contenido-principal {
+  position: relative;
+  z-index: 1;
+  
 }
