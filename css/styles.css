@@ -166,6 +166,33 @@ a:hover {
     animation-fill-mode: forwards;
     font-size: 1.5em;
 }
+/* --- REGLAS ADICIONALES PARA MONITORES GRANDES (ej. > 1400px) --- */
+@media (min-width: 1400px) {
+    
+    /* 1. Ajustar el encabezado y su contenido */
+    .encabezado {
+        /* Opcional: Si la imagen se veía demasiado grande */
+        background-size: cover; 
+        background-position: top center; 
+        /* Aseguramos que la altura mínima sea suficiente para la pantalla */
+        min-height: 95vh; 
+        
+        /* Ajustamos el padding para el texto en pantallas muy grandes */
+        padding-top: 200px;
+        padding-bottom: 250px;
+    }
+
+    /* 2. Limitar y Centrar el Contenido (para que no se estire) */
+    /* Aplica para navbar, sections y otros elementos que tienen max-width: 1000px */
+    .navbar,
+    section {
+        /* Aumentamos el ancho máximo para usar más espacio horizontal */
+        max-width: 1200px; 
+        /* Centramos el contenido en el medio de la pantalla gigante */
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
 
 /* Animación de escribir h3 */
 @keyframes typing-subtitulo {
@@ -390,6 +417,7 @@ section h2 {
 
 
 /* Video */
+
 .video {
     margin-top: 20px;
     position: relative;
