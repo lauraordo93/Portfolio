@@ -354,6 +354,7 @@ section h2 {
     border-radius: 12px;
     box-shadow: 0 0 10px rgba(0, 188, 212, 0.2);
     color: #eee;
+    
 }
 
 .proyecto h3 {
@@ -363,6 +364,7 @@ section h2 {
 
 .proyecto p {
     line-height: 1.6;
+    text-align: left;
 
 }
 
@@ -398,8 +400,10 @@ section h2 {
     /* Texto azul en lugar de botón */
     font-weight: normal;
     padding: 0;
+    
     /* Quitar relleno tipo botón */
     box-shadow: none;
+   
     /* Sin sombra */
 }
 
@@ -415,6 +419,67 @@ section h2 {
         font-size: 16px; /* o el tamaño que mejor quede */
     }
 }
+/* ====================================================== */
+/* AJUSTES DE FUENTE Y ESPACIADO DEL TEXTO EN MÓVILES */
+/* ====================================================== */
+
+@media (max-width: 768px) {
+    /* 1. Ajustes a la tarjeta en móvil */
+    .proyecto {
+        padding: 15px; 
+    }
+
+    /* Reducir el tamaño de la fuente para el texto de la descripción */
+    .proyecto p {
+        font-size: 0.9em; /* Aproximadamente un 10% más pequeño que el tamaño base */
+        line-height: 1.7; /* Aumentar el interlineado para que el texto respire */
+        
+        
+    }
+
+    /* Reducir el tamaño del encabezado si es necesario */
+    .proyecto h3 {
+        font-size: 1.2em;
+    }
+    
+
+    .proyecto ul li {
+        font-size: 0.7em; /* También aplicar reducción de fuente a los ítems de lista */
+        margin-bottom: 5px; /* Espacio extra entre ítems */
+    }
+    
+    /* Forzar a los botones a apilarse (del código anterior, asegurando su función) */
+    .proyecto a {
+        display: block; 
+        width: 100%; 
+        box-sizing: border-box;
+        text-align: center;
+        margin-top: 10px; 
+        padding: 12px 10px;
+        /* Permite que las palabras largas se rompan si no caben */
+        overflow-wrap: break-word; 
+        word-break: break-all;
+       
+       
+    }
+    
+    /* Revertir el estilo de botón para el enlace discreto 'web' */
+    .proyecto a.web {
+        display: inline-block; 
+        width: auto;
+        text-align: left;
+        padding: 0; 
+        margin-top: 15px; 
+      
+    }
+    .proyecto a .fab.fa-github {
+    /* Asegura que el ícono sea del tamaño correcto si es necesario */
+    font-size:1em; 
+}
+}
+
+/* El resto del CSS de Grid y base se mantiene sin cambios */
+
 
 
 
