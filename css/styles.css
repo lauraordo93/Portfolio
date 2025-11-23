@@ -289,9 +289,7 @@ a:hover {
         text-align: left;
     }
 }
- li {
-        list-style: none;
-    }
+
 /* Secciones generales */
 section {
     max-width: 1000px;
@@ -356,16 +354,52 @@ section h2 {
     color: #eee;
     
 }
-
+/* 1. MEJORA DE JERARQUÍA EN TÍTULOS */
 .proyecto h3 {
     color: #00bcd4;
     margin-bottom: 10px;
+    letter-spacing: 0.5px; /* Hace que el título respire más */
+    font-weight: 700; /* Asegura que sea muy grueso, no solo el por defecto */
 }
 
+/* 2. MEJORA DE LEGIBILIDAD EN PÁRRAFOS */
 .proyecto p {
-    line-height: 1.6;
-    text-align: left;
+    line-height: 1.7; /* Aumenta el espacio entre líneas para facilitar la lectura */
+    margin-bottom: 18px; /* Separa mejor los bloques de texto */
+    max-width: 800px; /* Evita que las líneas sean demasiado largas en monitores grandes */
+}
+/* --- MEJORAS PARA LISTAS (UL Y LI) --- */
 
+/* 1. Estilos del Contenedor de Lista (UL) */
+.proyecto ul {
+    list-style-type: circle; /* Asegura que sean puntos sólidos */
+    padding-left: 35px;    /* Define la sangría para que los puntos no se salgan */
+    margin-top: 10px;      /* Espacio superior para separar del párrafo anterior */
+}
+
+/* 2. Estilos del Elemento de Lista (LI) */
+.proyecto ul li {
+    /* Separación entre cada punto para que sea más fácil escanear */
+    margin-bottom: 12px; 
+    
+    /* Asegura un color de texto más brillante para un buen contraste */
+    color: #ffffff; 
+    
+    /* Aumenta la altura de línea (line-height) solo si es necesario, ya lo tienes en 'p' */
+    /* line-height: 1.5; */ 
+}
+
+/* 3. Estilos Específicos para las Viñetas (Opcional, si quieres color) */
+/* Este método es más moderno y separa el color del punto del color del texto */
+.proyecto ul li::marker {
+    color: #00bcd4; /* Hace que las viñetas sean de color turquesa (el color de tu h3) */
+    font-size: 1.1em; /* Un poco más grandes para que se vean */
+}
+
+/* 3. NEGRITA PARA RESALTAR TECNOLOGÍAS */
+.proyecto strong {
+    color: #ffffff; /* Asegura que las etiquetas importantes sean blanco puro */
+    font-weight: 600; 
 }
 
 /* Estilos generales para todos los enlaces de proyecto */
