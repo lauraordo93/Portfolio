@@ -1428,6 +1428,164 @@ section h2 {
     transform: translateY(-2px);
 }
 
+/* Sobre mí */
+#sobre-mi {
+    max-width: 1100px;
+}
+
+.about-card {
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: minmax(180px, 260px) minmax(0, 1fr);
+    align-items: center;
+    gap: clamp(1.2rem, 3vw, 2rem);
+    padding: clamp(1.15rem, 2.7vw, 2rem);
+    border: 1px solid rgba(0, 188, 212, 0.22);
+    border-radius: 8px;
+    background:
+        linear-gradient(135deg, rgba(30, 30, 30, 0.96), rgba(9, 30, 34, 0.96)),
+        radial-gradient(circle at bottom left, rgba(255, 148, 18, 0.13), transparent 34%);
+    box-shadow: 0 18px 42px rgba(0, 0, 0, 0.28);
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.about-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color_azul), var(--color_naranja));
+}
+
+.about-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(0, 188, 212, 0.44);
+    box-shadow: 0 24px 52px rgba(0, 0, 0, 0.34), 0 0 22px rgba(0, 188, 212, 0.12);
+}
+
+.about-media {
+    position: relative;
+    justify-self: center;
+    width: min(100%, 220px);
+    aspect-ratio: 1;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(255, 148, 18, 0.28);
+    border-radius: 8px;
+    background: rgba(14, 14, 14, 0.52);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 16px 34px rgba(0, 0, 0, 0.26);
+}
+
+.about-media::after {
+    content: "";
+    position: absolute;
+    inset: 12px;
+    border: 1px solid rgba(0, 188, 212, 0.18);
+    border-radius: 8px;
+    pointer-events: none;
+}
+
+.about-media img {
+    width: 78%;
+    height: 78%;
+    object-fit: contain;
+    filter: drop-shadow(0 12px 18px rgba(0, 0, 0, 0.36));
+}
+
+.about-content {
+    min-width: 0;
+}
+
+.about-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.9rem;
+    padding: 0.42rem 0.7rem;
+    border: 1px solid rgba(0, 188, 212, 0.22);
+    border-radius: 999px;
+    background: rgba(0, 188, 212, 0.08);
+    color: #d9faff;
+    font-size: 0.82rem;
+    font-weight: 700;
+}
+
+.about-kicker i {
+    color: var(--color_naranja);
+}
+
+.about-text {
+    max-width: 780px;
+    margin-bottom: 1.25rem;
+    color: #e2e2e2;
+    font-size: 1rem;
+    line-height: 1.75;
+}
+
+.about-highlights {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.7rem;
+}
+
+.about-highlight {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    min-width: 0;
+    min-height: 52px;
+    padding: 0.75rem 0.85rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-left: 3px solid rgba(255, 148, 18, 0.62);
+    border-radius: 8px;
+    background: rgba(14, 14, 14, 0.48);
+    color: #f4f4f4;
+    font-size: 0.9rem;
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+.about-highlight i {
+    flex: 0 0 auto;
+    width: 1.2rem;
+    color: var(--color_azul);
+    font-size: 1rem;
+    text-align: center;
+}
+
+.about-highlight span {
+    min-width: 0;
+}
+
+.reveal-ready .about-card.reveal-on-scroll.is-visible:hover {
+    transform: translateY(-5px);
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+@media (max-width: 768px) {
+    .about-card {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+
+    .about-media {
+        width: min(100%, 180px);
+    }
+
+    .about-text {
+        font-size: 0.92rem;
+    }
+}
+
+@media (max-width: 520px) {
+    .about-highlights {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* Experiencia profesional */
 #experiencia {
     max-width: 1100px;
@@ -1638,6 +1796,7 @@ section {
     width: min(calc(100% - 32px), 1000px);
 }
 
+#sobre-mi,
 #experiencia,
 #proyectos-personales,
 #proyectos-academicos {
@@ -1645,11 +1804,14 @@ section {
 }
 
 .tecnologias,
+.about-card,
 .proyecto.project-card,
 .proyecto.experience-card {
     min-width: 0;
 }
 
+.about-text,
+.about-highlight,
 .experience-card p,
 .experience-card li,
 .experience-card h3,
@@ -1722,6 +1884,7 @@ section {
 
 @media (max-width: 600px) {
     section,
+    #sobre-mi,
     #experiencia,
     #proyectos-personales,
     #proyectos-academicos {
@@ -1799,6 +1962,8 @@ section {
 }
 
 @media (hover: none) {
+    .about-card:hover,
+    .reveal-ready .about-card.reveal-on-scroll.is-visible:hover,
     .proyecto.project-card:hover,
     .reveal-ready .proyecto.project-card.reveal-on-scroll.is-visible:hover,
     .proyecto.experience-card:hover,

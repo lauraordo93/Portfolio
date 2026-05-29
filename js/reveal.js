@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  const featureCards = document.querySelectorAll('.project-card, .experience-card');
+  const featureCards = document.querySelectorAll('.about-card, .project-card, .experience-card');
 
   featureCards.forEach((card, cardIndex) => {
     const cardDelay = Math.min(cardIndex * 70, 180);
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     card.style.setProperty('--reveal-delay', `${cardDelay}ms`);
 
     const animatedDetails = card.querySelectorAll(
-      '.experience-header, .experience-summary, .project-tech-list, .experience-responsibilities li, .video, .proyecto-imagen, .project-actions'
+      '.about-media, .about-content, .about-highlight, .experience-header, .experience-summary, .project-tech-list, .experience-responsibilities li, .video, .proyecto-imagen, .project-actions'
     );
 
     animatedDetails.forEach((detail, detailIndex) => {
