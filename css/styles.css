@@ -1368,6 +1368,11 @@ section h2 {
     color: #f4f4f4;
 }
 
+.project-inline-icon {
+    margin-right: 0.35rem;
+    color: var(--color_azul);
+}
+
 .project-tech-list {
     display: flex;
     flex-wrap: wrap;
