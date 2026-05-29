@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const toggleBtn = document.querySelector('.menu-toggle');
   const navLinks = document.querySelector('.nav-links');
   const links = document.querySelectorAll('.nav-links a');
+  const pageAnchorLinks = document.querySelectorAll('.nav-links a, .footer-nav a[href^="#"]');
   const toggleIcon = toggleBtn?.querySelector('i');
 
   if (!navHeader || !toggleBtn || !navLinks || !links.length) {
@@ -45,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setMenuState(!navLinks.classList.contains('active'));
   });
 
-  links.forEach((link) => {
+  pageAnchorLinks.forEach((link) => {
     link.addEventListener('click', (event) => {
       const targetId = link.getAttribute('href');
       const target = targetId?.startsWith('#') ? document.querySelector(targetId) : null;

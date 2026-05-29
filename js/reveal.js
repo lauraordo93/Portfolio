@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  const featureCards = document.querySelectorAll('.about-card, .project-card, .experience-card');
+  const featureCards = document.querySelectorAll('.about-card, .project-card, .experience-card, .footer-card, .footer-copy');
 
   featureCards.forEach((card, cardIndex) => {
     const cardDelay = Math.min(cardIndex * 70, 180);
@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const animatedDetails = card.querySelectorAll(
       '.about-media, .about-content, .about-highlight, .experience-header, .experience-summary, .project-tech-list, .experience-responsibilities li, .video, .proyecto-imagen, .project-actions'
+      + ', .email, .btn-descarga, .redes-sociales li, .footer-nav li'
     );
 
     animatedDetails.forEach((detail, detailIndex) => {

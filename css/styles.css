@@ -2271,3 +2271,201 @@ section {
         font-size: 0.92rem;
     }
 }
+
+/* Contacto y redes */
+#footer {
+    width: min(calc(100% - 32px), 1100px);
+    margin: 64px auto 0;
+    padding: clamp(1.1rem, 2.6vw, 1.8rem);
+    border: 1px solid rgba(0, 188, 212, 0.22);
+    border-radius: 8px;
+    background:
+        linear-gradient(135deg, rgba(30, 30, 30, 0.97), rgba(9, 30, 34, 0.96)),
+        radial-gradient(circle at top right, rgba(255, 148, 18, 0.12), transparent 34%);
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.3);
+}
+
+#footer::before {
+    display: none;
+}
+
+.footer-contenedor {
+    max-width: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.footer-contenedor>div {
+    min-width: 0;
+}
+
+.footer-card {
+    padding: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-left: 3px solid rgba(0, 188, 212, 0.55);
+    border-radius: 8px;
+    background: rgba(14, 14, 14, 0.48);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.footer-card h2,
+.footer-copy h2 {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    margin-bottom: 0.9rem;
+    padding: 0;
+    border-left: 0;
+    color: var(--color_azul);
+    font-size: 1.15rem;
+    line-height: 1.25;
+}
+
+.footer-card h2 i,
+.footer-copy h2 i {
+    color: var(--color_naranja);
+}
+
+.footer-card p {
+    margin-bottom: 0.8rem;
+    color: #dddddd;
+}
+
+.contacto .email,
+.redes-sociales li {
+    margin: 0;
+}
+
+.contacto .email {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    min-width: 0;
+    padding: 0.75rem 0.85rem;
+    border: 1px solid rgba(0, 188, 212, 0.16);
+    border-radius: 8px;
+    background: rgba(0, 188, 212, 0.07);
+}
+
+.contacto .email i {
+    color: var(--color_naranja);
+}
+
+.contacto .email a {
+    min-width: 0;
+    color: #f4f4f4;
+    overflow-wrap: anywhere;
+}
+
+.redes-sociales {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.65rem;
+}
+
+.redes-sociales a {
+    width: 100%;
+    min-height: 46px;
+    padding: 0.75rem 0.85rem;
+    border: 1px solid rgba(0, 188, 212, 0.16);
+    border-radius: 8px;
+    background: rgba(0, 188, 212, 0.07);
+    color: #f4f4f4;
+    font-weight: 700;
+    transition: transform 0.2s ease, color 0.25s ease, border-color 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.redes-sociales a:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255, 148, 18, 0.45);
+    background: rgba(255, 148, 18, 0.1);
+    color: var(--color_naranja);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+}
+
+.redes-sociales i {
+    width: 1.2rem;
+    margin-right: 0.55rem;
+    color: var(--color_azul);
+    text-align: center;
+}
+
+.contacto #curriculum {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: auto;
+    margin-top: 1rem;
+    border-color: rgba(255, 148, 18, 0.5);
+    color: var(--color_naranja);
+    background: rgba(255, 148, 18, 0.08);
+}
+
+.contacto #curriculum:hover {
+    background: var(--color_naranja);
+    color: #0e0e0e;
+    box-shadow: 0 12px 24px rgba(255, 148, 18, 0.16);
+}
+
+.footer-copy {
+    grid-column: 1 / -1;
+    margin: 0;
+    padding-top: 0.9rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    text-align: center;
+}
+
+.footer-copy p {
+    margin-bottom: 0.65rem;
+    color: #b9c9cc;
+}
+
+.footer-nav a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 38px;
+    padding: 0.55rem 0.85rem;
+    border: 1px solid rgba(0, 188, 212, 0.18);
+    border-radius: 8px;
+    background: rgba(0, 188, 212, 0.07);
+    color: var(--color_azul);
+}
+
+.footer-nav a:hover {
+    border-color: rgba(255, 148, 18, 0.45);
+    color: var(--color_naranja);
+    background: rgba(255, 148, 18, 0.1);
+}
+
+.reveal-ready .footer-card.reveal-on-scroll.is-visible:hover {
+    transform: translateY(-4px);
+}
+
+@media (max-width: 768px) {
+    #footer {
+        width: min(calc(100% - 24px), 1100px);
+        margin-top: 44px;
+        padding: 1rem;
+    }
+
+    .footer-contenedor {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+    }
+
+    .footer-card {
+        padding: 0.9rem;
+    }
+
+    .footer-card h2 {
+        font-size: 1.05rem;
+    }
+
+    .contacto #curriculum {
+        width: 100%;
+    }
+}
