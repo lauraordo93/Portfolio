@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   const navHeader = document.querySelector('.nav-header');
+  const navBrand = document.querySelector('.nav-brand');
   const toggleBtn = document.querySelector('.menu-toggle');
   const navLinks = document.querySelector('.nav-links');
   const links = document.querySelectorAll('.nav-links a');
@@ -57,6 +58,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
       closeMenu();
     });
+  });
+
+  navBrand?.addEventListener('click', (event) => {
+    const target = document.getElementById('inicio');
+
+    if (target) {
+      event.preventDefault();
+      scrollToTarget(target);
+      history.pushState(null, '', '#inicio');
+      closeMenu();
+    }
   });
 
   document.addEventListener('click', (event) => {

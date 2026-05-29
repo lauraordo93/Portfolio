@@ -10,7 +10,7 @@
 
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 96px;
+    scroll-padding-top: 74px;
 }
 
 body {
@@ -38,8 +38,8 @@ a:hover {
     left: 0;
     z-index: 1200;
     width: 100%;
-    padding: 14px 0;
-    background: rgba(14, 14, 14, 0.18);
+    padding: 7px 0;
+    background: rgba(14, 14, 14, 0.08);
     border-bottom: 1px solid rgba(0, 188, 212, 0.08);
     animation: navEnter 0.6s ease both;
     transition: padding 0.25s ease, background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, backdrop-filter 0.25s ease;
@@ -47,16 +47,16 @@ a:hover {
 
 .nav-header.is-scrolled,
 .nav-header.nav-open {
-    padding: 9px 0;
-    background: rgba(14, 14, 14, 0.82);
+    padding: 6px 0;
+    background: rgba(14, 14, 14, 0.78);
     border-bottom-color: rgba(0, 188, 212, 0.22);
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.26);
     backdrop-filter: blur(14px);
 }
 
 .navbar {
-    width: min(calc(100% - 32px), 1120px);
-    min-height: 52px;
+    width: min(calc(100% - 24px), 1240px);
+    min-height: 44px;
     margin: 0 auto;
     padding: 0 12px;
     display: flex;
@@ -116,8 +116,8 @@ a:hover {
 .nav-links a {
     display: inline-flex;
     align-items: center;
-    min-height: 40px;
-    padding: 0.55rem 0.8rem;
+    min-height: 34px;
+    padding: 0.45rem 0.72rem;
     border-radius: 8px;
     color: #cfeff2;
     text-decoration: none;
@@ -133,7 +133,7 @@ a:hover {
     position: absolute;
     width: calc(100% - 1.6rem);
     height: 2px;
-    bottom: 6px;
+    bottom: 4px;
     left: 0.8rem;
     background-color: var(--color_naranja);
     transform: scaleX(0);
@@ -302,22 +302,22 @@ body.nav-open {
 
 @media (max-width: 768px) {
     html {
-        scroll-padding-top: 82px;
+        scroll-padding-top: 66px;
     }
 
     section {
-        scroll-margin-top: 82px;
+        scroll-margin-top: 66px;
     }
 
     .nav-header {
-        padding: 8px 0;
-        background: rgba(14, 14, 14, 0.78);
+        padding: 6px 0;
+        background: rgba(14, 14, 14, 0.72);
         backdrop-filter: blur(12px);
     }
 
     .navbar {
-        width: min(calc(100% - 20px), 1120px);
-        min-height: 50px;
+        width: min(calc(100% - 16px), 1120px);
+        min-height: 44px;
         padding: 0 4px;
     }
 
@@ -326,6 +326,8 @@ body.nav-open {
     }
 
     .menu-toggle {
+        width: 38px;
+        height: 38px;
         display: inline-flex;
         position: relative;
         z-index: 1301;
@@ -333,9 +335,9 @@ body.nav-open {
 
     .nav-links {
         position: fixed;
-        top: 68px;
-        right: 10px;
-        left: 10px;
+        top: 56px;
+        right: 8px;
+        left: 8px;
         height: auto;
         max-height: calc(100vh - 88px);
         overflow-y: auto;
@@ -398,7 +400,7 @@ section {
     max-width: 1000px;
     margin: 50px auto;
     padding: 10px;
-    scroll-margin-top: 96px;
+    scroll-margin-top: 74px;
 }
 
 section h2 {
@@ -2080,5 +2082,158 @@ section {
     .video:hover,
     .reveal-ready .video.reveal-on-scroll.is-visible:hover {
         transform: none;
+    }
+}
+
+/* Hero / foto principal */
+.encabezado {
+    min-height: 680px;
+    height: min(86vh, 760px);
+    margin-bottom: 56px;
+    padding: 86px 24px 92px;
+    display: flex;
+    align-items: center;
+    background-attachment: fixed;
+    background-position: center 38%;
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.32);
+}
+
+.encabezado::before {
+    background:
+        linear-gradient(90deg, rgba(0, 0, 0, 0.78) 0%, rgba(0, 0, 0, 0.56) 30%, rgba(0, 0, 0, 0.16) 58%, rgba(0, 0, 0, 0.04) 100%),
+        linear-gradient(180deg, rgba(14, 14, 14, 0.48) 0%, rgba(14, 14, 14, 0.08) 34%, rgba(14, 14, 14, 0.72) 100%);
+}
+
+.contenido-texto {
+    width: 100%;
+    margin: 0;
+    padding-left: clamp(20px, 5vw, 88px);
+    padding-right: 20px;
+    padding-top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transform: translateY(-72px);
+}
+
+.encabezado h1 {
+    max-width: 460px;
+    margin: 0;
+    font-size: 2.18rem;
+    letter-spacing: 0;
+    line-height: 1.15;
+}
+
+.typewriter-subtitulo {
+    max-width: 460px;
+    font-size: 1rem;
+    line-height: 1.45;
+    white-space: normal;
+    width: auto;
+    animation: none !important;
+    border-right: none !important;
+}
+
+.encabezado-btn {
+    margin-top: 1.35rem;
+}
+
+@media (min-width: 1400px) {
+    .encabezado {
+        min-height: 720px;
+        height: min(88vh, 820px);
+        padding-top: 96px;
+        padding-bottom: 106px;
+        background-position: center 34%;
+    }
+
+    .encabezado h1 {
+        max-width: 560px;
+        font-size: 2.6rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    .encabezado {
+        min-height: 620px;
+        height: auto;
+        padding: 86px 18px 78px;
+        background-attachment: scroll;
+        background-position: 58% center;
+    }
+
+    .contenido-texto {
+        width: 100%;
+        padding-left: clamp(18px, 4vw, 48px);
+        transform: translateY(-52px);
+    }
+
+    .encabezado h1 {
+        max-width: 430px;
+        font-size: 1.95rem;
+        letter-spacing: 0;
+    }
+
+    .typewriter-subtitulo {
+        max-width: 430px;
+        white-space: normal;
+        width: auto;
+        animation: none !important;
+        border-right: none !important;
+    }
+}
+
+@media (max-width: 700px) {
+    .encabezado {
+        min-height: 560px;
+        margin-bottom: 40px;
+        padding: 76px 14px 72px;
+        align-items: flex-end;
+        background-position: 66% center;
+    }
+
+    .encabezado::before {
+        background:
+            linear-gradient(180deg, rgba(14, 14, 14, 0.48) 0%, rgba(14, 14, 14, 0.28) 35%, rgba(14, 14, 14, 0.86) 100%),
+            linear-gradient(90deg, rgba(0, 0, 0, 0.64), rgba(0, 0, 0, 0.12));
+    }
+
+    .contenido-texto {
+        width: 100%;
+        padding-left: 14px;
+        padding-right: 14px;
+        padding-top: 0;
+        transform: translateY(-22px);
+    }
+
+    .encabezado h1 {
+        max-width: 330px;
+        font-size: 1.55rem;
+        line-height: 1.18;
+        overflow-wrap: anywhere;
+    }
+
+    .typewriter-subtitulo {
+        font-size: 0.98rem;
+    }
+}
+
+@media (max-width: 420px) {
+    .encabezado {
+        min-height: 520px;
+        padding-top: 70px;
+        padding-bottom: 56px;
+        background-position: 69% center;
+    }
+
+    .encabezado h1 {
+        font-size: 1.32rem;
+    }
+
+    .encabezado-btn {
+        width: 100%;
+        max-width: 260px;
+        padding: 12px 14px;
+        font-size: 0.92rem;
     }
 }
