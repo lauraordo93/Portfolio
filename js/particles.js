@@ -21,7 +21,8 @@
 //   },
 //   "retina_detect": true
 // });
-particlesJS("particles-js", {
+if (window.particlesJS && document.getElementById("particles-js")) {
+  particlesJS("particles-js", {
   "particles": {
     "number": { "value": 50 }, // menos partículas, más misterioso
     "color": { "value": "#00bcd4" }, // rojo intenso
@@ -54,4 +55,5 @@ particlesJS("particles-js", {
     }
   },
   "retina_detect": true
-});
+  });
+}

@@ -2274,6 +2274,8 @@ section {
 
 /* Contacto y redes */
 #footer {
+    position: relative;
+    overflow: hidden;
     width: min(calc(100% - 32px), 1100px);
     margin: 64px auto 0;
     padding: clamp(1.1rem, 2.6vw, 1.8rem);
@@ -2282,6 +2284,7 @@ section {
     background:
         linear-gradient(135deg, rgba(30, 30, 30, 0.97), rgba(9, 30, 34, 0.96)),
         radial-gradient(circle at top right, rgba(255, 148, 18, 0.12), transparent 34%);
+    color: #f0f0f0;
     box-shadow: 0 20px 48px rgba(0, 0, 0, 0.3);
 }
 
@@ -2290,7 +2293,10 @@ section {
 }
 
 .footer-contenedor {
+    position: relative;
+    z-index: 1;
     max-width: none;
+    margin: 0;
     padding: 0;
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2360,6 +2366,9 @@ section {
 }
 
 .redes-sociales {
+    margin: 0;
+    padding: 0;
+    list-style: none;
     display: grid;
     grid-template-columns: 1fr;
     gap: 0.65rem;
@@ -2421,6 +2430,12 @@ section {
 .footer-copy p {
     margin-bottom: 0.65rem;
     color: #b9c9cc;
+}
+
+.footer-nav {
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
 .footer-nav a {
