@@ -1,50 +1,43 @@
 # Portfolio personal - Laura Ordóñez
 
-Portfolio personal desarrollado con **HTML, CSS y JavaScript**, enfocado en presentar mi perfil como **Desarrolladora Full Stack Junior**, mi experiencia profesional en **ReservatorStore**, mi stack tecnológico y proyectos personales/académicos.
+Portfolio personal desarrollado con **HTML, CSS y JavaScript**, enfocado en presentar mi perfil como **Desarrolladora Full Stack Junior**, mi experiencia profesional en **Reservator S.L.** (plataforma ReservatorStore), mi stack tecnológico y mis proyectos académicos.
 
-El objetivo del proyecto es funcionar como carta de presentación profesional: visual, responsive, clara y compatible con GitHub Pages.
+Es una web estática, sin dependencias de compilación, compatible con GitHub Pages.
 
-## Vista general
+## Diseño
 
-El portfolio incluye:
+Dirección visual "modo developer nocturno":
 
-- Hero principal con presentación profesional y descarga de CV.
-- Navbar fija con scroll suave, menú responsive y sección activa.
-- Sección "Sobre mí" con presentación visual y highlights técnicos.
-- Experiencia profesional destacada en ReservatorStore.
-- Tech stack organizado por categorías.
-- Proyectos personales y académicos en cards.
-- Sección de contacto y redes integrada con el diseño general.
-- Animaciones suaves al hacer scroll.
-- Fondo visual con partículas.
+- Fondo oscuro `#0C0F11`, cian `#00BCD4` como color de acción y naranja `#FF9412` como acento.
+- Tipografías: **Orbitron** (nombre y títulos de sección), **Fira Sans** (texto) y **Fira Code** (etiquetas y detalles técnicos).
+- Todos los colores, radios y espaciados están definidos como variables CSS al principio de `css/styles.css`.
 
-## Tecnologías utilizadas
+## Secciones
 
-### Proyecto
+- **Inicio**: foto, nombre, rol, stack principal y accesos a proyectos, CV, GitHub y LinkedIn.
+- **01 · Sobre mí**: presentación, áreas destacadas y datos rápidos.
+- **02 · Tech Stack**: tecnologías agrupadas en Frontend, Backend, Bases de datos y Herramientas.
+- **03 · Experiencia y formación**: timeline con Reservator S.L. y la formación DAM.
+- **04 · Proyectos destacados**: TFG (Página Web Vertical) y Gestor de Persistencia Multi-Formato.
+- **05 · Contacto**: correo con botón de copiar, redes y descarga del CV.
 
-- HTML5
-- CSS3
-- JavaScript
-- Responsive Design
+## Accesibilidad y rendimiento
+
+- Contraste AA en textos y botones (texto oscuro sobre cian).
+- Estados `:focus-visible` en todos los elementos interactivos y enlace "Saltar al contenido".
+- Menú móvil con `aria-expanded`, cierre con Escape y al pulsar fuera.
+- Zonas táctiles de al menos 44 px.
+- `prefers-reduced-motion`: desactiva animaciones, transiciones y partículas.
+- Los vídeos de YouTube se cargan solo al pulsar (miniatura + iframe bajo demanda).
+
+## Tecnologías utilizadas en el proyecto
+
+- HTML5, CSS3 y JavaScript
 - Intersection Observer API
 - Particles.js
 - Font Awesome
 - Google Fonts
 - Devicon
-
-### Tecnologías destacadas en el portfolio
-
-- PHP
-- JavaScript
-- MySQL / MariaDB
-- MVC
-- AJAX
-- Fetch API
-- Java
-- Kotlin
-- Firebase
-- Git
-- GitHub
 
 ## Estructura del proyecto
 
@@ -55,87 +48,32 @@ Portfolio/
 |-- documentos/
 |   `-- CV_Laura Ordonez.pdf
 |-- img/
-|   |-- image2.jpg
 |   |-- laura_mejorada.jpg
 |   |-- webCarlos.png
 |   `-- ...
 |-- js/
-|   |-- encabezadoh3.js
-|   |-- menuPort.js
-|   |-- particles.js
-|   `-- reveal.js
+|   |-- menuPort.js     # menú móvil, header al hacer scroll y enlace activo
+|   |-- particles.js    # fondo de partículas sutil
+|   |-- proyectos.js    # vídeos bajo demanda y botón de copiar correo
+|   `-- reveal.js       # aparición suave de bloques al hacer scroll
 |-- index.html
 `-- README.md
 ```
 
-## Secciones principales
-
-### Inicio
-
-Presentación principal con nombre, rol profesional y botón para descargar el currículum.
-
-### Sobre mí
-
-Bloque visual con descripción personal, imagen/avatar y highlights como desarrollo Full Stack, PHP/JavaScript, arquitectura MVC y aprendizaje continuo.
-
-### Experiencia
-
-Tarjeta profesional destacada para **ReservatorStore**, con cargo, periodo, descripción, responsabilidades y tecnologías utilizadas.
-
-### Tech Stack
-
-Listado visual de herramientas y tecnologías organizadas por categorías:
-
-- Frontend
-- Backend
-- Bases de datos
-- Herramientas
-
-### Proyectos
-
-Cards profesionales con descripción, tecnologías, enlaces a GitHub y demos cuando existen.
-
-### Contacto y redes
-
-Bloque final con correo, descarga de CV, GitHub y LinkedIn.
-
 ## Cómo ejecutar el proyecto
 
-No requiere instalación ni compilación.
-
 1. Clona o descarga el repositorio.
-2. Abre el archivo `index.html` en el navegador.
-
-También puedes usar una extensión como **Live Server** en VS Code para trabajar con recarga automática.
+2. Abre `index.html` en el navegador, o usa **Live Server** en VS Code.
 
 ## Despliegue en GitHub Pages
 
-Este proyecto es compatible con GitHub Pages porque es una web estática.
-
-Pasos recomendados:
-
-1. Subir el proyecto a un repositorio de GitHub.
-2. Entrar en `Settings > Pages`.
-3. Seleccionar la rama principal.
-4. Usar la carpeta raíz como origen.
-5. Guardar y esperar a que GitHub genere la URL pública.
-
-## Personalización
-
-Los archivos principales para modificar el portfolio son:
-
-- `index.html`: estructura y contenido.
-- `css/styles.css`: diseño visual, responsive, cards, navbar y animaciones.
-- `js/menuPort.js`: comportamiento del menú, scroll suave y sección activa.
-- `js/reveal.js`: animaciones de aparición al hacer scroll.
-- `js/particles.js`: configuración del fondo de partículas.
+1. Sube el proyecto a un repositorio de GitHub.
+2. Entra en `Settings > Pages`.
+3. Selecciona la rama principal y la carpeta raíz.
+4. Guarda y espera a que GitHub genere la URL pública.
 
 ## Contacto
 
 - Email: [laura.ordonez.dev@gmail.com](mailto:laura.ordonez.dev@gmail.com)
 - GitHub: [lauraordo93](https://github.com/lauraordo93)
 - LinkedIn: [Laura Ordóñez](https://linkedin.com/in/laura-ordoñez-737532300)
-
-## Estado
-
-Proyecto en evolución continua como portfolio profesional personal.

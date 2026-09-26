@@ -4,25 +4,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio de Laura</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <meta name="description" content="Portfolio de Laura Ordóñez de Arce, desarrolladora Full Stack Junior especializada en PHP.">
+    <meta name="theme-color" content="#0C0F11">
+    <title>Laura Ordóñez · Desarrolladora Full Stack Junior</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Fira+Sans:wght@400;500;600;700&family=Orbitron:wght@500;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Zen+Tokyo+Zoo&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+
     <link rel="apple-touch-icon" href="img/Image.jpeg">
     <link rel="shortcut icon" href="img/Image.jpeg" type="image/x-icon">
 </head>
 
 <body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
 
-    <!-- ENCABEZADO PRINCIPAL -->
-    <header id="inicio" class="nav-header">
+    <!-- NAVEGACIÓN -->
+    <header class="nav-header">
         <nav class="navbar" aria-label="Navegación principal">
-            <a class="nav-brand" href="#inicio" aria-label="Ir al inicio">
+            <a class="nav-brand" href="#inicio" aria-label="Laura.dev, ir al inicio">
                 <i class="fas fa-code" aria-hidden="true"></i>
-                <span>Laura.dev</span>
+                <span>Laura<span class="nav-brand__dot">.dev</span></span>
             </a>
 
             <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-controls="nav-links"
@@ -30,629 +34,402 @@
                 <i class="fas fa-bars" aria-hidden="true"></i>
             </button>
 
-            <ul id="nav-links" class="nav-links">
-                <li><a href="#sobre-mi">Sobre mí</a></li>
-                <li><a href="#experiencia">Experiencia</a></li>
-                <li><a href="#proyectos-personales">Proyectos</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-            </ul>
+            <div id="nav-links" class="nav-links">
+                <ul class="nav-list">
+                    <li><a href="#sobre-mi"><span class="nav-num" aria-hidden="true">01</span>Sobre mí</a></li>
+                    <li><a href="#experiencia"><span class="nav-num" aria-hidden="true">03</span>Experiencia</a></li>
+                    <li><a href="#proyectos"><span class="nav-num" aria-hidden="true">04</span>Proyectos</a></li>
+                    <li><a class="nav-cta" href="#contacto"><span class="nav-num" aria-hidden="true">05</span>Contacto</a></li>
+                </ul>
+
+                <div class="nav-mobile-extra">
+                    <a class="btn btn--primary btn--block" href="documentos/CV_Laura Ordonez.pdf" target="_blank"
+                        rel="noopener noreferrer" download>
+                        <i class="fas fa-download" aria-hidden="true"></i> Descargar CV
+                    </a>
+                    <div class="social-row">
+                        <a class="btn-icon" href="https://github.com/lauraordo93" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
+                        <a class="btn-icon" href="https://linkedin.com/in/laura-ordoñez-737532300" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+                        <a class="btn-icon" href="mailto:laura.ordonez.dev@gmail.com" aria-label="Correo"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+            </div>
         </nav>
     </header>
-    <header class="encabezado">
-        <div class="contenido-texto">
-            <h1 class="typewriter">LAURA ORDÓÑEZ DE ARCE</h1>
-            <h3 class="typewriter-subtitulo">Desarrolladora Full Stack Junior | PHP </h3>
-            <a id="curriculumnav" class="btn-descarga encabezado-btn" href="documentos/CV_Laura Ordonez.pdf"
-                target="_blank" rel="noopener noreferrer" download>
-                <i class="fas fa-download"></i> Descargar CV
+
+    <!-- Fondo de partículas (sutil, se desactiva con reducción de movimiento) -->
+    <div id="particles-js" class="particles-bg" aria-hidden="true"></div>
+
+    <main id="contenido">
+
+        <!-- HERO -->
+        <section id="inicio" class="hero">
+            <div class="hero__media">
+                <img src="img/laura_mejorada.jpg" alt="Laura Ordóñez de Arce" width="2090" height="1179"
+                    fetchpriority="high">
+            </div>
+
+            <div class="hero__content container">
+                <p class="hero__kicker">&gt; hola_mundo, soy</p>
+                <h1 class="hero__title">LAURA ORDÓÑEZ <span>DE ARCE</span></h1>
+                <p class="hero__role">Desarrolladora Full Stack Junior | PHP<span class="cursor" aria-hidden="true"></span></p>
+                <p class="hero__text">Formada en Desarrollo de Aplicaciones. Creo soluciones que combinan lógica, estructura y diseño.</p>
+
+                <div class="hero__stack">
+                    <span class="hero__stack-label">stack:</span>
+                    <ul class="chips" aria-label="Tecnologías principales">
+                        <li class="chip chip--cyan">PHP</li>
+                        <li class="chip chip--cyan">JavaScript</li>
+                        <li class="chip chip--cyan">MySQL</li>
+                        <li class="chip chip--cyan">Java</li>
+                    </ul>
+                </div>
+
+                <div class="hero__actions">
+                    <a class="btn btn--primary" href="#proyectos">Ver proyectos <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+                    <a class="btn btn--secondary" href="documentos/CV_Laura Ordonez.pdf" target="_blank"
+                        rel="noopener noreferrer" download><i class="fas fa-download" aria-hidden="true"></i> Descargar CV</a>
+                    <span class="hero__divider" aria-hidden="true"></span>
+                    <div class="social-row">
+                        <a class="btn-icon" href="https://github.com/lauraordo93" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
+                        <a class="btn-icon" href="https://linkedin.com/in/laura-ordoñez-737532300" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <a class="hero__scroll" href="#sobre-mi" aria-label="Ir a Sobre mí">
+                <span>scroll</span><i class="fas fa-arrow-down" aria-hidden="true"></i>
             </a>
-        </div>
-    </header>
+        </section>
 
+        <!-- 01 · SOBRE MÍ -->
+        <section id="sobre-mi" class="section container" aria-labelledby="sobre-mi-title">
+            <header class="section-head reveal">
+                <p class="section-kicker"><span>01</span><span class="section-kicker__line" aria-hidden="true"></span><span>sobre_mí</span></p>
+                <h2 id="sobre-mi-title" class="section-title">Sobre mí</h2>
+            </header>
 
-    <!-- Zona de partículas -->
-    <section class="particulas-seccion">
-        <div id="particles-js"></div>
-        <div class="contenido-principal">
-            <!-- Aquí va todo tu contenido de la sección -->
-
-            <!-- SECCIÓN SOBRE MÍ -->
-            <section id="sobre-mi">
-                <h2>Sobre mí </h2>
-
-                <div class="about-card">
-                    <div class="about-media">
-                        <img src="img/image2.jpg" alt="Ilustración de Laura como desarrolladora" width="1536"
-                            height="1024" decoding="async">
-                    </div>
-
-                    <div class="about-content">
-                        <span class="about-kicker">
-                            <i class="fa-solid fa-laptop-code" aria-hidden="true"></i>
-                            Perfil profesional
-                        </span>
-
-                        <p class="about-text">
-                            Hola 👋, soy Laura. Soy desarrolladora junior con formación en Desarrollo de Aplicaciones, disfruto creando soluciones que combinan lógica, estructura y diseño. Me inspiran los videojuegos, el arte digital y los desafíos que activan el pensamiento creativo. Para mí, programar es como debuggear la vida: aprender, fallar, iterar… y evolucionar.
-                        </p>
-
-                        <div class="about-highlights" aria-label="Áreas destacadas">
-                            <div class="about-highlight">
-                                <i class="fas fa-code" aria-hidden="true"></i>
-                                <span>Desarrollo Full Stack</span>
-                            </div>
-                            <div class="about-highlight">
-                                <i class="fab fa-php" aria-hidden="true"></i>
-                                <span>PHP / JavaScript</span>
-                            </div>
-                            <div class="about-highlight">
-                                <i class="fas fa-layer-group" aria-hidden="true"></i>
-                                <span>Arquitectura MVC</span>
-                            </div>
-                            <div class="about-highlight">
-                                <i class="fas fa-arrow-trend-up" aria-hidden="true"></i>
-                                <span>Aprendizaje continuo</span>
-                            </div>
-                        </div>
+            <div class="about reveal">
+                <div class="about__text">
+                    <p class="chip chip--orange chip--label"><i class="fa-solid fa-laptop-code" aria-hidden="true"></i> Perfil profesional</p>
+                    <p class="about__lead">Hola, soy Laura. Soy desarrolladora junior con formación en Desarrollo de Aplicaciones y disfruto creando soluciones que combinan <strong>lógica, estructura y diseño</strong>.</p>
+                    <p class="about__body">Me inspiran los videojuegos, el arte digital y los desafíos que activan el pensamiento creativo.</p>
+                    <div class="code-quote">
+                        <p class="code-quote__comment">// para mí, programar es como debuggear la vida</p>
+                        <p class="code-quote__line"><span class="fn">aprender</span>() → <span class="fn">fallar</span>() → <span class="fn">iterar</span>() → <span class="fn fn--orange">evolucionar</span>()</p>
                     </div>
                 </div>
-            </section>
-            <section class="tecnologias">
-                <h2>Tech Stack</h2>
 
-                <div class="categorias">
-                    <!-- Frontend -->
-                    <div class="categoria">
-                        <h3>Frontend</h3>
-                        <div class="iconos-tecnologia">
-                            <div class="icono">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
-                                    alt="HTML5">
-                                <p>HTML5</p>
-                            </div>
-                            <div class="icono">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"
-                                    alt="CSS3">
-                                <p>CSS3</p>
-                            </div>
-                            <div class="icono">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
-                                    alt="JavaScript">
-                                <p>JavaScript</p>
-                            </div>
-                        </div>
-                    </div>
+                <ul class="highlights" aria-label="Áreas destacadas">
+                    <li class="highlight"><span class="highlight__icon"><i class="fa-solid fa-layer-group" aria-hidden="true"></i></span><span class="highlight__label">Desarrollo Full Stack</span></li>
+                    <li class="highlight"><span class="highlight__icon"><i class="fa-solid fa-code" aria-hidden="true"></i></span><span class="highlight__label">PHP / JavaScript</span></li>
+                    <li class="highlight"><span class="highlight__icon"><i class="fa-solid fa-diagram-project" aria-hidden="true"></i></span><span class="highlight__label">Arquitectura MVC</span></li>
+                    <li class="highlight"><span class="highlight__icon"><i class="fa-solid fa-arrows-rotate" aria-hidden="true"></i></span><span class="highlight__label">Aprendizaje continuo</span></li>
+                </ul>
+            </div>
 
-                    <!-- Backend -->
-                    <div class="categoria">
-                        <h3>Backend</h3>
-                        <div class="iconos-tecnologia">
-                            <div class="icono">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"
-                                    alt="Java">
-                                <p>Java</p>
-                            </div>
-                            <div class="icono">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
-                                    alt="Python">
-                                <p>Python</p>
-                            </div>
-                            <div class="icono">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg"
-                                    alt="PHP">
-                                <p>PHP</p>
-                            </div>
-                            <div class="icono">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg"
-                                    alt="Kotlin">
-                                <p>Kotlin</p>
-                            </div>
-                        </div>
-                    </div>
+            <ul class="facts reveal" aria-label="Datos rápidos">
+                <li class="fact"><i class="fa-solid fa-briefcase" aria-hidden="true"></i><div><span class="fact__key">Actualidad</span><span class="fact__value">Full Stack Junior en Reservator S.L.</span></div></li>
+                <li class="fact"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i><div><span class="fact__key">Formación</span><span class="fact__value">Desarrollo de Aplicaciones (DAM)</span></div></li>
+                <li class="fact"><i class="fa-regular fa-folder-open" aria-hidden="true"></i><div><span class="fact__key">Proyectos</span><span class="fact__value">TFG y proyectos de 2º DAM en GitHub</span></div></li>
+            </ul>
+        </section>
 
-                    <!-- Bases de datos -->
-                    <div class="categoria">
-                        <h3>Bases de datos</h3>
-                        <div class="iconos-tecnologia">
-                            <div class="icono">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
-                                    alt="MySQL">
-                                <p>MySQL</p>
-                            </div>
-                        </div>
-                    </div>
+        <!-- 02 · TECH STACK -->
+        <section id="tecnologias" class="band" aria-labelledby="tech-title">
+            <div class="container section section--band">
+                <header class="section-head reveal">
+                    <p class="section-kicker"><span>02</span><span class="section-kicker__line" aria-hidden="true"></span><span>tech_stack</span></p>
+                    <h2 id="tech-title" class="section-title">Tech Stack</h2>
+                    <p class="section-lead">Tecnologías y herramientas con las que trabajo, organizadas por área.</p>
+                </header>
 
-                    <!-- Herramientas -->
-                    <div class="categoria">
-                        <h3>Herramientas</h3>
-                        <div class="iconos-tecnologia">
-                            <div class="icono">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"
-                                    alt="Git">
-                                <p>Git</p>
-                            </div>
+                <div class="tech-grid">
+                    <article class="card tech-card reveal">
+                        <header class="tech-card__head"><h3>Frontend</h3><span>frontend/ · 3</span></header>
+                        <ul class="tech-list">
+                            <li class="tech"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="" width="28" height="28" loading="lazy">HTML5</li>
+                            <li class="tech"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="" width="28" height="28" loading="lazy">CSS3</li>
+                            <li class="tech"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="" width="28" height="28" loading="lazy">JavaScript</li>
+                        </ul>
+                    </article>
 
-                            <div class="icono github">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
-                                    alt="GitHub">
-                                <p>GitHub</p>
-                            </div>
+                    <article class="card tech-card reveal">
+                        <header class="tech-card__head"><h3>Backend</h3><span>backend/ · 2</span></header>
+                        <ul class="tech-list">
+                            <li class="tech"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="" width="28" height="28" loading="lazy">PHP</li>
+                            <li class="tech"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="" width="28" height="28" loading="lazy">Java</li>
+                        </ul>
+                    </article>
 
-                            <div class="icono vscode">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg"
-                                    alt="VS Code">
-                                <p>VS Code</p>
-                            </div>
+                    <article class="card tech-card reveal">
+                        <header class="tech-card__head"><h3>Bases de datos</h3><span>bases_de_datos/ · 1</span></header>
+                        <ul class="tech-list">
+                            <li class="tech"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="" width="28" height="28" loading="lazy">MySQL</li>
+                        </ul>
+                    </article>
 
-                            <div class="icono intellij">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/intellij/intellij-original.svg"
-                                    alt="IntelliJ">
-                                <p>IntelliJ IDEA</p>
-                            </div>
-                            <div class="icono androidstudio">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/androidstudio/androidstudio-original.svg"
-                                    alt="Android Studio">
-                                <p>Android Studio</p>
-                            </div>
-
-
-                        </div>
-                    </div>
+                    <article class="card tech-card reveal">
+                        <header class="tech-card__head"><h3>Herramientas</h3><span>herramientas/ · 4</span></header>
+                        <ul class="tech-list">
+                            <li class="tech"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="" width="28" height="28" loading="lazy">Git</li>
+                            <li class="tech"><img class="tech__icon--invert" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="" width="28" height="28" loading="lazy">GitHub</li>
+                            <li class="tech"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="" width="28" height="28" loading="lazy">VS Code</li>
+                            <li class="tech"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/intellij/intellij-original.svg" alt="" width="28" height="28" loading="lazy">IntelliJ IDEA</li>
+                        </ul>
+                    </article>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- SECCIÓN EXPERIENCIA -->
-            <section id="experiencia">
-                <h2>Experiencia</h2>
+        <!-- 03 · EXPERIENCIA Y FORMACIÓN -->
+        <section id="experiencia" class="section container" aria-labelledby="exp-title">
+            <header class="section-head reveal">
+                <p class="section-kicker"><span>03</span><span class="section-kicker__line" aria-hidden="true"></span><span>trayectoria</span></p>
+                <h2 id="exp-title" class="section-title">Experiencia y formación</h2>
+            </header>
 
-                <article class="proyecto experiencia-card experience-card">
-                    <header class="experience-header">
-                        <div class="experience-heading">
-                            <span class="experience-kicker">
-                                <i class="fas fa-briefcase" aria-hidden="true"></i>
-                                Proyecto profesional
-                            </span>
-                            <h3>ReservatorStore</h3>
-                            <p class="experience-role">Desarrolladora Full Stack Junior</p>
+            <ol class="timeline">
+                <li class="timeline__item reveal">
+                    <p class="timeline__node"><span class="timeline__dot" aria-hidden="true"></span>2026 — Actualidad · experiencia</p>
+
+                    <article class="card exp-card">
+                        <header class="exp-card__head">
+                            <div>
+                                <p class="chip chip--orange chip--sm">Empleo actual</p>
+                                <h3 class="exp-card__company">Reservator S.L.</h3>
+                                <p class="exp-card__role">Desarrolladora Full Stack Junior</p>
+                            </div>
+                            <p class="date-badge"><time datetime="2026">2026</time> — Actualidad</p>
+                        </header>
+
+                        <div class="exp-card__summary">
+                            <h4><span class="mono-accent">ReservatorStore</span> · Plataforma web multirestaurante con arquitectura MVC</h4>
+                            <p>Desarrollo y mantenimiento de una plataforma web para la gestión de tiendas online independientes dentro de un entorno multirestaurante: backend, integración con frontend, base de datos, validaciones de negocio y flujos críticos como carrito, checkout, delivery y sesiones.</p>
                         </div>
 
-                        <div class="experience-period">
-                            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-                            <span>2026 - Actualidad</span>
+                        <ul class="check-list check-list--2col">
+                            <li>Desarrollo de funcionalidades backend en PHP.</li>
+                            <li>Implementación y mantenimiento de arquitectura MVC.</li>
+                            <li>Desarrollo de flujos de checkout, carrito y delivery.</li>
+                            <li>Gestión de sesiones, autenticación y validaciones.</li>
+                            <li>Funcionalidades multi-restaurante con separación de datos.</li>
+                            <li>Integración de JavaScript con AJAX y Fetch API.</li>
+                            <li>Consultas SQL y gestión de datos en MySQL/MariaDB.</li>
+                            <li>Optimización, pruebas manuales y resolución de incidencias.</li>
+                        </ul>
+
+                        <ul class="chips" aria-label="Tecnologías utilizadas">
+                            <li class="chip chip--cyan chip--sm">PHP</li>
+                            <li class="chip chip--cyan chip--sm">JavaScript</li>
+                            <li class="chip chip--cyan chip--sm">MySQL / MariaDB</li>
+                            <li class="chip chip--cyan chip--sm">MVC</li>
+                            <li class="chip chip--cyan chip--sm">AJAX</li>
+                            <li class="chip chip--cyan chip--sm">Fetch API</li>
+                            <li class="chip chip--cyan chip--sm">HTML5</li>
+                            <li class="chip chip--cyan chip--sm">CSS3</li>
+                            <li class="chip chip--cyan chip--sm">Git</li>
+                            <li class="chip chip--cyan chip--sm">GitHub</li>
+                        </ul>
+                    </article>
+                </li>
+
+                <li class="timeline__item timeline__item--orange reveal">
+                    <p class="timeline__node"><span class="timeline__dot" aria-hidden="true"></span>Mayo 2025 — Mayo 2026 · formación</p>
+
+                    <article class="card edu-card">
+                        <header class="edu-card__head">
+                            <span class="edu-card__icon"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></span>
+                            <h3>Desarrollo de Aplicaciones (DAM)</h3>
+                        </header>
+                        <ul class="edu-card__items">
+                            <li><span class="edu-card__date">Mayo 2025 – Mayo 2026</span><span class="edu-card__name">TFG — Página Web Vertical</span></li>
+                            <li><span class="edu-card__date">2º DAM · Sep – Nov 2025</span><span class="edu-card__name">Gestor de Persistencia Multi-Formato (Java)</span></li>
+                        </ul>
+                    </article>
+                </li>
+            </ol>
+        </section>
+
+        <!-- 04 · PROYECTOS -->
+        <section id="proyectos" class="section container" aria-labelledby="proj-title">
+            <header class="section-head reveal">
+                <p class="section-kicker"><span>04</span><span class="section-kicker__line" aria-hidden="true"></span><span>proyectos</span></p>
+                <h2 id="proj-title" class="section-title">Proyectos destacados</h2>
+                <p class="section-lead">Selección de proyectos con código publicado: qué hacen, cómo están construidos y con qué tecnologías.</p>
+            </header>
+
+            <div class="cases">
+                <!-- Proyecto 01 -->
+                <article class="card case reveal" aria-labelledby="case-tfg">
+                    <div class="case__media">
+                        <div class="window">
+                            <div class="window__bar" aria-hidden="true"><span></span><span></span><span></span><span class="window__url">carlosordonezmusic.es</span></div>
+                            <img src="img/webCarlos.png" alt="Captura de la web del TFG, carlosordonezmusic.es" width="1902" height="894" loading="lazy">
                         </div>
-                    </header>
-
-                    <div class="experience-summary">
-                        <p class="texto-destacado">
-                            <strong>Plataforma web multirestaurante con arquitectura MVC</strong>
-                        </p>
-                        <p>
-                            Desarrollo y mantenimiento de una plataforma web para la gestión de tiendas online
-                            independientes dentro de un entorno multirestaurante. Trabajo en funcionalidades backend,
-                            integración con frontend, consultas a base de datos, validaciones de negocio y flujos
-                            críticos como carrito, checkout, delivery y gestión de sesiones.
-                        </p>
                     </div>
 
-                    <div class="project-tech-list experience-tech-list" aria-label="Tecnologías utilizadas">
-                        <span class="tech-badge">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="">
-                            PHP
-                        </span>
-                        <span class="tech-badge">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
-                                alt="">
-                            JavaScript
-                        </span>
-                        <span class="tech-badge">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
-                                alt="">
-                            MySQL / MariaDB
-                        </span>
-                        <span class="tech-badge">
-                            <i class="fas fa-layer-group" aria-hidden="true"></i>
-                            MVC
-                        </span>
-                        <span class="tech-badge">
-                            <i class="fas fa-arrows-rotate" aria-hidden="true"></i>
-                            AJAX
-                        </span>
-                        <span class="tech-badge">
-                            <i class="fas fa-network-wired" aria-hidden="true"></i>
-                            Fetch API
-                        </span>
-                        <span class="tech-badge">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
-                                alt="">
-                            HTML5
-                        </span>
-                        <span class="tech-badge">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="">
-                            CSS3
-                        </span>
-                        <span class="tech-badge">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="">
-                            Git
-                        </span>
-                        <span class="tech-badge">
-                            <i class="fab fa-github" aria-hidden="true"></i>
-                            GitHub
-                        </span>
-                    </div>
+                    <div class="case__body">
+                        <div class="case__top"><span class="case__index" aria-hidden="true">01</span><span class="chip chip--cyan chip--sm">Académico · TFG</span></div>
+                        <h3 id="case-tfg" class="case__title">TFG — Página Web Vertical</h3>
+                        <p class="case__summary">Web vertical organizada por secciones (biografía, entrevistas, galería, vídeos, agenda y redes sociales) con contenido dinámico cargado desde base de datos.</p>
 
-                    <ul class="experience-responsibilities" aria-label="Responsabilidades y logros">
-                        <li>
-                            <i class="fas fa-code" aria-hidden="true"></i>
-                            <span>Desarrollo de funcionalidades backend en PHP.</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-sitemap" aria-hidden="true"></i>
-                            <span>Implementación y mantenimiento de arquitectura MVC.</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-cart-shopping" aria-hidden="true"></i>
-                            <span>Desarrollo de flujos de checkout, carrito y delivery.</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-user-shield" aria-hidden="true"></i>
-                            <span>Gestión de sesiones, autenticación y validaciones.</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-store" aria-hidden="true"></i>
-                            <span>Funcionalidades multi-restaurante con separación de datos.</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-bolt" aria-hidden="true"></i>
-                            <span>Integración de JavaScript con AJAX y Fetch API.</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-database" aria-hidden="true"></i>
-                            <span>Consultas SQL y gestión de datos en MySQL/MariaDB.</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-bug-slash" aria-hidden="true"></i>
-                            <span>Optimización, pruebas manuales y resolución de incidencias.</span>
-                        </li>
-                    </ul>
+                        <dl class="case__meta">
+                            <div><dt>Tipo</dt><dd>Web responsive</dd></div>
+                            <div><dt>Fechas</dt><dd>Mayo 2025 – Mayo 2026</dd></div>
+                            <div><dt>Rol</dt><dd>Proyecto individual</dd></div>
+                        </dl>
+
+                        <div class="case__block">
+                            <h4 class="case__label">Aspectos técnicos</h4>
+                            <ul class="check-list check-list--2col">
+                                <li>Diseño responsive con navegación interna por secciones</li>
+                                <li>Animaciones suaves con JavaScript al hacer scroll</li>
+                                <li>Contenido dinámico con PHP y SQL</li>
+                                <li>Web publicada y en uso real</li>
+                            </ul>
+                        </div>
+
+                        <div class="case__block">
+                            <h4 class="case__label">Stack</h4>
+                            <ul class="chips">
+                                <li class="chip chip--neutral chip--sm">HTML</li>
+                                <li class="chip chip--neutral chip--sm">CSS</li>
+                                <li class="chip chip--neutral chip--sm">JavaScript</li>
+                                <li class="chip chip--neutral chip--sm">PHP</li>
+                                <li class="chip chip--neutral chip--sm">SQL</li>
+                            </ul>
+                        </div>
+
+                        <div class="case__actions">
+                            <a class="btn btn--primary btn--sm" href="https://carlosordonezmusic.es" target="_blank" rel="noopener noreferrer">Ver web <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+                            <a class="btn btn--secondary btn--sm" href="https://github.com/lauraordo93/web_carlos" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> Código</a>
+                        </div>
+                    </div>
                 </article>
-            </section>
 
-
-            <!-- SECCIÓN PROYECTOS PERSONALES -->
-            <section id="proyectos-personales">
-                <h2>Proyectos personales</h2>
-
-                <div class="proyecto project-card">
-                    <h3>Juego Snake en Java</h3>
-
-                    <p class="texto-destacado"><strong>Proyecto personal – Java + Swing</strong></p>
-                    <p>Desarrollo del clásico juego Snake con niveles automáticos, trampas aleatorias y velocidad
-                        progresiva.<br>
-                        Implementación desde cero con interfaz gráfica en Swing (<code>JPanel</code>,
-                        <code>JFrame</code>,
-                        <code>Timer</code>) y lógica de juego personalizada.
-                    </p>
-
-                    <div class="project-tech-list" aria-label="Tecnologías utilizadas">
-                        <span class="tech-badge">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"
-                                alt="">
-                            Java
-                        </span>
-                        <span class="tech-badge">Swing</span>
-                        <span class="tech-badge">JPanel</span>
-                        <span class="tech-badge">JFrame</span>
+                <!-- Proyecto 02 -->
+                <article class="card case case--flip reveal" aria-labelledby="case-gestor">
+                    <div class="case__media">
+                        <div class="window">
+                            <div class="window__bar" aria-hidden="true"><span></span><span></span><span></span><span class="window__url">youtube.com · demo del proyecto</span></div>
+                            <div class="video-lite" data-video-id="ZdWm70xuXq0" data-title="Demo del Gestor de Persistencia Multi-Formato">
+                                <img src="https://i.ytimg.com/vi/ZdWm70xuXq0/hqdefault.jpg" alt="" width="480" height="360" loading="lazy">
+                                <button class="video-lite__play" type="button" aria-label="Reproducir demo del Gestor de Persistencia">
+                                    <i class="fas fa-play" aria-hidden="true"></i>
+                                </button>
+                                <span class="video-lite__label">▶ demo en vídeo · YouTube</span>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="video">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/0vC5NlA0-5s"
-                            title="Demo Snake Java" frameborder="0" allowfullscreen></iframe>
+                    <div class="case__body">
+                        <div class="case__top"><span class="case__index" aria-hidden="true">02</span><span class="chip chip--cyan chip--sm">Académico · 2º DAM</span></div>
+                        <h3 id="case-gestor" class="case__title">Gestor de Persistencia Multi-Formato</h3>
+                        <p class="case__summary">Aplicación en Java para gestionar alumnos y sus notas, con persistencia en cinco formatos distintos bajo una única interfaz de servicios.</p>
+
+                        <dl class="case__meta">
+                            <div><dt>Tipo</dt><dd>Aplicación de consola</dd></div>
+                            <div><dt>Fechas</dt><dd>Sep – Nov 2025</dd></div>
+                            <div><dt>Rol</dt><dd>Proyecto individual</dd></div>
+                        </dl>
+
+                        <div class="case__block">
+                            <h4 class="case__label">Aspectos técnicos</h4>
+                            <ul class="check-list check-list--2col">
+                                <li>Persistencia binaria, XML (JAXB), JSON (Gson), TXT y CSV</li>
+                                <li>Arquitectura modular: capa services y capa io</li>
+                                <li>CRUD completo de alumnos y notas</li>
+                                <li>Manejo seguro de excepciones y validación de formatos</li>
+                            </ul>
+                        </div>
+
+                        <div class="case__block">
+                            <h4 class="case__label">Stack</h4>
+                            <ul class="chips">
+                                <li class="chip chip--neutral chip--sm">Java</li>
+                                <li class="chip chip--neutral chip--sm">POO</li>
+                                <li class="chip chip--neutral chip--sm">JAXB</li>
+                                <li class="chip chip--neutral chip--sm">Gson</li>
+                                <li class="chip chip--neutral chip--sm">File I/O</li>
+                                <li class="chip chip--neutral chip--sm">Lombok</li>
+                            </ul>
+                        </div>
+
+                        <div class="case__actions">
+                            <a class="btn btn--primary btn--sm" href="https://www.youtube.com/watch?v=ZdWm70xuXq0" target="_blank" rel="noopener noreferrer"><i class="fas fa-play" aria-hidden="true"></i> Ver demo</a>
+                            <a class="btn btn--secondary btn--sm" href="https://github.com/lauraordo93/EjerFicherosAlumnos.git" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> Código</a>
+                        </div>
                     </div>
-                    <div class="github-icon project-actions">
-                        <a class="project-btn project-btn--demo" href="https://www.youtube.com/watch?v=0vC5NlA0-5s"
-                            target="_blank" rel="noopener noreferrer">
-                            <i class="fas fa-play"></i> Ver demo
-                        </a>
-                        <a class="project-btn project-btn--github" href="https://github.com/lauraordo93/GameSnake"
-                            target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-github"></i> GitHub
-                        </a>
+                </article>
+            </div>
+
+            <div class="more-github reveal">
+                <p>Más código y proyectos en mi perfil de GitHub.</p>
+                <a class="btn btn--secondary btn--sm" href="https://github.com/lauraordo93" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> github.com/lauraordo93</a>
+            </div>
+        </section>
+
+        <!-- 05 · CONTACTO -->
+        <section id="contacto" class="section container" aria-labelledby="contact-title">
+            <div class="contact reveal">
+                <div class="contact__main">
+                    <header class="section-head">
+                        <p class="section-kicker"><span>05</span><span class="section-kicker__line" aria-hidden="true"></span><span>contacto</span></p>
+                        <h2 id="contact-title" class="section-title">Contacto</h2>
+                    </header>
+                    <p class="contact__lead">Contacta conmigo: estaré encantada de hablar sobre oportunidades o proyectos.</p>
+
+                    <div class="email-box">
+                        <i class="fas fa-envelope" aria-hidden="true"></i>
+                        <a class="email-box__link" href="mailto:laura.ordonez.dev@gmail.com">laura.ordonez.dev@gmail.com</a>
+                        <button class="email-box__copy" type="button" data-copy="laura.ordonez.dev@gmail.com">
+                            <i class="far fa-copy" aria-hidden="true"></i><span class="email-box__copy-text">Copiar</span>
+                        </button>
+                        <span class="visually-hidden" role="status" aria-live="polite" data-copy-status></span>
                     </div>
                 </div>
-            </section>
 
-
-
-            <!-- SECCIÓN PROYECTOS ACADÉMICOS -->
-            <section id="proyectos-academicos">
-                <h2>Proyectos académicos</h2>
-
-                <div class="proyecto project-card">
-                    <h3>TFG – Página Web Vertical </h3>
-                    <br>
-                    <p><strong>Mayo 2025 – Mayo 2026</strong></p>
-
-                    <p><strong class="texto-destacado">Proyecto individual – Desarrollo de página web
-                            vertical</strong></p>
-                    <p>
-                        <strong>Tecnologías utilizadas:</strong> HTML, CSS, JavaScript, PHP, SQL. Desarrollo de una
-                        página web
-                        vertical con diseño responsive, centrada en la estructura por secciones. El proyecto
-                        incluye navegación interna, biografía, entrevistas, galería de imágenes, vídeos, agenda y
-                        redes sociales. Se implementaron animaciones suaves con JavaScript al hacer scroll y
-                        conexión con base de datos mediante PHP y SQL para cargar contenido dinámico.
-                        Destaca por su diseño limpio, organización del contenido y funcionalidad.
-                    </p>
-
-                    <div class="project-tech-list" aria-label="Tecnologías utilizadas">
-                        <span class="tech-badge">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
-                                alt="">
-                            HTML
-                        </span>
-                        <span class="tech-badge">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"
-                                alt="">
-                            CSS
-                        </span>
-                        <span class="tech-badge">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
-                                alt="">
-                            JavaScript
-                        </span>
-                        <span class="tech-badge">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg"
-                                alt="">
-                            PHP
-                        </span>
-                        <span class="tech-badge">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
-                                alt="">
-                            SQL
-                        </span>
-                    </div>
-
-                    <p>
-                        <i class="fas fa-globe project-inline-icon" aria-hidden="true"></i>
-                        <strong class="texto-destacado">Web online:</strong>
-                        <a class="web" href="https://carlosordonezmusic.es" target="_blank" rel="noopener noreferrer">
-                            carlosordonezmusic.es
-                        </a>
-                    </p>
-
-                    <div class="proyecto-imagen">
-                        <img src="img/webCarlos.png" alt="Captura de la web del Proyecto Intermodular">
-                    </div>
-
-                    <div class="github-icon project-actions">
-                        <a class="project-btn project-btn--demo" href="https://carlosordonezmusic.es" target="_blank"
-                            rel="noopener noreferrer">
-                            <i class="fas fa-eye"></i> Enlace web
-                        </a>
-                        <a class="project-btn project-btn--github" href="https://github.com/lauraordo93/web_carlos"
-                            target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-github"></i> GitHub
-                        </a>
-                    </div>
-
-
-
-                </div>
-                <div class="proyecto project-card">
-                    <h3>Gestor de Persistencia Multi-Formato en Java <small>(2º DAM - Noviembre 2025)</small></h3>
-                    <br>
-                    <p><strong>Septiembre 2025 – Noviembre 2025</strong></p>
-
-                    <p><strong class="texto-destacado">Proyecto individual – Aplicación de Consola en
-                            Java</strong></p>
-
-                    <p>
-                        <strong>Tecnologías utilizadas:</strong> Java, POO, Serialización, JAXB, Gson, File I/O,
-                        <strong>Lombok</strong>.
-                        <br>
-                        Desarrollo de una aplicación de consola para la gestión de alumnos y sus notas, centrándose en
-                        la
-                        <strong>persistencia de datos</strong> a través de cinco formatos distintos, manteniendo una
-                        única
-                        interfaz de operaciones (services).
-                    </p>
-
-                    <div class="project-tech-list" aria-label="Tecnologías utilizadas">
-                        <span class="tech-badge">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"
-                                alt="">
-                            Java
-                        </span>
-                        <span class="tech-badge">POO</span>
-                        <span class="tech-badge">JAXB</span>
-                        <span class="tech-badge">Gson</span>
-                        <span class="tech-badge">File I/O</span>
-                        <span class="tech-badge">Lombok</span>
-                    </div>
-
-                    <p>
-                        <strong class="texto-destacado">Características Técnicas:</strong>
-                    </p>
-                    <ul>
-                        <li>Implementación modular con separación de lógica de negocio (services) y acceso a datos (io).
-                        </li>
-                        <li>Soporte para persistencia Binaria (.dat), XML mediante JAXB, JSON mediante Gson, y formatos
-                            de texto (TXT, CSV).</li>
-                        <li>Uso de <strong>Lombok</strong> para generar automáticamente getters, setters, constructores
-                            y reducir código.</li>
-                        <li>Funcionalidades CRUD (Crear, Leer, Actualizar, Eliminar) para alumnos y gestión de notas.
-                        </li>
-                        <li>Manejo seguro de excepciones I/O y validación de formatos al cargar/guardar datos.</li>
+                <div class="contact__side">
+                    <p class="contact__side-label">redes_sociales/</p>
+                    <ul class="social-list">
+                        <li><a href="mailto:laura.ordonez.dev@gmail.com"><i class="fas fa-envelope" aria-hidden="true"></i><span><strong>Correo</strong><small>laura.ordonez.dev@gmail.com</small></span><i class="fas fa-arrow-right" aria-hidden="true"></i></a></li>
+                        <li><a href="https://github.com/lauraordo93" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i><span><strong>GitHub</strong><small>github.com/lauraordo93</small></span><i class="fas fa-arrow-right" aria-hidden="true"></i></a></li>
+                        <li><a href="https://linkedin.com/in/laura-ordoñez-737532300" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in" aria-hidden="true"></i><span><strong>LinkedIn</strong><small>in/laura-ordoñez</small></span><i class="fas fa-arrow-right" aria-hidden="true"></i></a></li>
                     </ul>
-
-                    <div class="video">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/ZdWm70xuXq0"
-                            title="Demostración del proyecto" frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen>
-                        </iframe>
-                    </div>
-
-                    <div class="github-icon project-actions">
-                        <a class="project-btn project-btn--demo" href="https://www.youtube.com/watch?v=ZdWm70xuXq0"
-                            target="_blank" rel="noopener noreferrer">
-                            <i class="fas fa-play"></i> Ver demo
-                        </a>
-                        <a class="project-btn project-btn--github"
-                            href="https://github.com/lauraordo93/EjerFicherosAlumnos.git" target="_blank"
-                            rel="noopener noreferrer">
-                            <i class="fab fa-github"></i> GitHub
-                        </a>
-                    </div>
+                    <a class="btn btn--primary btn--block" href="documentos/CV_Laura Ordonez.pdf" target="_blank"
+                        rel="noopener noreferrer" download><i class="fas fa-download" aria-hidden="true"></i> Descargar CV</a>
                 </div>
-                <div class="proyecto project-card">
-                    <h3>Inventario Dinámico Temático (Android Nativo/Firebase) <small>(2º DAM - Noviembre 2025)</small>
-                    </h3>
-                    <br>
-                    <p><strong>Noviembre 2025</strong></p>
+            </div>
+        </section>
+    </main>
 
-                    <p><strong class="texto-destacado">Proyecto individual – Aplicación Móvil en
-                            Kotlin</strong></p>
-
-                    <p>
-                        <strong>Tecnologías utilizadas:</strong> Kotlin, Android Nativo, Firebase Realtime
-                        Database,RecyclerView, ViewBinding, LayoutManager (Linear/Grid).
-                        <br>
-                        Desarrollo de una aplicación móvil para la gestión de un inventario temático ('Stranger
-                        Things'),
-                        demostrando la <strong>persistencia de datos</strong> en la nube, la eficiencia de la interfaz
-                        de usuario y la sincronización en tiempo real
-                        entre distintas pantallas.
-                    </p>
-
-                    <div class="project-tech-list" aria-label="Tecnologías utilizadas">
-                        <span class="tech-badge">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg"
-                                alt="">
-                            Kotlin
-                        </span>
-                        <span class="tech-badge">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/androidstudio/androidstudio-original.svg"
-                                alt="">
-                            Android
-                        </span>
-                        <span class="tech-badge">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg"
-                                alt="">
-                            Firebase
-                        </span>
-                        <span class="tech-badge">RecyclerView</span>
-                        <span class="tech-badge">ViewBinding</span>
-                    </div>
-
-                    <p>
-                        <strong class="texto-destacado">Características Técnicas:</strong>
-                    </p>
-                    <ul>
-                        <li>Implementación de Firebase Realtime Database para la lectura y escritura de datos
-                            asíncronos.</li>
-                        <li>Arquitectura modular con separación de responsabilidades: una Activity para la
-                            entrada/escritura de datos y una segunda Activity dedicada exclusivamente a la visualización
-                            (lectura) de la lista.</li>
-                        <li>Uso del componente RecyclerView con un adaptador personalizado para un renderizado eficiente
-                            de la lista de ítems.</li>
-                        <li>Sistema de validación de entrada con catálogo que restringe los nombres de personajes
-                            aceptados y realiza autocompletado de objetos icónicos.</li>
-                        <li>Implementación de lógica para manejo del Estado Vacío (Empty State) y ajuste automático del
-                            diseño (Vertical/Cuadrícula) según la orientación del dispositivo.</li>
-                        <li>Diseño UX: Se asegura la confirmación visual al guardar mediante un sistema de
-                            retroalimentación inmediato y un diseño temático.</li>
-                    </ul>
-
-                    <div class="video">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/iuQ3nPRs7JY"
-                            title="Demostración del proyecto" frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen>
-                        </iframe>
-                    </div>
-
-                    <div class="github-icon project-actions">
-                        <a class="project-btn project-btn--demo" href="https://www.youtube.com/watch?v=iuQ3nPRs7JY"
-                            target="_blank" rel="noopener noreferrer">
-                            <i class="fas fa-play"></i> Ver demo
-                        </a>
-                        <a class="project-btn project-btn--github"
-                            href="https://github.com/lauraordo93/upside-down-loggin.git" target="_blank"
-                            rel="noopener noreferrer">
-                            <i class="fab fa-github"></i> GitHub
-                        </a>
-                    </div>
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer__inner">
+            <div class="footer__left">
+                <a class="nav-brand" href="#inicio" aria-label="Laura.dev, ir al inicio">
+                    <i class="fas fa-code" aria-hidden="true"></i>
+                    <span>Laura<span class="nav-brand__dot">.dev</span></span>
+                </a>
+                <p class="footer__copy">&copy; 2026 Laura.dev · Todos los derechos reservados</p>
+            </div>
+            <div class="footer__right">
+                <div class="social-row">
+                    <a class="btn-icon btn-icon--sm" href="https://github.com/lauraordo93" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
+                    <a class="btn-icon btn-icon--sm" href="https://linkedin.com/in/laura-ordoñez-737532300" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+                    <a class="btn-icon btn-icon--sm" href="mailto:laura.ordonez.dev@gmail.com" aria-label="Correo"><i class="fas fa-envelope" aria-hidden="true"></i></a>
                 </div>
-
-
-
-            </section>
-            <!-- FOOTER -->
-            <footer id="footer">
-                <div class="footer-contenedor">
-
-                    <!-- SECCIÓN CONTACTO -->
-                    <div id="contacto" class="contacto footer-card">
-                        <h2><i class="fas fa-terminal"></i> Contacto</h2>
-                        <p>Contacta conmigo: </p>
-
-                        <p class="email">
-                            <i class="fas fa-paper-plane"></i>
-                            <a href="mailto:laura.ordonez.dev@gmail.com"
-                                style="font-family:'Fira Code', monospace, Tahoma, Geneva, Verdana, sans-serif">
-                                laura.ordonez.dev@gmail.com
-                            </a>
-                        </p>
-
-                        <a id="curriculum" class="btn-descarga" href="documentos/CV_Laura Ordonez.pdf" target="_blank"
-                            rel="noopener noreferrer" download>
-                            <i class="fas fa-download"></i> Descargar CV
-                        </a>
-                    </div>
-
-                    <!-- SECCIÓN REDES SOCIALES -->
-                    <div class="redes footer-card">
-                        <h2><i class="fas fa-share-alt"></i> Redes sociales</h2>
-                        <ul class="redes-sociales">
-                            <li>
-                                <a href="mailto:laura.ordonez.dev@gmail.com" target="_blank"
-                                    rel="noopener noreferrer">
-                                    <i class="fas fa-envelope"></i> Correo
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://github.com/lauraordo93" target="_blank" rel="noopener noreferrer">
-                                    <i class="fab fa-github"></i> GitHub
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://linkedin.com/in/laura-ordoñez-737532300" target="_blank"
-                                    rel="noopener noreferrer">
-                                    <i class="fab fa-linkedin"></i> LinkedIn
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="copy footer-copy">
-                        <p>&copy; 2026 Laura.dev - Todos los derechos reservados</p>
-                        <ul class="footer-nav">
-                            <li><a href="#inicio">Inicio</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </footer>
-
+                <a class="footer__top" href="#inicio">Volver arriba <i class="fas fa-arrow-up" aria-hidden="true"></i></a>
+            </div>
         </div>
-    </section>
+    </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-    <script src="js/particles.js"></script>
-    <script src="js/menuPort.js"></script>
-    <script src="js/encabezadoh3.js"></script>
-    <script src="js/reveal.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js" defer></script>
+    <script src="js/particles.js" defer></script>
+    <script src="js/menuPort.js" defer></script>
+    <script src="js/reveal.js" defer></script>
+    <script src="js/proyectos.js" defer></script>
 </body>
 
 </html>

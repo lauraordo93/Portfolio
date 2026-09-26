@@ -1,128 +1,98 @@
+// Navegación: menú móvil, estado al hacer scroll y enlace activo según la sección visible.
 document.addEventListener('DOMContentLoaded', () => {
   const navHeader = document.querySelector('.nav-header');
-  const navBrand = document.querySelector('.nav-brand');
   const toggleBtn = document.querySelector('.menu-toggle');
-  const navLinks = document.querySelector('.nav-links');
-  const links = document.querySelectorAll('.nav-links a');
-  const pageAnchorLinks = document.querySelectorAll('.nav-links a, .footer-nav a[href^="#"]');
+  const navLinks = document.getElementById('nav-links');
+  const sectionLinks = document.querySelectorAll('.nav-list a');
   const toggleIcon = toggleBtn?.querySelector('i');
 
-  if (!navHeader || !toggleBtn || !navLinks || !links.length) {
+  if (!navHeader || !toggleBtn || !navLinks) {
     return;
   }
 
-  const setMenuState = (isOpen) => {
-    navLinks.classList.toggle('active', isOpen);
-    navHeader.classList.toggle('nav-open', isOpen);
-    document.body.classList.toggle('nav-open', isOpen);
-    toggleBtn.setAttribute('aria-expanded', String(isOpen));
-    toggleBtn.setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
+  const isOpen = () => navLinks.classList.contains('active');
+
+  const setMenuState = (open) => {
+    navLinks.classList.toggle('active', open);
+    navHeader.classList.toggle('nav-open', open);
+    document.body.classList.toggle('nav-open', open);
+    toggleBtn.setAttribute('aria-expanded', String(open));
+    toggleBtn.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
 
     if (toggleIcon) {
-      toggleIcon.classList.toggle('fa-bars', !isOpen);
-      toggleIcon.classList.toggle('fa-xmark', isOpen);
+      toggleIcon.classList.toggle('fa-bars', !open);
+      toggleIcon.classList.toggle('fa-xmark', open);
     }
   };
 
   const closeMenu = () => setMenuState(false);
 
-  const updateHeaderState = () => {
-    navHeader.classList.toggle('is-scrolled', window.scrollY > 20);
-  };
+  toggleBtn.addEventListener('click', () => setMenuState(!isOpen()));
 
-  const scrollToTarget = (target) => {
-    const headerOffset = navHeader.offsetHeight + 12;
-    const targetPosition = target.id === 'inicio'
-      ? 0
-      : target.getBoundingClientRect().top + window.scrollY - headerOffset;
-
-    window.scrollTo({
-      top: Math.max(targetPosition, 0),
-      behavior: 'smooth',
-    });
-  };
-
-  toggleBtn.addEventListener('click', () => {
-    setMenuState(!navLinks.classList.contains('active'));
+  // Cualquier enlace del menú (secciones, CV o redes) cierra el panel.
+  navLinks.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', closeMenu);
   });
 
-  pageAnchorLinks.forEach((link) => {
-    link.addEventListener('click', (event) => {
-      const targetId = link.getAttribute('href');
-      const target = targetId?.startsWith('#') ? document.querySelector(targetId) : null;
-
-      if (target) {
-        event.preventDefault();
-        scrollToTarget(target);
-        history.pushState(null, '', targetId);
-      }
-
-      closeMenu();
-    });
-  });
-
-  navBrand?.addEventListener('click', (event) => {
-    const target = document.getElementById('inicio');
-
-    if (target) {
-      event.preventDefault();
-      scrollToTarget(target);
-      history.pushState(null, '', '#inicio');
-      closeMenu();
-    }
-  });
-
+  // Clic fuera del menú.
   document.addEventListener('click', (event) => {
-    const clickInsideNavbar = event.target.closest('.navbar');
-
-    if (!clickInsideNavbar && navLinks.classList.contains('active')) {
+    if (isOpen() && !event.target.closest('.navbar')) {
       closeMenu();
     }
   });
 
+  // Escape cierra y devuelve el foco al botón.
   document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && navLinks.classList.contains('active')) {
+    if (event.key === 'Escape' && isOpen()) {
       closeMenu();
       toggleBtn.focus();
     }
   });
 
+  // Si se pasa a escritorio con el menú abierto, se cierra.
+  window.matchMedia('(min-width: 861px)').addEventListener('change', (event) => {
+    if (event.matches) {
+      closeMenu();
+    }
+  });
+
+  // Fondo del header más opaco al hacer scroll.
+  const updateHeaderState = () => {
+    navHeader.classList.toggle('is-scrolled', window.scrollY > 20);
+  };
+
+  window.addEventListener('scroll', updateHeaderState, { passive: true });
+  updateHeaderState();
+
+  // Enlace activo. "Tech Stack" no está en el menú, así que marca "Sobre mí".
+  const aliases = { tecnologias: 'sobre-mi' };
+
   const setActiveLink = (sectionId) => {
-    const normalizedId = sectionId === 'proyectos-academicos' ? 'proyectos-personales' : sectionId;
+    const id = aliases[sectionId] || sectionId;
 
-    links.forEach((link) => {
-      const isActive = link.getAttribute('href') === `#${normalizedId}`;
-      link.classList.toggle('active', isActive);
+    sectionLinks.forEach((link) => {
+      const active = link.getAttribute('href') === `#${id}`;
+      link.classList.toggle('active', active);
 
-      if (isActive) {
-        link.setAttribute('aria-current', 'page');
+      if (active) {
+        link.setAttribute('aria-current', 'true');
       } else {
         link.removeAttribute('aria-current');
       }
     });
   };
 
-  const observedSections = ['sobre-mi', 'experiencia', 'proyectos-personales', 'proyectos-academicos', 'contacto']
+  const sections = ['inicio', 'sobre-mi', 'tecnologias', 'experiencia', 'proyectos', 'contacto']
     .map((id) => document.getElementById(id))
     .filter(Boolean);
 
-  if ('IntersectionObserver' in window && observedSections.length) {
-    const activeObserver = new IntersectionObserver((entries) => {
-      const visibleEntry = entries
+  if ('IntersectionObserver' in window && sections.length) {
+    const observer = new IntersectionObserver((entries) => {
+      entries
         .filter((entry) => entry.isIntersecting)
-        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        .forEach((entry) => setActiveLink(entry.target.id));
+    }, { rootMargin: '-45% 0px -50% 0px' });
 
-      if (visibleEntry) {
-        setActiveLink(visibleEntry.target.id);
-      }
-    }, {
-      rootMargin: '-35% 0px -50% 0px',
-      threshold: [0.1, 0.25, 0.5],
-    });
-
-    observedSections.forEach((section) => activeObserver.observe(section));
+    sections.forEach((section) => observer.observe(section));
   }
-
-  window.addEventListener('scroll', updateHeaderState, { passive: true });
-  updateHeaderState();
 });
