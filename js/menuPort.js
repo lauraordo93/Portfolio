@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
-  const sections = ['inicio', 'sobre-mi', 'tecnologias', 'experiencia', 'proyectos', 'contacto']
+  const sections = ['inicio', 'sobre-mi', 'tecnologias', 'experiencia', 'proyectos', 'servicios', 'contacto']
     .map((id) => document.getElementById(id))
     .filter(Boolean);
 

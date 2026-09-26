@@ -1,0 +1,7 @@
+# Nota: Google solo lee robots.txt en la raíz del dominio.
+# En lauraordo93.github.io/Portfolio/ este archivo no se tiene en cuenta;
+# empezará a funcionar si usas un dominio propio (por ejemplo, lauraordonez.es).
+User-agent: *
+Allow: /
+
+Sitemap: https://lauraordo93.github.io/Portfolio/sitemap.xml

@@ -1,12 +1,46 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="dark">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio de Laura Ordóñez de Arce, desarrolladora Full Stack Junior especializada en PHP.">
+    <meta name="description" content="Laura Ordóñez de Arce, desarrolladora Full Stack (PHP, JavaScript, MySQL). Desarrollo páginas web a medida, responsive y con la base técnica preparada para SEO.">
+    <link rel="canonical" href="https://lauraordo93.github.io/Portfolio/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Laura Ordóñez · Desarrolladora web Full Stack">
+    <meta property="og:description" content="Desarrollo páginas web a medida, responsive y con la base técnica preparada para SEO. PHP, JavaScript y MySQL.">
+    <meta property="og:url" content="https://lauraordo93.github.io/Portfolio/">
+    <meta property="og:image" content="https://lauraordo93.github.io/Portfolio/img/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Laura Ordóñez de Arce, desarrolladora web Full Stack">
+    <meta property="og:site_name" content="Laura.dev">
+    <meta property="og:locale" content="es_ES">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Laura Ordóñez · Desarrolladora web Full Stack">
+    <meta name="twitter:description" content="Desarrollo páginas web a medida, responsive y con la base técnica preparada para SEO. PHP, JavaScript y MySQL.">
+    <meta name="twitter:image" content="https://lauraordo93.github.io/Portfolio/img/og-image.jpg">
+    <meta name="author" content="Laura Ordóñez de Arce">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <!-- Google Search Console: pega aquí la etiqueta de verificación si eliges el método "Etiqueta HTML" -->
+    <!-- <meta name="google-site-verification" content="TU_CODIGO"> -->
     <meta name="theme-color" content="#0C0F11">
-    <title>Laura Ordóñez · Desarrolladora Full Stack Junior</title>
+    <!-- Aplica el tema guardado antes de pintar la página (evita el parpadeo) -->
+    <script>
+        (function () {
+            var theme = 'dark';
+            try {
+                var saved = localStorage.getItem('tema');
+                if (saved === 'light' || saved === 'dark') {
+                    theme = saved;
+                } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+                    theme = 'light';
+                }
+            } catch (e) { }
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+    <title>Laura Ordóñez · Desarrolladora web Full Stack | Webs a medida</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,8 +48,59 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
 
-    <link rel="apple-touch-icon" href="img/Image.jpeg">
-    <link rel="shortcut icon" href="img/Image.jpeg" type="image/x-icon">
+    <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="img/favicon-32.png" type="image/png" sizes="32x32">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="preload" as="image" href="img/laura_mejorada.webp" type="image/webp" fetchpriority="high">
+
+    <!-- Datos estructurados para Google -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://lauraordo93.github.io/Portfolio/#laura",
+          "name": "Laura Ordóñez de Arce",
+          "jobTitle": "Desarrolladora web Full Stack",
+          "description": "Desarrolladora Full Stack (PHP, JavaScript, MySQL). Desarrollo de páginas web a medida, responsive y con la base técnica preparada para SEO.",
+          "url": "https://lauraordo93.github.io/Portfolio/",
+          "image": "https://lauraordo93.github.io/Portfolio/img/og-image.jpg",
+          "email": "mailto:laura.ordonez.dev@gmail.com",
+          "worksFor": {
+            "@type": "Organization",
+            "name": "Reservator S.L."
+          },
+          "knowsAbout": [
+            "PHP",
+            "JavaScript",
+            "MySQL",
+            "Java",
+            "HTML5",
+            "CSS3",
+            "Arquitectura MVC",
+            "SEO",
+            "Desarrollo web a medida"
+          ],
+          "sameAs": [
+            "https://github.com/lauraordo93",
+            "https://linkedin.com/in/laura-ordo%C3%B1ez-737532300"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://lauraordo93.github.io/Portfolio/#web",
+          "url": "https://lauraordo93.github.io/Portfolio/",
+          "name": "Laura.dev",
+          "inLanguage": "es",
+          "publisher": {
+            "@id": "https://lauraordo93.github.io/Portfolio/#laura"
+          }
+        }
+      ]
+    }
+    </script>
 </head>
 
 <body>
@@ -29,17 +114,14 @@
                 <span>Laura<span class="nav-brand__dot">.dev</span></span>
             </a>
 
-            <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-controls="nav-links"
-                aria-expanded="false">
-                <i class="fas fa-bars" aria-hidden="true"></i>
-            </button>
 
             <div id="nav-links" class="nav-links">
                 <ul class="nav-list">
                     <li><a href="#sobre-mi"><span class="nav-num" aria-hidden="true">01</span>Sobre mí</a></li>
                     <li><a href="#experiencia"><span class="nav-num" aria-hidden="true">03</span>Experiencia</a></li>
                     <li><a href="#proyectos"><span class="nav-num" aria-hidden="true">04</span>Proyectos</a></li>
-                    <li><a class="nav-cta" href="#contacto"><span class="nav-num" aria-hidden="true">05</span>Contacto</a></li>
+                    <li><a href="#servicios"><span class="nav-num" aria-hidden="true">05</span>Servicios</a></li>
+                    <li><a class="nav-cta" href="#contacto"><span class="nav-num" aria-hidden="true">06</span>Contacto</a></li>
                 </ul>
 
                 <div class="nav-mobile-extra">
@@ -54,6 +136,19 @@
                     </div>
                 </div>
             </div>
+            <div class="nav-actions">
+                <button class="theme-toggle" type="button" aria-label="Activar modo claro" aria-pressed="false">
+                    <span class="theme-toggle__track" aria-hidden="true">
+                        <i class="fas fa-moon theme-toggle__icon theme-toggle__icon--moon"></i>
+                        <i class="fas fa-sun theme-toggle__icon theme-toggle__icon--sun"></i>
+                        <span class="theme-toggle__knob"></span>
+                    </span>
+                </button>
+                <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-controls="nav-links"
+                    aria-expanded="false">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
+                </button>
+            </div>
         </nav>
     </header>
 
@@ -65,15 +160,19 @@
         <!-- HERO -->
         <section id="inicio" class="hero">
             <div class="hero__media">
-                <img src="img/laura_mejorada.jpg" alt="Laura Ordóñez de Arce" width="2090" height="1179"
-                    fetchpriority="high">
+                <picture>
+                    <source srcset="img/laura_mejorada.webp" type="image/webp">
+                    <img src="img/laura_mejorada.jpg" alt="Laura Ordóñez de Arce" width="2090" height="1179"
+                        fetchpriority="high">
+                </picture>
             </div>
 
             <div class="hero__content container">
+                <p class="hero__status"><span class="hero__status-dot" aria-hidden="true"></span>Disponible para proyectos web</p>
                 <p class="hero__kicker">&gt; hola_mundo, soy</p>
                 <h1 class="hero__title">LAURA ORDÓÑEZ <span>DE ARCE</span></h1>
-                <p class="hero__role">Desarrolladora Full Stack Junior | PHP<span class="cursor" aria-hidden="true"></span></p>
-                <p class="hero__text">Formada en Desarrollo de Aplicaciones. Creo soluciones que combinan lógica, estructura y diseño.</p>
+                <p class="hero__role">Desarrolladora Full Stack | PHP<span class="cursor" aria-hidden="true"></span></p>
+                <p class="hero__text">Trabajo como Full Stack en Reservator S.L. y desarrollo páginas web a medida para negocios y profesionales: rápidas, adaptadas a móvil y con la base técnica preparada para SEO.</p>
 
                 <div class="hero__stack">
                     <span class="hero__stack-label">stack:</span>
@@ -87,12 +186,12 @@
 
                 <div class="hero__actions">
                     <a class="btn btn--primary" href="#proyectos">Ver proyectos <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-                    <a class="btn btn--secondary" href="documentos/CV_Laura Ordonez.pdf" target="_blank"
-                        rel="noopener noreferrer" download><i class="fas fa-download" aria-hidden="true"></i> Descargar CV</a>
+                    <a class="btn btn--secondary" href="#servicios"><i class="fas fa-code" aria-hidden="true"></i> Quiero una web</a>
                     <span class="hero__divider" aria-hidden="true"></span>
                     <div class="social-row">
                         <a class="btn-icon" href="https://github.com/lauraordo93" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
                         <a class="btn-icon" href="https://linkedin.com/in/laura-ordoñez-737532300" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+                        <a class="btn-icon" href="documentos/CV_Laura Ordonez.pdf" target="_blank" rel="noopener noreferrer" download aria-label="Descargar CV"><i class="fas fa-download" aria-hidden="true"></i></a>
                     </div>
                 </div>
             </div>
@@ -112,7 +211,7 @@
             <div class="about reveal">
                 <div class="about__text">
                     <p class="chip chip--orange chip--label"><i class="fa-solid fa-laptop-code" aria-hidden="true"></i> Perfil profesional</p>
-                    <p class="about__lead">Hola, soy Laura. Soy desarrolladora junior con formación en Desarrollo de Aplicaciones y disfruto creando soluciones que combinan <strong>lógica, estructura y diseño</strong>.</p>
+                    <p class="about__lead">Hola, soy Laura. Soy desarrolladora con formación en Desarrollo de Aplicaciones y disfruto creando soluciones que combinan <strong>lógica, estructura y diseño</strong>.</p>
                     <p class="about__body">Me inspiran los videojuegos, el arte digital y los desafíos que activan el pensamiento creativo.</p>
                     <div class="code-quote">
                         <p class="code-quote__comment">// para mí, programar es como debuggear la vida</p>
@@ -129,9 +228,9 @@
             </div>
 
             <ul class="facts reveal" aria-label="Datos rápidos">
-                <li class="fact"><i class="fa-solid fa-briefcase" aria-hidden="true"></i><div><span class="fact__key">Actualidad</span><span class="fact__value">Full Stack Junior en Reservator S.L.</span></div></li>
+                <li class="fact"><i class="fa-solid fa-briefcase" aria-hidden="true"></i><div><span class="fact__key">Actualidad</span><span class="fact__value">Full Stack en Reservator S.L.</span></div></li>
                 <li class="fact"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i><div><span class="fact__key">Formación</span><span class="fact__value">Desarrollo de Aplicaciones (DAM)</span></div></li>
-                <li class="fact"><i class="fa-regular fa-folder-open" aria-hidden="true"></i><div><span class="fact__key">Proyectos</span><span class="fact__value">TFG y proyectos de 2º DAM en GitHub</span></div></li>
+                <li class="fact"><i class="fa-regular fa-folder-open" aria-hidden="true"></i><div><span class="fact__key">Proyectos</span><span class="fact__value">Web para artista y proyectos en GitHub</span></div></li>
             </ul>
         </section>
 
@@ -196,9 +295,9 @@
                     <article class="card exp-card">
                         <header class="exp-card__head">
                             <div>
-                                <p class="chip chip--orange chip--sm">Empleo actual</p>
+                                <p class="chip chip--orange chip--sm">Actualidad</p>
                                 <h3 class="exp-card__company">Reservator S.L.</h3>
-                                <p class="exp-card__role">Desarrolladora Full Stack Junior</p>
+                                <p class="exp-card__role">Desarrolladora Full Stack</p>
                             </div>
                             <p class="date-badge"><time datetime="2026">2026</time> — Actualidad</p>
                         </header>
@@ -243,7 +342,7 @@
                             <h3>Desarrollo de Aplicaciones (DAM)</h3>
                         </header>
                         <ul class="edu-card__items">
-                            <li><span class="edu-card__date">Mayo 2025 – Mayo 2026</span><span class="edu-card__name">TFG — Página Web Vertical</span></li>
+                            <li><span class="edu-card__date">Mayo 2025 – Mayo 2026</span><span class="edu-card__name">Proyecto final: web oficial de un músico</span></li>
                             <li><span class="edu-card__date">2º DAM · Sep – Nov 2025</span><span class="edu-card__name">Gestor de Persistencia Multi-Formato (Java)</span></li>
                         </ul>
                     </article>
@@ -265,28 +364,32 @@
                     <div class="case__media">
                         <div class="window">
                             <div class="window__bar" aria-hidden="true"><span></span><span></span><span></span><span class="window__url">carlosordonezmusic.es</span></div>
-                            <img src="img/webCarlos.png" alt="Captura de la web del TFG, carlosordonezmusic.es" width="1902" height="894" loading="lazy">
+                            <picture>
+                                <source srcset="img/webCarlos.webp" type="image/webp">
+                                <img src="img/webCarlos.png" alt="Captura de la web oficial del saxofonista Carlos Ordóñez, carlosordonezmusic.es" width="1902" height="894" loading="lazy" decoding="async">
+                            </picture>
                         </div>
                     </div>
 
                     <div class="case__body">
-                        <div class="case__top"><span class="case__index" aria-hidden="true">01</span><span class="chip chip--cyan chip--sm">Académico · TFG</span></div>
-                        <h3 id="case-tfg" class="case__title">TFG — Página Web Vertical</h3>
-                        <p class="case__summary">Web vertical organizada por secciones (biografía, entrevistas, galería, vídeos, agenda y redes sociales) con contenido dinámico cargado desde base de datos.</p>
+                        <div class="case__top"><span class="case__index" aria-hidden="true">01</span><span class="chip chip--cyan chip--sm">Artista · Música</span><span class="chip chip--orange chip--sm">Web en producción</span></div>
+                        <h3 id="case-tfg" class="case__title">Web oficial de Carlos Ordóñez, saxofonista</h3>
+                        <p class="case__summary">Web profesional para un artista, organizada por secciones (biografía, entrevistas, galería, vídeos, agenda y redes sociales), construida con arquitectura MVC en PHP y con la base técnica preparada para SEO.</p>
 
                         <dl class="case__meta">
-                            <div><dt>Tipo</dt><dd>Web responsive</dd></div>
+                            <div><dt>Tipo</dt><dd>Web a medida · MVC</dd></div>
                             <div><dt>Fechas</dt><dd>Mayo 2025 – Mayo 2026</dd></div>
-                            <div><dt>Rol</dt><dd>Proyecto individual</dd></div>
+                            <div><dt>Rol</dt><dd>Diseño y desarrollo</dd></div>
                         </dl>
 
                         <div class="case__block">
                             <h4 class="case__label">Aspectos técnicos</h4>
                             <ul class="check-list check-list--2col">
+                                <li>Arquitectura MVC en PHP: lógica, datos y vistas separados</li>
+                                <li>Base técnica preparada para SEO: estructura, etiquetas y rendimiento</li>
+                                <li>Contenido dinámico con PHP y SQL</li>
                                 <li>Diseño responsive con navegación interna por secciones</li>
                                 <li>Animaciones suaves con JavaScript al hacer scroll</li>
-                                <li>Contenido dinámico con PHP y SQL</li>
-                                <li>Web publicada y en uso real</li>
                             </ul>
                         </div>
 
@@ -298,6 +401,8 @@
                                 <li class="chip chip--neutral chip--sm">JavaScript</li>
                                 <li class="chip chip--neutral chip--sm">PHP</li>
                                 <li class="chip chip--neutral chip--sm">SQL</li>
+                                <li class="chip chip--neutral chip--sm">MVC</li>
+                                <li class="chip chip--neutral chip--sm">SEO</li>
                             </ul>
                         </div>
 
@@ -370,16 +475,120 @@
             </div>
         </section>
 
-        <!-- 05 · CONTACTO -->
+        <!-- 05 · SERVICIOS -->
+        <section id="servicios" class="section container" aria-labelledby="serv-title">
+            <header class="section-head reveal">
+                <p class="section-kicker"><span>05</span><span class="section-kicker__line" aria-hidden="true"></span><span>servicios</span></p>
+                <h2 id="serv-title" class="section-title">¿Necesitas una web?</h2>
+                <p class="section-lead">Desarrollo páginas web a medida para negocios, profesionales y artistas. Tú me cuentas qué necesitas y yo me encargo de diseñarla, programarla y publicarla.</p>
+            </header>
+
+            <ul class="services">
+                <li class="card service reveal">
+                    <span class="service__icon"><i class="fa-solid fa-mobile-screen-button" aria-hidden="true"></i></span>
+                    <h3>Webs a medida y responsive</h3>
+                    <p>Diseño propio, sin plantillas genéricas, que se ve bien en móvil, tablet y ordenador.</p>
+                </li>
+                <li class="card service reveal">
+                    <span class="service__icon"><i class="fa-solid fa-database" aria-hidden="true"></i></span>
+                    <h3>Contenido que puedes actualizar</h3>
+                    <p>Secciones dinámicas como agenda, galería o noticias, con PHP, MySQL y arquitectura MVC.</p>
+                </li>
+                <li class="card service reveal">
+                    <span class="service__icon"><i class="fa-solid fa-magnifying-glass-chart" aria-hidden="true"></i></span>
+                    <h3>Base preparada para SEO</h3>
+                    <p>Entrego la web con la base técnica que tienen en cuenta los buscadores: estructura correcta, etiquetas, datos estructurados y carga rápida.</p>
+                    <p class="service__note">La posición en Google depende también de otros factores, como el contenido y la competencia, por lo que no se puede garantizar. La gestión SEO continuada no está incluida.</p>
+                </li>
+            </ul>
+
+            <div class="process reveal">
+                <h3 class="process__title">Cómo trabajo</h3>
+                <ol class="process__steps">
+                    <li><span class="process__num">1</span><div><strong>Hablamos</strong><span>Me cuentas tu proyecto y qué quieres conseguir con la web.</span></div></li>
+                    <li><span class="process__num">2</span><div><strong>Propuesta</strong><span>Te preparo una propuesta con estructura, plazos y presupuesto.</span></div></li>
+                    <li><span class="process__num">3</span><div><strong>Desarrollo</strong><span>Diseño y programo la web, y la revisamos juntos.</span></div></li>
+                    <li><span class="process__num">4</span><div><strong>Publicación</strong><span>La publico y te explico cómo mantenerla al día.</span></div></li>
+                </ol>
+            </div>
+
+            <div class="service-cta reveal">
+                <div>
+                    <p class="service-cta__title">Mira un ejemplo real</p>
+                    <p class="service-cta__text">La web de carlosordonezmusic.es está hecha por mí y ya está publicada.</p>
+                </div>
+                <div class="service-cta__actions">
+                    <a class="btn btn--secondary btn--sm" href="https://carlosordonezmusic.es" target="_blank" rel="noopener noreferrer">Ver la web <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+                    <a class="btn btn--primary btn--sm" href="#contacto"><i class="fas fa-envelope" aria-hidden="true"></i> Pedir presupuesto</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 06 · CONTACTO -->
         <section id="contacto" class="section container" aria-labelledby="contact-title">
             <div class="contact reveal">
                 <div class="contact__main">
                     <header class="section-head">
-                        <p class="section-kicker"><span>05</span><span class="section-kicker__line" aria-hidden="true"></span><span>contacto</span></p>
+                        <p class="section-kicker"><span>06</span><span class="section-kicker__line" aria-hidden="true"></span><span>contacto</span></p>
                         <h2 id="contact-title" class="section-title">Contacto</h2>
                     </header>
-                    <p class="contact__lead">Contacta conmigo: estaré encantada de hablar sobre oportunidades o proyectos.</p>
+                    <p class="contact__lead">¿Necesitas una web para tu negocio o tienes un proyecto en mente? Cuéntamelo y te respondo lo antes posible.</p>
 
+                    <!-- Formulario: se envía con FormSubmit y llega a laura.ordonez.dev@gmail.com -->
+                    <form class="contact-form" id="contact-form" action="https://formsubmit.co/laura.ordonez.dev@gmail.com" method="POST">
+                        <input type="hidden" name="_subject" value="Nueva consulta desde el portfolio">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_captcha" value="false">
+                        <div class="contact-form__trap" aria-hidden="true">
+                            <label for="cf-honey">No rellenar</label>
+                            <input type="text" id="cf-honey" name="_honey" tabindex="-1" autocomplete="off">
+                        </div>
+
+                        <div class="contact-form__row">
+                            <div class="field">
+                                <label for="cf-name">Nombre</label>
+                                <input type="text" id="cf-name" name="nombre" autocomplete="name" required maxlength="80">
+                            </div>
+                            <div class="field">
+                                <label for="cf-email">Email</label>
+                                <input type="email" id="cf-email" name="email" autocomplete="email" required maxlength="120" placeholder="tu@correo.com">
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label for="cf-type">¿Qué necesitas?</label>
+                            <select id="cf-type" name="tipo_de_proyecto" required>
+                                <option value="" disabled selected>Elige una opción</option>
+                                <option>Una web nueva</option>
+                                <option>Rediseñar mi web actual</option>
+                                <option>Mejoras o mantenimiento</option>
+                                <option>Otra consulta</option>
+                            </select>
+                        </div>
+
+                        <div class="field">
+                            <label for="cf-message">Mensaje</label>
+                            <textarea id="cf-message" name="mensaje" rows="5" required minlength="10" maxlength="3000" placeholder="Cuéntame a qué se dedica tu negocio, qué te gustaría tener en la web y si tienes alguna fecha en mente."></textarea>
+                        </div>
+
+                        <div class="field field--check">
+                            <input type="checkbox" id="cf-privacy" name="acepta_privacidad" value="Sí" required>
+                            <label for="cf-privacy">He leído y acepto la <a href="privacidad.html" target="_blank">política de privacidad</a>.</label>
+                        </div>
+
+                        <p class="contact-form__legal"><strong>Responsable:</strong> Laura Ordóñez de Arce. <strong>Finalidad:</strong> responder a tu consulta. <strong>Derechos:</strong> acceso, rectificación, supresión y otros, escribiendo a laura.ordonez.dev@gmail.com. Más información en la <a href="privacidad.html" target="_blank">política de privacidad</a>.</p>
+
+                        <div class="contact-form__actions">
+                            <button class="btn btn--primary" type="submit">
+                                <i class="fas fa-paper-plane" aria-hidden="true"></i><span class="contact-form__submit-text">Enviar mensaje</span>
+                            </button>
+                            <p class="contact-form__status" role="status" aria-live="polite"></p>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="contact__side">
+                    <p class="contact__side-label">o escríbeme directamente</p>
                     <div class="email-box">
                         <i class="fas fa-envelope" aria-hidden="true"></i>
                         <a class="email-box__link" href="mailto:laura.ordonez.dev@gmail.com">laura.ordonez.dev@gmail.com</a>
@@ -388,16 +597,13 @@
                         </button>
                         <span class="visually-hidden" role="status" aria-live="polite" data-copy-status></span>
                     </div>
-                </div>
 
-                <div class="contact__side">
                     <p class="contact__side-label">redes_sociales/</p>
                     <ul class="social-list">
-                        <li><a href="mailto:laura.ordonez.dev@gmail.com"><i class="fas fa-envelope" aria-hidden="true"></i><span><strong>Correo</strong><small>laura.ordonez.dev@gmail.com</small></span><i class="fas fa-arrow-right" aria-hidden="true"></i></a></li>
                         <li><a href="https://github.com/lauraordo93" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i><span><strong>GitHub</strong><small>github.com/lauraordo93</small></span><i class="fas fa-arrow-right" aria-hidden="true"></i></a></li>
                         <li><a href="https://linkedin.com/in/laura-ordoñez-737532300" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in" aria-hidden="true"></i><span><strong>LinkedIn</strong><small>in/laura-ordoñez</small></span><i class="fas fa-arrow-right" aria-hidden="true"></i></a></li>
                     </ul>
-                    <a class="btn btn--primary btn--block" href="documentos/CV_Laura Ordonez.pdf" target="_blank"
+                    <a class="btn btn--secondary btn--block" href="documentos/CV_Laura Ordonez.pdf" target="_blank"
                         rel="noopener noreferrer" download><i class="fas fa-download" aria-hidden="true"></i> Descargar CV</a>
                 </div>
             </div>
@@ -420,6 +626,7 @@
                     <a class="btn-icon btn-icon--sm" href="https://linkedin.com/in/laura-ordoñez-737532300" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
                     <a class="btn-icon btn-icon--sm" href="mailto:laura.ordonez.dev@gmail.com" aria-label="Correo"><i class="fas fa-envelope" aria-hidden="true"></i></a>
                 </div>
+                <a class="footer__link" href="privacidad.html">Política de privacidad</a>
                 <a class="footer__top" href="#inicio">Volver arriba <i class="fas fa-arrow-up" aria-hidden="true"></i></a>
             </div>
         </div>
@@ -427,9 +634,11 @@
 
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js" defer></script>
     <script src="js/particles.js" defer></script>
+    <script src="js/tema.js" defer></script>
     <script src="js/menuPort.js" defer></script>
     <script src="js/reveal.js" defer></script>
     <script src="js/proyectos.js" defer></script>
+    <script src="js/contacto.js" defer></script>
 </body>
 
 </html>
