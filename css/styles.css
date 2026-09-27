@@ -441,9 +441,11 @@ main,
     position: fixed;
     inset: 0 0 auto 0;
     z-index: 1200;
-    background: linear-gradient(to bottom, rgba(12, 15, 17, 0.95) 0%, rgba(12, 15, 17, 0) 100%);
-    border-bottom: 1px solid transparent;
-    transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
+    background: var(--nav-bg);
+    border-bottom: 1px solid rgba(0, 188, 212, 0.14);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .nav-header.is-scrolled,
@@ -451,8 +453,6 @@ main,
     background: var(--nav-bg-solid);
     border-bottom-color: rgba(0, 188, 212, 0.22);
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.26);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
 }
 
 .navbar {
@@ -759,7 +759,6 @@ html:not([data-theme="light"]) .theme-toggle__icon--moon {
     line-height: 1.06;
     letter-spacing: 0.04em;
     color: var(--text);
-    overflow: hidden;
 }
 
 .hero__title span {
