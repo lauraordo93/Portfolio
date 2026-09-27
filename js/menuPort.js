@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Fondo del header más opaco al hacer scroll.
   const updateHeaderState = () => {
-    navHeader.classList.toggle('is-scrolled', window.scrollY > 20);
+    navHeader.classList.toggle('is-scrolled', window.scrollY > 80);
   };
 
   window.addEventListener('scroll', updateHeaderState, { passive: true });

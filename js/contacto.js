@@ -18,8 +18,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const buttonText = form.querySelector('.contact-form__submit-text');
   const status = form.querySelector('.contact-form__status');
 
+  const checkIcon = '<svg class="status-check" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M7.5 12.5l3 3 6-6.5"></path></svg>';
+
   const setStatus = (message, type) => {
     status.textContent = message;
+    if (type === 'success' && message) {
+      status.insertAdjacentHTML('afterbegin', checkIcon);
+    }
     status.classList.toggle('is-success', type === 'success');
     status.classList.toggle('is-error', type === 'error');
   };
@@ -52,13 +57,22 @@ document.addEventListener('DOMContentLoaded', () => {
       const result = await response.json().catch(() => ({}));
 
       if (!response.ok || String(result.success) !== 'true') {
-        throw new Error(result.message || 'Error de envío');
+        const error = new Error(result.message || `Error ${response.status}`);
+        error.pending = /activat/i.test(result.message || '');
+        throw error;
       }
 
       form.reset();
       setStatus('Mensaje enviado. Te responderé lo antes posible.', 'success');
     } catch (error) {
-      setStatus('No se ha podido enviar. Inténtalo de nuevo o escríbeme a laura.ordonez.dev@gmail.com.', 'error');
+      console.warn('Formulario de contacto:', error.message);
+
+      if (error.pending) {
+        // Solo pasa hasta que se pulsa "Activate Form" en el correo de FormSubmit.
+        setStatus('El formulario está pendiente de activación. Mientras tanto, escríbeme a laura.ordonez.dev@gmail.com.', 'error');
+      } else {
+        setStatus('No se ha podido enviar. Inténtalo de nuevo o escríbeme a laura.ordonez.dev@gmail.com.', 'error');
+      }
     } finally {
       setSending(false);
     }

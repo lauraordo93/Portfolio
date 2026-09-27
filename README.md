@@ -17,11 +17,23 @@ Dirección visual "modo developer nocturno":
 
 - **Inicio**: foto, nombre, rol, stack principal y accesos a proyectos, CV, GitHub y LinkedIn.
 - **01 · Sobre mí**: presentación, áreas destacadas y datos rápidos.
-- **02 · Tech Stack**: tecnologías agrupadas en Frontend, Backend, Bases de datos y Herramientas.
+- **02 · Tech Stack**: presentado como un archivo `stack.js` en una ventana de editor, con números de línea, colores de sintaxis y los logos de cada tecnología.
 - **03 · Experiencia y formación**: timeline con Reservator S.L. y la formación DAM.
 - **04 · Proyectos destacados**: web oficial del saxofonista Carlos Ordóñez (carlosordonezmusic.es, MVC y SEO) y Gestor de Persistencia Multi-Formato.
 - **05 · Servicios**: desarrollo de páginas web a medida, forma de trabajo y petición de presupuesto.
 - **06 · Contacto**: formulario que llega a laura.ordonez.dev@gmail.com (FormSubmit), correo con botón de copiar, redes y descarga del CV.
+
+## Animaciones
+
+- Entrada escalonada del hero y nombre que se "decodifica" al cargar.
+- Tarjetas que aparecen en cascada al hacer scroll.
+- Línea del timeline que se dibuja al bajar y puntos que se iluminan.
+- Brillo cian que sigue al ratón en las tarjetas (solo ordenador).
+- Cambio de tema con efecto círculo desde el interruptor (View Transitions API; en otros navegadores cambia directamente).
+- Check animado al enviar el formulario.
+- Escaparate de la web de Carlos: un móvil con la página completa (`img/webCarlos-movil.webp`) que se recorre al pasar el ratón, o solo mientras está en pantalla en dispositivos táctiles. Si la web de Carlos cambia, sustituye esa imagen por una captura nueva de página completa.
+
+Todas se desactivan con `prefers-reduced-motion`.
 
 ## Accesibilidad y rendimiento
 
@@ -54,6 +66,7 @@ Portfolio/
 |   |-- webCarlos.png
 |   `-- ...
 |-- js/
+|   |-- animaciones.js  # nombre que se decodifica, timeline y brillo en tarjetas
 |   |-- contacto.js     # envío del formulario con FormSubmit
 |   |-- menuPort.js     # menú móvil, header al hacer scroll y enlace activo
 |   |-- particles.js    # fondo de partículas sutil
@@ -63,6 +76,7 @@ Portfolio/
 |-- 404.html            # página de error con el diseño del portfolio
 |-- index.html
 |-- privacidad.html    # política de privacidad (RGPD)
+|-- aviso-legal.html   # aviso legal (LSSI)
 |-- robots.txt
 |-- site.webmanifest
 |-- sitemap.xml
@@ -87,7 +101,10 @@ Portfolio/
 - GitHub: [lauraordo93](https://github.com/lauraordo93)
 - LinkedIn: [Laura Ordóñez](https://linkedin.com/in/laura-ordoñez-737532300)
 
-## Privacidad
+## Privacidad y aviso legal
+
+`aviso-legal.html` recoge los datos del titular, las condiciones de uso y la propiedad intelectual. Si te das de alta como autónoma o cambias de domicilio, actualiza los datos en `aviso-legal.html` y en `privacidad.html`.
+
 
 `privacidad.html` explica qué datos recoge el formulario, para qué se usan, qué servicios externos intervienen y cómo ejercer los derechos RGPD. Está enlazada desde la casilla del formulario y desde el footer. Revisa el texto si cambias de servicio de formulario, añades estadísticas o cambias el plazo de conservación.
 

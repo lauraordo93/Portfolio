@@ -38,6 +38,10 @@
                 }
             } catch (e) { }
             document.documentElement.setAttribute('data-theme', theme);
+            // Activa las animaciones de entrada solo si el visitante no ha pedido reducir el movimiento
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.documentElement.classList.add('motion');
+            }
         })();
     </script>
     <title>Laura Ordóñez · Desarrolladora web Full Stack | Webs a medida</title>
@@ -140,7 +144,7 @@
                 <button class="theme-toggle" type="button" aria-label="Activar modo claro" aria-pressed="false">
                     <span class="theme-toggle__track" aria-hidden="true">
                         <i class="fas fa-moon theme-toggle__icon theme-toggle__icon--moon"></i>
-                        <i class="fas fa-sun theme-toggle__icon theme-toggle__icon--sun"></i>
+                        <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" focusable="false"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.5 1.5M17.2 17.2l1.5 1.5M5.3 18.7l1.5-1.5M17.2 6.8l1.5-1.5"></path></svg>
                         <span class="theme-toggle__knob"></span>
                     </span>
                 </button>
@@ -170,7 +174,7 @@
             <div class="hero__content container">
                 <p class="hero__status"><span class="hero__status-dot" aria-hidden="true"></span>Disponible para proyectos web</p>
                 <p class="hero__kicker">&gt; hola_mundo, soy</p>
-                <h1 class="hero__title">LAURA ORDÓÑEZ <span>DE ARCE</span></h1>
+                <h1 class="hero__title" aria-label="Laura Ordóñez de Arce" data-decode>LAURA ORDÓÑEZ <span>DE ARCE</span></h1>
                 <p class="hero__role">Desarrolladora Full Stack | PHP<span class="cursor" aria-hidden="true"></span></p>
                 <p class="hero__text">Trabajo como Full Stack en Reservator S.L. y desarrollo páginas web a medida para negocios y profesionales: rápidas, adaptadas a móvil y con la base técnica preparada para SEO.</p>
 
@@ -211,7 +215,7 @@
             <div class="about reveal">
                 <div class="about__text">
                     <p class="chip chip--orange chip--label"><i class="fa-solid fa-laptop-code" aria-hidden="true"></i> Perfil profesional</p>
-                    <p class="about__lead">Hola, soy Laura. Desarrolladora con formación en Desarrollo de Aplicaciones y disfruto creando soluciones que combinan <strong>lógica, estructura y diseño</strong>.</p>
+                    <p class="about__lead">Hola, soy Laura. Soy desarrolladora con formación en Desarrollo de Aplicaciones y disfruto creando soluciones que combinan <strong>lógica, estructura y diseño</strong>.</p>
                     <p class="about__body">Me inspiran los videojuegos, el arte digital y los desafíos que activan el pensamiento creativo.</p>
                     <div class="code-quote">
                         <p class="code-quote__comment">// para mí, programar es como debuggear la vida</p>
@@ -219,7 +223,7 @@
                     </div>
                 </div>
 
-                <ul class="highlights" aria-label="Áreas destacadas">
+                <ul class="highlights stagger" aria-label="Áreas destacadas">
                     <li class="highlight"><span class="highlight__icon"><i class="fa-solid fa-layer-group" aria-hidden="true"></i></span><span class="highlight__label">Desarrollo Full Stack</span></li>
                     <li class="highlight"><span class="highlight__icon"><i class="fa-solid fa-code" aria-hidden="true"></i></span><span class="highlight__label">PHP / JavaScript</span></li>
                     <li class="highlight"><span class="highlight__icon"><i class="fa-solid fa-diagram-project" aria-hidden="true"></i></span><span class="highlight__label">Arquitectura MVC</span></li>
@@ -243,41 +247,33 @@
                     <p class="section-lead">Tecnologías y herramientas con las que trabajo, organizadas por área.</p>
                 </header>
 
-                <div class="tech-grid">
-                    <article class="card tech-card reveal">
-                        <header class="tech-card__head"><h3>Frontend</h3><span>frontend/ · 3</span></header>
-                        <ul class="tech-list">
-                            <li class="tech"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="" width="28" height="28" loading="lazy">HTML5</li>
-                            <li class="tech"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="" width="28" height="28" loading="lazy">CSS3</li>
-                            <li class="tech"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="" width="28" height="28" loading="lazy">JavaScript</li>
-                        </ul>
-                    </article>
+                <figure class="editor reveal">
+                    <div class="editor__bar">
+                        <span class="editor__dots" aria-hidden="true"><span></span><span></span><span></span></span>
+                        <span class="editor__tab"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="" width="14" height="14" loading="lazy">stack.js<span class="editor__tab-close" aria-hidden="true">×</span></span>
+                    </div>
 
-                    <article class="card tech-card reveal">
-                        <header class="tech-card__head"><h3>Backend</h3><span>backend/ · 2</span></header>
-                        <ul class="tech-list">
-                            <li class="tech"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="" width="28" height="28" loading="lazy">PHP</li>
-                            <li class="tech"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="" width="28" height="28" loading="lazy">Java</li>
-                        </ul>
-                    </article>
+                    <div class="editor__body" aria-hidden="true">
+                        <ol class="editor__code stagger">
+                            <li><span class="code-line"><span class="syn-c">// Tecnologías con las que trabajo</span></span></li>
+                            <li><span class="code-line"><span class="syn-k">const</span> <span class="syn-v">stack</span> <span class="syn-p">=</span> <span class="syn-p">{</span></span></li>
+                            <li><span class="code-line"><span class="code-indent"></span><span class="syn-key">frontend</span><span class="syn-p">:</span> <span class="syn-p">[</span><span class="code-items"><span class="code-item"><img class="code-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="" width="18" height="18" loading="lazy"><span class="syn-s">'HTML5'</span><span class="syn-p">,</span></span> <span class="code-item"><img class="code-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="" width="18" height="18" loading="lazy"><span class="syn-s">'CSS3'</span><span class="syn-p">,</span></span> <span class="code-item"><img class="code-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="" width="18" height="18" loading="lazy"><span class="syn-s">'JavaScript'</span></span></span><span class="code-close"><span class="syn-p">]</span><span class="syn-p">,</span></span></span></li>
+                            <li><span class="code-line"><span class="code-indent"></span><span class="syn-key">backend</span><span class="syn-p">:</span> <span class="syn-p">[</span><span class="code-items"><span class="code-item"><img class="code-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="" width="18" height="18" loading="lazy"><span class="syn-s">'PHP'</span><span class="syn-p">,</span></span> <span class="code-item"><img class="code-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="" width="18" height="18" loading="lazy"><span class="syn-s">'Java'</span></span></span><span class="code-close"><span class="syn-p">]</span><span class="syn-p">,</span></span></span></li>
+                            <li><span class="code-line"><span class="code-indent"></span><span class="syn-key">basesDeDatos</span><span class="syn-p">:</span> <span class="syn-p">[</span><span class="code-items"><span class="code-item"><img class="code-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="" width="18" height="18" loading="lazy"><span class="syn-s">'MySQL'</span></span></span><span class="code-close"><span class="syn-p">]</span><span class="syn-p">,</span></span></span></li>
+                            <li><span class="code-line"><span class="code-indent"></span><span class="syn-key">herramientas</span><span class="syn-p">:</span> <span class="syn-p">[</span><span class="code-items"><span class="code-item"><img class="code-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="" width="18" height="18" loading="lazy"><span class="syn-s">'Git'</span><span class="syn-p">,</span></span> <span class="code-item"><img class="code-logo tech__icon--invert" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="" width="18" height="18" loading="lazy"><span class="syn-s">'GitHub'</span><span class="syn-p">,</span></span> <span class="code-item"><img class="code-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="" width="18" height="18" loading="lazy"><span class="syn-s">'VS Code'</span><span class="syn-p">,</span></span> <span class="code-item"><img class="code-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/intellij/intellij-original.svg" alt="" width="18" height="18" loading="lazy"><span class="syn-s">'IntelliJ IDEA'</span></span></span><span class="code-close"><span class="syn-p">]</span><span class="syn-p">,</span></span></span></li>
+                            <li><span class="code-line"><span class="syn-p">};</span></span></li>
+                            <li><span class="code-line"></span></li>
+                            <li><span class="code-line"><span class="syn-k">export default</span> <span class="syn-v">stack</span><span class="syn-p">;</span><span class="cursor cursor--code" aria-hidden="true"></span></span></li>
+                        </ol>
+                    </div>
 
-                    <article class="card tech-card reveal">
-                        <header class="tech-card__head"><h3>Bases de datos</h3><span>bases_de_datos/ · 1</span></header>
-                        <ul class="tech-list">
-                            <li class="tech"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="" width="28" height="28" loading="lazy">MySQL</li>
-                        </ul>
-                    </article>
+                    <figcaption class="editor__status">
+                        <span><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Sin errores</span>
+                        <span>JavaScript · UTF-8 · 4 áreas · 10 tecnologías</span>
+                    </figcaption>
 
-                    <article class="card tech-card reveal">
-                        <header class="tech-card__head"><h3>Herramientas</h3><span>herramientas/ · 4</span></header>
-                        <ul class="tech-list">
-                            <li class="tech"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="" width="28" height="28" loading="lazy">Git</li>
-                            <li class="tech"><img class="tech__icon--invert" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="" width="28" height="28" loading="lazy">GitHub</li>
-                            <li class="tech"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="" width="28" height="28" loading="lazy">VS Code</li>
-                            <li class="tech"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/intellij/intellij-original.svg" alt="" width="28" height="28" loading="lazy">IntelliJ IDEA</li>
-                        </ul>
-                    </article>
-                </div>
+                    <ul class="visually-hidden"><li>Frontend: HTML5, CSS3, JavaScript</li><li>Backend: PHP, Java</li><li>Bases de datos: MySQL</li><li>Herramientas: Git, GitHub, VS Code, IntelliJ IDEA</li></ul>
+                </figure>
             </div>
         </section>
 
@@ -288,7 +284,7 @@
                 <h2 id="exp-title" class="section-title">Experiencia y formación</h2>
             </header>
 
-            <ol class="timeline">
+            <ol class="timeline" data-timeline>
                 <li class="timeline__item reveal">
                     <p class="timeline__node"><span class="timeline__dot" aria-hidden="true"></span>2026 — Actualidad · experiencia</p>
 
@@ -362,13 +358,23 @@
                 <!-- Proyecto 01 -->
                 <article class="card case reveal" aria-labelledby="case-tfg">
                     <div class="case__media">
-                        <div class="window">
-                            <div class="window__bar" aria-hidden="true"><span></span><span></span><span></span><span class="window__url">carlosordonezmusic.es</span></div>
-                            <picture>
-                                <source srcset="img/webCarlos.webp" type="image/webp">
-                                <img src="img/webCarlos.png" alt="Captura de la web oficial del saxofonista Carlos Ordóñez, carlosordonezmusic.es" width="1902" height="894" loading="lazy" decoding="async">
-                            </picture>
+                        <div class="showcase" data-showcase>
+                            <div class="window">
+                                <div class="window__bar" aria-hidden="true"><span></span><span></span><span></span><span class="window__url">carlosordonezmusic.es</span></div>
+                                <picture>
+                                    <source srcset="img/webCarlos.webp" type="image/webp">
+                                    <img src="img/webCarlos.png" alt="Captura de la web oficial del saxofonista Carlos Ordóñez, carlosordonezmusic.es" width="1902" height="894" loading="lazy" decoding="async">
+                                </picture>
+                            </div>
+
+                            <!-- Móvil con la página completa: se recorre al pasar el ratón (o sola en móvil) -->
+                            <div class="phone" tabindex="0" aria-label="Versión móvil de la web. Pasa el ratón o enfoca para recorrerla.">
+                                <div class="phone__screen">
+                                    <img class="phone__page" src="img/webCarlos-movil.webp" alt="Página completa de carlosordonezmusic.es en móvil" width="480" height="7692" loading="lazy" decoding="async">
+                                </div>
+                            </div>
                         </div>
+                        <p class="showcase__hint" aria-hidden="true"><i class="fas fa-arrows-up-down"></i> Pasa el ratón para recorrer la web en móvil</p>
                     </div>
 
                     <div class="case__body">
@@ -483,18 +489,18 @@
                 <p class="section-lead">Desarrollo páginas web a medida para negocios, profesionales y artistas. Tú me cuentas qué necesitas y yo me encargo de diseñarla, programarla y publicarla.</p>
             </header>
 
-            <ul class="services">
-                <li class="card service reveal">
+            <ul class="services stagger">
+                <li class="card service">
                     <span class="service__icon"><i class="fa-solid fa-mobile-screen-button" aria-hidden="true"></i></span>
                     <h3>Webs a medida y responsive</h3>
                     <p>Diseño propio, sin plantillas genéricas, que se ve bien en móvil, tablet y ordenador.</p>
                 </li>
-                <li class="card service reveal">
+                <li class="card service">
                     <span class="service__icon"><i class="fa-solid fa-database" aria-hidden="true"></i></span>
                     <h3>Contenido que puedes actualizar</h3>
                     <p>Secciones dinámicas como agenda, galería o noticias, con PHP, MySQL y arquitectura MVC.</p>
                 </li>
-                <li class="card service reveal">
+                <li class="card service">
                     <span class="service__icon"><i class="fa-solid fa-magnifying-glass-chart" aria-hidden="true"></i></span>
                     <h3>Base preparada para SEO</h3>
                     <p>Entrego la web con la base técnica que tienen en cuenta los buscadores: estructura correcta, etiquetas, datos estructurados y carga rápida.</p>
@@ -504,7 +510,7 @@
 
             <div class="process reveal">
                 <h3 class="process__title">Cómo trabajo</h3>
-                <ol class="process__steps">
+                <ol class="process__steps stagger">
                     <li><span class="process__num">1</span><div><strong>Hablamos</strong><span>Me cuentas tu proyecto y qué quieres conseguir con la web.</span></div></li>
                     <li><span class="process__num">2</span><div><strong>Propuesta</strong><span>Te preparo una propuesta con estructura, plazos y presupuesto.</span></div></li>
                     <li><span class="process__num">3</span><div><strong>Desarrollo</strong><span>Diseño y programo la web, y la revisamos juntos.</span></div></li>
@@ -626,6 +632,7 @@
                     <a class="btn-icon btn-icon--sm" href="https://linkedin.com/in/laura-ordoñez-737532300" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
                     <a class="btn-icon btn-icon--sm" href="mailto:laura.ordonez.dev@gmail.com" aria-label="Correo"><i class="fas fa-envelope" aria-hidden="true"></i></a>
                 </div>
+                <a class="footer__link" href="aviso-legal.html">Aviso legal</a>
                 <a class="footer__link" href="privacidad.html">Política de privacidad</a>
                 <a class="footer__top" href="#inicio">Volver arriba <i class="fas fa-arrow-up" aria-hidden="true"></i></a>
             </div>
@@ -637,6 +644,7 @@
     <script src="js/tema.js" defer></script>
     <script src="js/menuPort.js" defer></script>
     <script src="js/reveal.js" defer></script>
+    <script src="js/animaciones.js" defer></script>
     <script src="js/proyectos.js" defer></script>
     <script src="js/contacto.js" defer></script>
 </body>

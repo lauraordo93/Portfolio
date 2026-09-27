@@ -33,9 +33,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
   applyTheme(root.getAttribute('data-theme') === 'light' ? 'light' : 'dark');
 
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
   button?.addEventListener('click', () => {
     const next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-    applyTheme(next);
+
+    // Efecto círculo desde el botón (navegadores con View Transitions). Si no, cambio directo.
+    if (document.startViewTransition && !reduceMotion.matches) {
+      const rect = button.getBoundingClientRect();
+      const x = rect.left + rect.width / 2;
+      const y = rect.top + rect.height / 2;
+      const radius = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
+
+      const transition = document.startViewTransition(() => applyTheme(next));
+      transition.ready.then(() => {
+        root.animate(
+          { clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`] },
+          { duration: 550, easing: 'cubic-bezier(0.22, 0.61, 0.36, 1)', pseudoElement: '::view-transition-new(root)' }
+        );
+      }).catch(() => {});
+    } else {
+      applyTheme(next);
+    }
 
     try {
       localStorage.setItem('tema', next);
