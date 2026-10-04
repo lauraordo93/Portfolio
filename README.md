@@ -23,6 +23,14 @@ Dirección visual "modo developer nocturno":
 - **05 · Servicios**: desarrollo de páginas web a medida, forma de trabajo y petición de presupuesto.
 - **06 · Contacto**: formulario que llega a laura.ordonez.dev@gmail.com (FormSubmit), correo con botón de copiar, redes y descarga del CV.
 
+## Pantalla de inicio
+
+Al entrar en la web aparece una pantalla de arranque estilo BIOS que, al terminar, deja elegir a dónde ir: INTRO (portfolio), P (proyectos), S (servicios) o C (contacto), con el teclado o pulsando las opciones. Se muestra una vez por visita (sessionStorage) y no aparece si se llega con un enlace a una sección (por ejemplo `#contacto`). Para volver a verla, abre la web en una pestaña nueva o de incógnito.
+
+## Secreto
+
+Si alguien teclea el código Konami (↑ ↑ ↓ ↓ ← → ← → B A), o toca 5 veces seguidas el icono `</>` del logo en móvil, aparece una caja de diálogo estilo RPG de 16 bits con un mensaje y un acceso al formulario de contacto. Se cierra con Escape o con el botón "Cerrar".
+
 ## Animaciones
 
 - Entrada escalonada del hero y nombre que se "decodifica" al cargar.
@@ -68,9 +76,11 @@ Portfolio/
 |-- js/
 |   |-- animaciones.js  # nombre que se decodifica, timeline y brillo en tarjetas
 |   |-- contacto.js     # envío del formulario con FormSubmit
+|   |-- inicio.js       # pantalla de inicio estilo BIOS
 |   |-- menuPort.js     # menú móvil, header al hacer scroll y enlace activo
 |   |-- particles.js    # fondo de partículas sutil
 |   |-- proyectos.js    # vídeos bajo demanda y botón de copiar correo
+|   |-- secreto.js      # easter egg: código Konami y caja de diálogo RPG
 |   |-- reveal.js       # aparición suave de bloques al hacer scroll
 |   `-- tema.js         # botón de modo claro / oscuro
 |-- 404.html            # página de error con el diseño del portfolio

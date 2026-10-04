@@ -38,15 +38,14 @@
                 }
             } catch (e) { }
             document.documentElement.setAttribute('data-theme', theme);
+            // Activa las animaciones de entrada solo si el visitante no ha pedido reducir el movimiento
             // Pantalla de inicio retro (BIOS): una vez por visita y solo si no se entra a una sección concreta
-            // (#inicio cuenta como entrar a la portada, no a una sección)
             try {
                 if (!sessionStorage.getItem('arrancado') && (!location.hash || location.hash === '#inicio')) {
                     document.documentElement.classList.add('boot');
                 }
             } catch (e) { }
 
-            // Activa las animaciones de entrada solo si el visitante no ha pedido reducir el movimiento
             if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
                 document.documentElement.classList.add('motion');
             }
@@ -58,6 +57,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Fira+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&display=optional" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
 
@@ -680,12 +680,26 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js" defer></script>
+    <!-- Secreto: código Konami (↑ ↑ ↓ ↓ ← → ← → B A) o 5 toques en el icono </> del logo -->
+    <div class="rpg" id="rpg" role="dialog" aria-labelledby="rpg-name" aria-describedby="rpg-text" hidden>
+        <div class="rpg__box" tabindex="-1">
+            <p class="rpg__name" id="rpg-name">LAURA.DEV</p>
+            <p class="rpg__text" id="rpg-text" aria-live="polite"></p>
+            <div class="rpg__actions">
+                <a class="rpg__btn" href="#contacto" data-rpg-close>▶ ¿Hablamos?</a>
+                <button class="rpg__btn" type="button" data-rpg-close>Cerrar</button>
+            </div>
+            <span class="rpg__next" aria-hidden="true">▼</span>
+        </div>
+    </div>
+
     <script src="js/particles.js" defer></script>
     <script src="js/tema.js" defer></script>
     <script src="js/menuPort.js" defer></script>
     <script src="js/reveal.js" defer></script>
     <script src="js/animaciones.js" defer></script>
     <script src="js/inicio.js" defer></script>
+    <script src="js/secreto.js" defer></script>
     <script src="js/proyectos.js" defer></script>
     <script src="js/contacto.js" defer></script>
 </body>
