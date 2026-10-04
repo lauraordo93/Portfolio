@@ -27,6 +27,8 @@ Dirección visual "modo developer nocturno":
 
 Al entrar en la web aparece una pantalla de arranque estilo BIOS que, al terminar, deja elegir a dónde ir: INTRO (portfolio), P (proyectos), S (servicios) o C (contacto), con el teclado o pulsando las opciones. Se muestra una vez por visita (sessionStorage) y no aparece si se llega con un enlace a una sección (por ejemplo `#contacto`). Para volver a verla, abre la web en una pestaña nueva o de incógnito.
 
+La línea `C:\>` del final es una pequeña consola: al pulsarla (o con Tab) se puede escribir `help`, `debug` o `clear` y ejecutar con INTRO; Escape vuelve al menú. Por debajo hay un campo de texto invisible para que también funcione con el teclado del móvil. `debug` abre el **modo debug**, un minijuego en el que hay que pulsar 10 bugs que aparecen en sitios al azar; al terminar muestra "DEBUG COMPLETE" y el logro (solo visual, todavía no se guarda). Se sale con "EXIT DEBUG MODE" o Escape, y la BIOS y la consola siguen como estaban.
+
 ## Secreto
 
 Si alguien teclea el código Konami (↑ ↑ ↓ ↓ ← → ← → B A), o toca 5 veces seguidas el icono `</>` del logo en móvil, aparece una caja de diálogo estilo RPG de 16 bits con un mensaje y un acceso al formulario de contacto. Se cierra con Escape o con el botón "Cerrar".
@@ -76,7 +78,7 @@ Portfolio/
 |-- js/
 |   |-- animaciones.js  # nombre que se decodifica, timeline y brillo en tarjetas
 |   |-- contacto.js     # envío del formulario con FormSubmit
-|   |-- inicio.js       # pantalla de inicio estilo BIOS
+|   |-- inicio.js       # pantalla de inicio estilo BIOS, consola C:\> y modo debug
 |   |-- menuPort.js     # menú móvil, header al hacer scroll y enlace activo
 |   |-- particles.js    # fondo de partículas sutil
 |   |-- proyectos.js    # vídeos bajo demanda y botón de copiar correo

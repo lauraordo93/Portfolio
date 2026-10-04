@@ -3515,9 +3515,11 @@ html:not([data-theme="light"]) .theme-toggle__icon--moon {
 .boot-screen .dim { color: #6F7D84; }
 .boot-screen .ok { color: #6EE7A8; }
 
-/* Arranque: cada línea aparece con un pequeño retraso */
+/* Arranque: cada línea aparece con un pequeño retraso (también las respuestas de la consola) */
 .boot-screen__log > *,
-.boot-screen__menu {
+.boot-screen__menu,
+.boot-screen__output > *,
+.boot-debug__done > * {
     opacity: 0;
     animation: bootLine 0.01s linear forwards;
     animation-delay: calc(var(--d, 0) * 1ms);
@@ -3610,8 +3612,59 @@ html:not([data-theme="light"]) .theme-toggle__icon--moon {
     color: #FF9412;
 }
 
+/* Consola C:\>: la línea del prompt es la propia consola */
+.boot-screen__console {
+    margin-top: 22px;
+}
+
+.boot-screen__output > * {
+    min-height: 1.7em;
+}
+
 .boot-screen__prompt {
-    margin-top: 22px !important;
+    position: relative;
+    display: block;
+    cursor: text;
+}
+
+.boot-screen__prompt.is-busy {
+    opacity: 0;
+}
+
+.boot-screen__typed {
+    margin-left: 4px;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+.boot-screen__typed:empty {
+    display: none;
+}
+
+.boot-screen__typed:not(:empty) + .boot-screen__cursor {
+    margin-left: 0;
+}
+
+.boot-screen__prompt:focus-within .boot-screen__cursor {
+    background: #3DDCEE;
+}
+
+/* Campo real, invisible: recibe el teclado (también el del móvil) y su texto se copia en la línea.
+   Ocupa 44 px de alto para el toque sin mover nada, y 16px evita el zoom de iOS al enfocar. */
+.boot-screen__input {
+    position: absolute;
+    inset: -11px 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: transparent;
+    caret-color: transparent;
+    font-size: 16px;
+    opacity: 0;
+    cursor: text;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .boot-screen__cursor {
@@ -3654,6 +3707,141 @@ html:not([data-theme="light"]) .theme-toggle__icon--moon {
     }
 }
 
+/* Botones de texto de la consola: [ START DEBUGGING ], [ EXIT DEBUG MODE ] */
+.boot-cmd {
+    min-height: 44px;
+    padding: 0 6px;
+    margin-left: -6px;
+    border: 0;
+    background: none;
+    color: #3DDCEE;
+    font: inherit;
+    cursor: pointer;
+}
+
+.boot-cmd:hover,
+.boot-cmd:focus-visible {
+    background: #3DDCEE;
+    color: #050607;
+    outline: none;
+}
+
+.boot-cmd:focus-visible {
+    box-shadow: 0 0 0 3px rgba(61, 220, 238, 0.45);
+}
+
+/* Modo debug: tapa la BIOS sin quitarla (al salir, la consola sigue igual) */
+.boot-screen.is-debug .boot-screen__inner {
+    visibility: hidden;
+}
+
+.boot-debug {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    overflow-y: auto;
+    padding: 32px max(20px, (100% - 920px) / 2);
+    background: #050607;
+}
+
+.boot-debug[hidden] {
+    display: none;
+}
+
+.boot-debug__bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: 16px;
+}
+
+.boot-debug__bar .boot-cmd {
+    margin: 0 -6px 0 0;
+}
+
+.boot-debug__msg {
+    min-height: 1.7em;
+}
+
+.boot-debug__msg > * {
+    animation: bootBlink 0.16s steps(1) 3;
+}
+
+/* Zona segura del bug: el bug nunca sale de este marco ni tapa los botones */
+.boot-debug__arena {
+    position: relative;
+    flex: 1 0 auto;
+    min-height: 160px;
+    margin-top: 10px;
+    border: 1px solid #2B373E;
+    background: #0C1013;
+}
+
+.boot-debug__bug {
+    --bug: 56px;
+    position: absolute;
+    left: calc(8px + (100% - var(--bug) - 16px) * var(--x, 0.5));
+    top: calc(8px + (100% - var(--bug) - 16px) * var(--y, 0.5));
+    display: grid;
+    place-items: center;
+    width: var(--bug);
+    height: var(--bug);
+    padding: 0;
+    border: 0;
+    background: none;
+    color: #FF9412;
+    cursor: crosshair;
+    touch-action: manipulation;
+    animation: bugTwitch 0.7s steps(1) infinite;
+}
+
+.boot-debug__bug[hidden] {
+    display: none;
+}
+
+.boot-debug__bug svg {
+    width: 33px;
+    height: 36px;
+    rotate: var(--r, 0deg);
+    filter: drop-shadow(0 0 6px rgba(255, 148, 18, 0.5));
+}
+
+.boot-debug__bug:hover {
+    color: #FFB04D;
+}
+
+/* Al pulsarlo se "revienta"; en su nuevo sitio aparece de golpe */
+.boot-debug__bug.is-caught {
+    opacity: 0;
+    scale: 1.6;
+    transition: opacity 0.2s steps(3), scale 0.2s steps(3);
+}
+
+@keyframes bugTwitch {
+    50% { translate: 1px -2px; }
+}
+
+.boot-debug__done {
+    padding: 20px;
+}
+
+.boot-debug__box {
+    margin: 0 0 12px;
+    font: inherit;
+    line-height: 1.2;
+    color: #3DDCEE;
+    text-shadow: 0 0 12px rgba(61, 220, 238, 0.35);
+}
+
+.boot-debug__badge {
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    margin-bottom: 1.7em !important;
+}
+
 /* Mientras está la pantalla de inicio, las animaciones del hero esperan */
 .boot .hero__content > *,
 .boot .hero__media img,
@@ -3671,13 +3859,28 @@ html:not([data-theme="light"]) .theme-toggle__icon--moon {
     }
 }
 
+/* Móvil en horizontal: el modo debug entra entero en la pantalla */
+@media (max-height: 480px) {
+    .boot-debug {
+        padding-block: 12px;
+    }
+}
+
 /* Con reducción de movimiento: todo aparece a la vez y sin apagado */
 @media (prefers-reduced-motion: reduce) {
     .boot-screen__log > *,
     .boot-screen__menu,
+    .boot-screen__output > *,
+    .boot-debug__done > *,
     .boot-screen__pct {
         opacity: 1;
         animation: none;
+    }
+
+    .boot-debug__bug,
+    .boot-debug__msg > * {
+        animation: none;
+        transition: none;
     }
 
     .boot-screen__bar span {
