@@ -10,7 +10,12 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
-  decodeTitle();
+  // Con la pantalla de inicio activa, el nombre se decodifica al entrar al portfolio.
+  if (document.documentElement.classList.contains('boot')) {
+    document.addEventListener('inicio:fin', decodeTitle, { once: true });
+  } else {
+    decodeTitle();
+  }
   drawTimeline();
   cardSpotlight();
   phoneShowcase();

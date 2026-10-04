@@ -3456,3 +3456,236 @@ html:not([data-theme="light"]) .theme-toggle__icon--moon {
         display: none;
     }
 }
+
+/* ---------- Pantalla de inicio BIOS ---------- */
+.boot-screen {
+    display: none;
+}
+
+.boot body {
+    overflow: hidden;
+}
+
+.boot .boot-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 3000;
+    display: flex;
+    align-items: center;
+    overflow-y: auto;
+    padding: 32px 0;
+    background: #050607;
+    color: #C9D1D5;
+    font-family: var(--font-mono);
+    font-size: clamp(0.8125rem, 1.6vw, 1rem);
+    line-height: 1.7;
+}
+
+/* Líneas de escaneo suaves, como un monitor antiguo */
+.boot .boot-screen::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.025) 0 1px, transparent 1px 3px);
+}
+
+.boot-screen__inner {
+    width: min(920px, 100% - 40px);
+    margin: auto;
+}
+
+.boot-screen__logo {
+    margin: 0 0 26px;
+    overflow: hidden;
+    font-family: var(--font-mono);
+    font-size: clamp(6.5px, 1.45vw, 13px);
+    line-height: 1.15;
+    color: #3DDCEE;
+    text-shadow: 0 0 12px rgba(61, 220, 238, 0.35);
+}
+
+.boot-screen p {
+    margin: 0;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.boot-screen .hl { color: #FF9412; }
+.boot-screen .dim { color: #6F7D84; }
+.boot-screen .ok { color: #6EE7A8; }
+
+/* Arranque: cada línea aparece con un pequeño retraso */
+.boot-screen__log > *,
+.boot-screen__menu {
+    opacity: 0;
+    animation: bootLine 0.01s linear forwards;
+    animation-delay: calc(var(--d, 0) * 1ms);
+}
+
+@keyframes bootLine {
+    to { opacity: 1; }
+}
+
+.boot-screen__bar {
+    display: inline-block;
+    width: 9ch;
+    height: 0.8em;
+    vertical-align: -0.05em;
+    border: 1px solid #3DDCEE;
+}
+
+.boot-screen__bar span {
+    display: block;
+    width: 0;
+    height: 100%;
+    background: repeating-linear-gradient(90deg, #3DDCEE 0 0.8ch, transparent 0.8ch 1ch);
+    animation: bootBar 0.75s steps(9) 0.95s forwards;
+}
+
+@keyframes bootBar {
+    to { width: 100%; }
+}
+
+.boot-screen__pct {
+    opacity: 0;
+    animation: bootLine 0.01s linear 1.7s forwards;
+}
+
+.boot-screen__menu {
+    margin-top: 26px;
+}
+
+.boot-screen__ask {
+    margin-bottom: 14px !important;
+    color: #FFFFFF;
+    font-weight: 600;
+}
+
+.boot-screen__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.boot-key {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 48px;
+    padding: 0 16px;
+    border: 1px solid #2B373E;
+    background: #0C1013;
+    color: #C9D1D5;
+    text-decoration: none;
+    transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+}
+
+.boot-key kbd {
+    padding: 1px 7px;
+    border: 1px solid currentColor;
+    border-radius: 3px;
+    font: inherit;
+    font-size: 0.8em;
+    color: #3DDCEE;
+}
+
+.boot-key:hover,
+.boot-key:focus-visible {
+    border-color: #3DDCEE;
+    background: rgba(61, 220, 238, 0.08);
+    color: #FFFFFF;
+    outline: none;
+}
+
+.boot-key:focus-visible {
+    box-shadow: 0 0 0 3px rgba(61, 220, 238, 0.45);
+}
+
+.boot-key:first-child {
+    border-color: rgba(255, 148, 18, 0.6);
+}
+
+.boot-key:first-child kbd {
+    color: #FF9412;
+}
+
+.boot-screen__prompt {
+    margin-top: 22px !important;
+}
+
+.boot-screen__cursor {
+    display: inline-block;
+    width: 0.6em;
+    height: 1.1em;
+    margin-left: 4px;
+    vertical-align: -0.2em;
+    background: #C9D1D5;
+    animation: bootBlink 1s steps(1) infinite;
+}
+
+@keyframes bootBlink {
+    50% { opacity: 0; }
+}
+
+/* Apagado tipo monitor CRT al elegir una opción */
+.boot .boot-screen.is-off {
+    animation: crtOff 0.5s cubic-bezier(0.6, 0, 0.9, 0.4) forwards;
+    pointer-events: none;
+}
+
+@keyframes crtOff {
+    0% {
+        transform: scale(1, 1);
+        filter: brightness(1);
+        opacity: 1;
+    }
+
+    55% {
+        transform: scale(1, 0.004);
+        filter: brightness(3);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(0, 0.004);
+        filter: brightness(4);
+        opacity: 0;
+    }
+}
+
+/* Mientras está la pantalla de inicio, las animaciones del hero esperan */
+.boot .hero__content > *,
+.boot .hero__media img,
+.boot .hero__scroll {
+    animation-play-state: paused;
+}
+
+@media (max-width: 640px) {
+    .boot-screen__actions {
+        flex-direction: column;
+    }
+
+    .boot-key {
+        width: 100%;
+    }
+}
+
+/* Con reducción de movimiento: todo aparece a la vez y sin apagado */
+@media (prefers-reduced-motion: reduce) {
+    .boot-screen__log > *,
+    .boot-screen__menu,
+    .boot-screen__pct {
+        opacity: 1;
+        animation: none;
+    }
+
+    .boot-screen__bar span {
+        width: 100%;
+        animation: none;
+    }
+
+    .boot-screen__cursor {
+        animation: none;
+    }
+}

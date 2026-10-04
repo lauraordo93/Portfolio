@@ -38,6 +38,14 @@
                 }
             } catch (e) { }
             document.documentElement.setAttribute('data-theme', theme);
+            // Pantalla de inicio retro (BIOS): una vez por visita y solo si no se entra a una sección concreta
+            // (#inicio cuenta como entrar a la portada, no a una sección)
+            try {
+                if (!sessionStorage.getItem('arrancado') && (!location.hash || location.hash === '#inicio')) {
+                    document.documentElement.classList.add('boot');
+                }
+            } catch (e) { }
+
             // Activa las animaciones de entrada solo si el visitante no ha pedido reducir el movimiento
             if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
                 document.documentElement.classList.add('motion');
@@ -109,6 +117,37 @@
 </head>
 
 <body>
+    <!-- Pantalla de inicio estilo BIOS: arranca y deja elegir a dónde ir -->
+    <div class="boot-screen" id="boot-screen" role="dialog" aria-modal="true" aria-labelledby="boot-title" aria-describedby="boot-desc">
+        <div class="boot-screen__inner">
+            <pre class="boot-screen__logo" aria-hidden="true">██╗      █████╗ ██╗   ██╗██████╗  █████╗    ██████╗ ███████╗██╗   ██╗
+██║     ██╔══██╗██║   ██║██╔══██╗██╔══██╗   ██╔══██╗██╔════╝██║   ██║
+██║     ███████║██║   ██║██████╔╝███████║   ██║  ██║█████╗  ██║   ██║
+██║     ██╔══██║██║   ██║██╔══██╗██╔══██║   ██║  ██║██╔══╝  ╚██╗ ██╔╝
+███████╗██║  ██║╚██████╔╝██║  ██║██║  ██║██╗██████╔╝███████╗ ╚████╔╝ 
+╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝╚═════╝ ╚══════╝  ╚═══╝</pre>
+            <h2 class="visually-hidden" id="boot-title">Laura.dev · Portfolio de Laura Ordóñez de Arce</h2>
+            <div class="boot-screen__log" aria-hidden="true">
+                <p style="--d: 150"><span class="hl">LauraBIOS</span> v4.04 <span class="dim">(C) 2026 Laura.dev · Desarrollo web a medida</span></p>
+                <p style="--d: 330">CPU: Desarrolladora Full Stack @ PHP / JavaScript / MySQL</p>
+                <p style="--d: 520">Comprobando memoria ............ <span class="ok">640K OK</span></p>
+                <p style="--d: 720">Cargando café ................... <span class="ok">OK</span></p>
+                <p style="--d: 920">Cargando portfolio ............. <span class="boot-screen__bar"><span></span></span> <span class="ok boot-screen__pct">100%</span></p>
+                <p style="--d: 1750" class="ok">Sistema listo.</p>
+            </div>
+
+            <div class="boot-screen__menu" style="--d: 1950">
+                <p class="boot-screen__ask" id="boot-desc">¿A dónde quieres ir?</p>
+                <div class="boot-screen__actions">
+                    <a class="boot-key" href="#inicio" data-boot-go="#inicio"><kbd>INTRO</kbd> Entrar al portfolio</a>
+                    <a class="boot-key" href="#proyectos" data-boot-go="#proyectos"><kbd>P</kbd> Ver proyectos</a>
+                    <a class="boot-key" href="#servicios" data-boot-go="#servicios"><kbd>S</kbd> Servicios</a>
+                    <a class="boot-key" href="#contacto" data-boot-go="#contacto"><kbd>C</kbd> Contacto</a>
+                </div>
+                <p class="boot-screen__prompt" aria-hidden="true"><span class="dim">C:\&gt;</span><span class="boot-screen__cursor"></span></p>
+            </div>
+        </div>
+    </div>
     <a class="skip-link" href="#contenido">Saltar al contenido</a>
 
     <!-- NAVEGACIÓN -->
@@ -646,6 +685,7 @@
     <script src="js/menuPort.js" defer></script>
     <script src="js/reveal.js" defer></script>
     <script src="js/animaciones.js" defer></script>
+    <script src="js/inicio.js" defer></script>
     <script src="js/proyectos.js" defer></script>
     <script src="js/contacto.js" defer></script>
 </body>
