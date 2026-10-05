@@ -162,23 +162,35 @@
                 <p><span class="hl">DEBUG MODE</span> <span class="dim">· LauraBIOS v4.04</span></p>
                 <button class="boot-cmd" type="button" data-debug-exit>[ EXIT DEBUG MODE ]</button>
             </div>
+            <p>TIME: <span class="ok" data-debug-time>15s</span></p>
             <p aria-live="polite">BUGS FIXED: <span class="ok" data-debug-count>0</span> / 10</p>
             <p class="boot-debug__msg" aria-live="polite"></p>
             <div class="boot-debug__arena" aria-live="polite">
                 <button class="boot-debug__bug" type="button" aria-label="Bug">
                     <svg viewBox="0 0 11 12" aria-hidden="true" focusable="false" shape-rendering="crispEdges"><path fill="currentColor" d="M1 0h1v1h-1zM9 0h1v1h-1zM2 1h1v1h-1zM8 1h1v1h-1zM3 2h5v1h-5zM3 3h1v1h-1zM5 3h1v1h-1zM7 3h1v1h-1zM0 4h1v1h-1zM3 4h5v1h-5zM10 4h1v1h-1zM1 5h4v1h-4zM6 5h4v1h-4zM2 6h3v1h-3zM6 6h3v1h-3zM0 7h5v1h-5zM6 7h5v1h-5zM2 8h3v1h-3zM6 8h3v1h-3zM1 9h4v1h-4zM6 9h4v1h-4zM0 10h1v1h-1zM3 10h5v1h-5zM10 10h1v1h-1zM4 11h3v1h-3z"/></svg>
                 </button>
-                <div class="boot-debug__done" hidden>
+                <div class="boot-debug__done" data-debug-done hidden>
                     <pre class="boot-debug__box">╔════════════════════════╗
 ║     DEBUG COMPLETE     ║
 ╚════════════════════════╝</pre>
                     <p style="--d: 400">10 / 10 BUGS FIXED</p>
+                    <p style="--d: 700">TIME: <span data-debug-used>0.0</span>s / 15s</p>
                     <p style="--d: 1000" class="hl">ACHIEVEMENT UNLOCKED</p>
                     <p style="--d: 1300" class="ok boot-debug__badge">JUNIOR DEBUGGER</p>
                     <p style="--d: 2100">&gt; System cleaned successfully.</p>
                     <p style="--d: 2900" class="dim">&gt; But something doesn't look right...</p>
                     <p style="--d: 3700" class="dim">&gt;</p>
                     <p style="--d: 3700" class="dim">&gt; Some systems require a different kind of input...<span class="boot-screen__cursor" aria-hidden="true"></span></p>
+                </div>
+                <div class="boot-debug__done" data-debug-failed hidden>
+                    <pre class="boot-debug__box boot-debug__box--fail">╔════════════════════════╗
+║      DEBUG FAILED      ║
+╚════════════════════════╝</pre>
+                    <p style="--d: 400">BUGS FIXED: <span data-debug-failed-count>0</span> / 10</p>
+                    <p style="--d: 800" class="hl boot-debug__badge">TIME LIMIT EXCEEDED</p>
+                    <button style="--d: 1400" class="boot-cmd" type="button" data-debug-retry>[ TRY AGAIN ]</button>
+                    <p style="--d: 2200" class="hl boot-debug__alert">&gt; CONTAINMENT FAILURE</p>
+                    <p style="--d: 2800" class="dim">&gt; Bugs escaping...</p>
                 </div>
             </div>
         </div>
