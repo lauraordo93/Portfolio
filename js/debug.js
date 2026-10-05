@@ -446,7 +446,9 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   retryButton?.addEventListener('click', (event) => {
-    if (debugging) {
+    // Con el modo debug ya "apagándose" camino de Proyectos (la fuga), TRY AGAIN no hace nada:
+    // si no, empezaría una partida invisible con la página bloqueada detrás.
+    if (debugging && !debugLayer.classList.contains('is-off')) {
       startRound(event.detail === 0);
     }
   });
@@ -876,6 +878,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.removeEventListener('keydown', anomaly.onKey);
     document.removeEventListener('pointerdown', anomaly.onOutside, true);
     document.removeEventListener('inicio:fin', anomaly.onLeaveBios);
+    window.removeEventListener('scroll', anomaly.onScroll);
     anomaly.layer.remove();
     anomaly.process?.remove();
     anomaly.panel?.remove();
@@ -1028,6 +1031,9 @@ document.addEventListener('DOMContentLoaded', () => {
     anomalyLater(() => line.remove(), 4500);
   };
 
+  // Lo que se puede pulsar o usar en la página (enlaces, botones, campos...).
+  const PRESSABLE = 'a, button, input, textarea, select, label, [tabindex]:not([tabindex="-1"])';
+
   // Sitio para que se pare el bug que se puede pulsar en el portfolio: dentro de la pantalla,
   // por debajo del menú y sin nada pulsable debajo (enlaces, botones, campos).
   const findSpot = (w, h, size) => {
@@ -1036,7 +1042,7 @@ document.addEventListener('DOMContentLoaded', () => {
       spot = [random(0.08 * w, 0.92 * w - size), random(Math.max(96, 0.3 * h), 0.85 * h - size)];
       const [x, y] = spot;
       const covered = [[0, 0], [size, 0], [0, size], [size, size], [size / 2, size / 2]].some(([dx, dy]) => (
-        document.elementFromPoint(x + dx, y + dy)?.closest('a, button, input, textarea, select, label, [tabindex]:not([tabindex="-1"])')));
+        document.elementFromPoint(x + dx, y + dy)?.closest(PRESSABLE)));
       if (!covered) {
         break;
       }
@@ -1199,6 +1205,7 @@ document.addEventListener('DOMContentLoaded', () => {
       el.style.setProperty('--r', `${Math.round((Math.atan2(to[1] - from[1], to[0] - from[0]) * 180) / Math.PI) + 90}deg`);
       el.style.animationName = name;
     };
+    const nextRun = () => (el.style.animationName === 'invasionRunA' ? 'invasionRunB' : 'invasionRunA');
 
     // Se va: paso 3 hecho y fin de las anomalías. Si tenía el foco, pasa al "?" de la BIOS.
     const leave = () => {
@@ -1220,7 +1227,7 @@ document.addEventListener('DOMContentLoaded', () => {
         el.classList.add('is-zapped');
         anomalyLater(done, 350);
       } else {
-        walk(spot, [side, spot[1]], 'invasionRunB');
+        walk(spot, [side, spot[1]], nextRun());
         anomalyLater(done, (Math.abs(spot[0] - side) / 240) * 1000 + 50);
       }
     };
@@ -1239,6 +1246,46 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     el.addEventListener('click', (event) => openPanel(el, event.detail === 0));
     anomalyLater(leave, walkIn + PROCESS_TIME);
+
+    // En el portfolio el bug está fijo en la pantalla y el contenido pasa por debajo al hacer
+    // scroll: si le queda debajo algo que se puede pulsar (un enlace, un campo...), se aparta a
+    // otro hueco para no quitarle el clic. (En la BIOS va dentro del contenido y no hace falta.)
+    if (!anomaly.bios) {
+      let moving = !reduceMotion;
+      let checking = false;
+      anomalyLater(() => { moving = false; }, walkIn);
+      const blocking = () => {
+        const r = el.getBoundingClientRect();
+        return [[0.5, 0.5], [0.1, 0.1], [0.9, 0.1], [0.1, 0.9], [0.9, 0.9]].some(([fx, fy]) => document
+          .elementsFromPoint(r.left + r.width * fx, r.top + r.height * fy)
+          .find((node) => !node.closest('.invasion'))?.closest(PRESSABLE));
+      };
+      const moveAway = () => {
+        const next = findSpot(document.documentElement.clientWidth, window.innerHeight, size);
+        if (reduceMotion) {
+          el.style.setProperty('--x0', `${next[0]}px`);
+          el.style.setProperty('--y0', `${next[1]}px`);
+        } else {
+          moving = true;
+          walk(spot, next, nextRun());
+          anomalyLater(() => { moving = false; }, (Math.hypot(next[0] - spot[0], next[1] - spot[1]) / 240) * 1000);
+        }
+        spot = next;
+      };
+      anomaly.onScroll = () => {
+        if (checking || leaving || moving || anomaly?.panel) {
+          return;
+        }
+        checking = true;
+        anomalyLater(() => {
+          checking = false;
+          if (!leaving && !moving && !anomaly?.panel && blocking()) {
+            moveAway();
+          }
+        }, 150);
+      };
+      window.addEventListener('scroll', anomaly.onScroll, { passive: true });
+    }
 
     // Escape o pulsar fuera cierra el panel, y entonces el bug se va.
     anomaly.onKey = (event) => {
@@ -1296,7 +1343,7 @@ document.addEventListener('DOMContentLoaded', () => {
     layer.classList.add('is-anomaly');
     anomaly = {
       bios, layer, swarm, template, escaped: 0, timers: new Set(),
-      process: null, panel: null, onKey: null, onOutside: null, onLeaveBios: null,
+      process: null, panel: null, onKey: null, onOutside: null, onLeaveBios: null, onScroll: null,
     };
     let delay = random(...WEB_GAP);
     if (bios) {

@@ -103,24 +103,23 @@ document.addEventListener('DOMContentLoaded', () => {
     feed(event.key.toLowerCase());
   });
 
-  // En móvil: 5 toques seguidos (en menos de 2,5 s) en el logo del menú (el icono </> o el
-  // nombre). El primer toque sube al inicio, como siempre; los siguientes de la serie ya no,
-  // para que la página no salte con cada toque.
+  // En móvil: 5 toques rápidos seguidos (menos de 0,7 s entre uno y otro) en el logo del menú
+  // (el icono </> o el nombre). Un toque suelto es un enlace normal al inicio; dentro de una
+  // serie rápida, los toques extra no vuelven a navegar, para que la página no salte con cada uno.
   const brand = document.querySelector('.nav-header .nav-brand');
   let taps = 0;
-  let tapTimer = null;
+  let lastTap = 0;
 
   brand?.addEventListener('click', (event) => {
-    taps += 1;
+    const now = performance.now();
+    taps = now - lastTap < 700 ? taps + 1 : 1;
+    lastTap = now;
     if (taps > 1) {
       event.preventDefault();
     }
-    window.clearTimeout(tapTimer);
-    tapTimer = window.setTimeout(() => { taps = 0; }, 2500);
 
     if (taps >= 5) {
       taps = 0;
-      event.preventDefault();
       open();
     }
   });
