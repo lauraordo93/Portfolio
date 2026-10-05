@@ -127,14 +127,20 @@
 ███████╗██║  ██║╚██████╔╝██║  ██║██║  ██║██╗██████╔╝███████╗ ╚████╔╝ 
 ╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝╚═════╝ ╚══════╝  ╚═══╝</pre>
             <h2 class="visually-hidden" id="boot-title">Laura.dev · Portfolio de Laura Ordóñez de Arce</h2>
-            <div class="boot-screen__log" aria-hidden="true">
-                <p style="--d: 150"><span class="hl">LauraBIOS</span> v4.04 <span class="dim">(C) 2026 Laura.dev · Desarrollo web a medida</span></p>
-                <p style="--d: 330">CPU: Desarrolladora Full Stack @ PHP / JavaScript / MySQL</p>
-                <p style="--d: 520">Comprobando memoria ............ <span class="ok">640K OK</span></p>
-                <p style="--d: 720">Cargando café ................... <span class="ok">OK</span></p>
-                <p style="--d: 820">Modo DEBUG ..................... <span class="hl">?</span></p>
-                <p style="--d: 920">Cargando portfolio ............. <span class="boot-screen__bar"><span></span></span> <span class="ok boot-screen__pct">100%</span></p>
-                <p style="--d: 1750" class="ok">Sistema listo.</p>
+            <div class="boot-screen__log">
+                <p aria-hidden="true" style="--d: 150"><span class="hl">LauraBIOS</span> v4.04 <span class="dim">(C) 2026 Laura.dev · Desarrollo web a medida</span></p>
+                <p aria-hidden="true" style="--d: 330">CPU: Desarrolladora Full Stack @ PHP / JavaScript / MySQL</p>
+                <p aria-hidden="true" style="--d: 520">Comprobando memoria ............ <span class="ok">640K OK</span></p>
+                <p aria-hidden="true" style="--d: 720">Cargando café ................... <span class="ok">OK</span></p>
+                <p style="--d: 820" class="boot-screen__debug-line"><span aria-hidden="true">Modo DEBUG ..................... </span><button class="boot-anomaly" type="button" data-boot-anomaly aria-expanded="false" aria-controls="boot-investigate" aria-label="Modo DEBUG: estado desconocido">?</button></p>
+                <p aria-hidden="true" style="--d: 920">Cargando portfolio ............. <span class="boot-screen__bar"><span></span></span> <span class="ok boot-screen__pct">100%</span></p>
+                <p aria-hidden="true" style="--d: 1750" class="ok">Sistema listo.</p>
+            </div>
+            <!-- Al pulsar el "?" de "Modo DEBUG": anomalía que lleva al modo debug -->
+            <div class="boot-investigate" id="boot-investigate" data-boot-investigate lang="en" hidden>
+                <p class="hl">DEBUG MODE DETECTED</p>
+                <p class="dim">&gt; Something is wrong here...</p>
+                <button class="boot-cmd" type="button">[ INVESTIGATE ]</button>
             </div>
 
             <div class="boot-screen__menu" style="--d: 1950">
@@ -156,42 +162,47 @@
             </div>
         </div>
 
-        <!-- Modo debug: minijuego que se abre desde la consola con "debug" -->
-        <div class="boot-debug" lang="en" hidden>
-            <div class="boot-debug__bar">
-                <p><span class="hl">DEBUG MODE</span> <span class="dim">· LauraBIOS v4.04</span></p>
-                <button class="boot-cmd" type="button" data-debug-exit>[ EXIT DEBUG MODE ]</button>
+    </div>
+    <!-- Modo debug: minijuego (js/debug.js). Se abre desde la consola de la BIOS (debug), el "?" de "Modo DEBUG" o las anomalías (en la BIOS o en el portfolio) -->
+    <div class="boot-debug" lang="en" role="dialog" aria-modal="true" aria-label="Debug mode" hidden>
+        <div class="boot-debug__bar">
+            <p><span class="hl">DEBUG MODE</span> <span class="dim">· LauraBIOS v4.04</span></p>
+            <button class="boot-cmd" type="button" data-debug-exit>[ EXIT DEBUG MODE ]</button>
+        </div>
+        <p>TIME: <span class="ok" data-debug-time>15s</span></p>
+        <p aria-live="polite">BUGS FIXED: <span class="ok" data-debug-count>0</span> / 10</p>
+        <p class="boot-debug__msg" aria-live="polite"></p>
+        <div class="boot-debug__arena" aria-live="polite">
+            <div class="boot-debug__done" data-debug-ready hidden>
+                <p style="--d: 150" class="hl">ERROR: 10 BUGS DETECTED.</p>
+                <p style="--d: 450" class="boot-debug__badge">DEBUG MODE ACTIVATED</p>
+                <button style="--d: 800" class="boot-cmd" type="button" data-debug-start>[ START DEBUGGING ]</button>
             </div>
-            <p>TIME: <span class="ok" data-debug-time>15s</span></p>
-            <p aria-live="polite">BUGS FIXED: <span class="ok" data-debug-count>0</span> / 10</p>
-            <p class="boot-debug__msg" aria-live="polite"></p>
-            <div class="boot-debug__arena" aria-live="polite">
-                <button class="boot-debug__bug" type="button" aria-label="Bug">
-                    <svg viewBox="0 0 11 12" aria-hidden="true" focusable="false" shape-rendering="crispEdges"><path fill="currentColor" d="M1 0h1v1h-1zM9 0h1v1h-1zM2 1h1v1h-1zM8 1h1v1h-1zM3 2h5v1h-5zM3 3h1v1h-1zM5 3h1v1h-1zM7 3h1v1h-1zM0 4h1v1h-1zM3 4h5v1h-5zM10 4h1v1h-1zM1 5h4v1h-4zM6 5h4v1h-4zM2 6h3v1h-3zM6 6h3v1h-3zM0 7h5v1h-5zM6 7h5v1h-5zM2 8h3v1h-3zM6 8h3v1h-3zM1 9h4v1h-4zM6 9h4v1h-4zM0 10h1v1h-1zM3 10h5v1h-5zM10 10h1v1h-1zM4 11h3v1h-3z"/></svg>
-                </button>
-                <div class="boot-debug__done" data-debug-done hidden>
-                    <pre class="boot-debug__box">╔════════════════════════╗
+            <button class="boot-debug__bug" type="button" aria-label="Bug">
+                <svg viewBox="0 0 11 12" aria-hidden="true" focusable="false" shape-rendering="crispEdges"><path fill="currentColor" d="M1 0h1v1h-1zM9 0h1v1h-1zM2 1h1v1h-1zM8 1h1v1h-1zM3 2h5v1h-5zM3 3h1v1h-1zM5 3h1v1h-1zM7 3h1v1h-1zM0 4h1v1h-1zM3 4h5v1h-5zM10 4h1v1h-1zM1 5h4v1h-4zM6 5h4v1h-4zM2 6h3v1h-3zM6 6h3v1h-3zM0 7h5v1h-5zM6 7h5v1h-5zM2 8h3v1h-3zM6 8h3v1h-3zM1 9h4v1h-4zM6 9h4v1h-4zM0 10h1v1h-1zM3 10h5v1h-5zM10 10h1v1h-1zM4 11h3v1h-3z"/></svg>
+            </button>
+            <div class="boot-debug__done" data-debug-done hidden>
+                <pre class="boot-debug__box">╔════════════════════════╗
 ║     DEBUG COMPLETE     ║
 ╚════════════════════════╝</pre>
-                    <p style="--d: 400">10 / 10 BUGS FIXED</p>
-                    <p style="--d: 700">TIME: <span data-debug-used>0.0</span>s / 15s</p>
-                    <p style="--d: 1000" class="hl">ACHIEVEMENT UNLOCKED</p>
-                    <p style="--d: 1300" class="ok boot-debug__badge">JUNIOR DEBUGGER</p>
-                    <p style="--d: 2100">&gt; System cleaned successfully.</p>
-                    <p style="--d: 2900" class="dim">&gt; But something doesn't look right...</p>
-                    <p style="--d: 3700" class="dim">&gt;</p>
-                    <p style="--d: 3700" class="dim">&gt; Some systems require a different kind of input...<span class="boot-screen__cursor" aria-hidden="true"></span></p>
-                </div>
-                <div class="boot-debug__done" data-debug-failed hidden>
-                    <pre class="boot-debug__box boot-debug__box--fail">╔════════════════════════╗
+                <p style="--d: 400">10 / 10 BUGS FIXED</p>
+                <p style="--d: 700">TIME: <span data-debug-used>0.0</span>s / 15s</p>
+                <p style="--d: 1000" class="hl">ACHIEVEMENT UNLOCKED</p>
+                <p style="--d: 1300" class="ok boot-debug__badge">JUNIOR DEBUGGER</p>
+                <p style="--d: 2100">&gt; System cleaned successfully.</p>
+                <p style="--d: 2900" class="dim">&gt; But something doesn't look right...</p>
+                <p style="--d: 3700" class="dim">&gt;</p>
+                <p style="--d: 3700" class="dim">&gt; Some systems require a different kind of input...<span class="boot-screen__cursor" aria-hidden="true"></span></p>
+            </div>
+            <div class="boot-debug__done" data-debug-failed hidden>
+                <pre class="boot-debug__box boot-debug__box--fail">╔════════════════════════╗
 ║      DEBUG FAILED      ║
 ╚════════════════════════╝</pre>
-                    <p style="--d: 400">BUGS FIXED: <span data-debug-failed-count>0</span> / 10</p>
-                    <p style="--d: 800" class="hl boot-debug__badge">TIME LIMIT EXCEEDED</p>
-                    <button style="--d: 1400" class="boot-cmd" type="button" data-debug-retry>[ TRY AGAIN ]</button>
-                    <p style="--d: 2200" class="hl boot-debug__alert">&gt; CONTAINMENT FAILURE</p>
-                    <p style="--d: 2800" class="dim">&gt; Bugs escaping...</p>
-                </div>
+                <p style="--d: 400">BUGS FIXED: <span data-debug-failed-count>0</span> / 10</p>
+                <p style="--d: 800" class="hl boot-debug__badge">TIME LIMIT EXCEEDED</p>
+                <button style="--d: 1400" class="boot-cmd" type="button" data-debug-retry>[ TRY AGAIN ]</button>
+                <p style="--d: 2200" class="hl boot-debug__alert">&gt; CONTAINMENT FAILURE</p>
+                <p style="--d: 2800" class="dim">&gt; Bugs escaping...</p>
             </div>
         </div>
     </div>
@@ -746,6 +757,7 @@
     <script src="js/reveal.js" defer></script>
     <script src="js/animaciones.js" defer></script>
     <script src="js/inicio.js" defer></script>
+    <script src="js/debug.js" defer></script>
     <script src="js/secreto.js" defer></script>
     <script src="js/proyectos.js" defer></script>
     <script src="js/contacto.js" defer></script>

@@ -29,6 +29,17 @@ Al entrar en la web aparece una pantalla de arranque estilo BIOS que, al termina
 
 La línea `C:\>` del final es una pequeña consola: al pulsarla (o con Tab) se puede escribir `help`, `debug` o `clear` y ejecutar con INTRO; Escape vuelve al menú. Como pistas, la BIOS muestra la línea "Modo DEBUG ... ?", junto al cursor se ve `type 'help'` en gris (se quita al escribir y después de usar `help`) y un comando desconocido responde "Type 'help' for available commands.". Además, mientras nadie usa la consola, `help` se escribe solo en gris y se borra (como mucho 3 veces; deja de salir en cuanto se pulsa la consola). Por debajo hay un campo de texto invisible para que también funcione con el teclado del móvil. `debug` abre el **modo debug**, un minijuego en el que hay que pulsar 10 bugs que aparecen en sitios al azar en 15 segundos (el tiempo empieza al pulsar "START DEBUGGING"). Hay varios tipos: normal (quieto), móvil (anda despacio y rebota en los bordes), rápido (corre un momento y se para), pequeño (se ve más pequeño, pero se pulsa igual de bien) y crítico (rojo, más grande y algo más rápido; sale cuando se llevan 7 u 8). En 3 de cada 4 partidas aparece además un falso positivo (un bug verde) que no cuenta ni penaliza. Pulsar bugs nada más salir encadena un combo, que es solo visual. Si se consigue, muestra "DEBUG COMPLETE" con el tiempo empleado y el logro (solo visual, todavía no se guarda); si se acaba el tiempo, muestra "DEBUG FAILED" con los bugs arreglados y "TRY AGAIN" para volver a empezar. Además, los bugs se escapan: tras "CONTAINMENT FAILURE" y "Bugs escaping..." unos cuantos salen corriendo de la zona de juego, se sale del modo debug y se va a Proyectos (igual que con la tecla P). Allí, durante 60 segundos, pequeños bugs naranjas recorren el portfolio, cada vez más (y más cuantos menos se arreglaron, hasta 40 a la vez), sin bloquear nada porque no se pueden pulsar; si se toca uno, parpadea y desaparece. Al terminar se muestra "SYSTEM RESTORED" con los bugs contenidos y la página queda como estaba. "TRY AGAIN" antes de salir del modo debug cancela la fuga. Con movimiento reducido no hay carrera de salida, salen menos bugs y se quedan quietos. Se sale con "EXIT DEBUG MODE" o Escape, y la BIOS y la consola siguen como estaban.
 
+### Cómo se descubre el modo DEBUG
+
+El modo debug está en `js/debug.js` y se llega a él por tres caminos, que abren la misma pantalla previa ("ERROR: 10 BUGS DETECTED" y "START DEBUGGING"; el tiempo empieza al pulsar START):
+
+- **Consola de la BIOS:** `help` muestra `debug`, y `debug` lo abre.
+- **El "?" de "Modo DEBUG" en la BIOS:** parpadea sin parar mientras está la BIOS (con movimiento reducido se queda fijo, más claro y con halo); al pulsarlo aparece "DEBUG MODE DETECTED" con "INVESTIGATE".
+- **Anomalías en la BIOS:** a los ~5 segundos de verse el menú un pequeño bug cruza un hueco libre; 5–8 s después, uno o dos más y la misma ventana "WARNING: UNKNOWN PROCESS"; y 5–8 s después, un bug aparece en un hueco, se queda unos 8 s con aspecto de "activo" (esquinas de selección y brillo) y se puede pulsar o tocar ("UNKNOWN PROCESS FOUND" / "INVESTIGATE"). Solo pasan por zonas sin texto, botones ni la consola. Si se entra al portfolio antes de terminar, la secuencia sigue allí desde el mismo paso.
+- **Anomalías en el portfolio**, aunque se entre sin pasar por la BIOS: a los 8–12 segundos de ver el portfolio un pequeño bug cruza la pantalla; 8–12 s después, uno o dos más y "WARNING: UNKNOWN PROCESS"; y 8–12 s después, un bug se para unos 8 s y este sí se puede pulsar ("UNKNOWN PROCESS FOUND" / "INVESTIGATE"). Salen una sola vez por visita (sessionStorage `debug`, que también hace que al recargar se siga donde iba y no se repitan) y dejan de salir en cuanto se abre DEBUG por cualquier camino. Se pausan con la pestaña oculta o el menú móvil abierto, y no tapan nada: los que cruzan no se pueden pulsar y el que sí se para donde no hay enlaces ni botones. Con movimiento reducido aparecen quietos.
+
+Si se juega desde el portfolio y se pierde, la fuga baja igualmente a Proyectos y empieza la invasión.
+
 ## Secreto
 
 Si alguien teclea el código Konami (↑ ↑ ↓ ↓ ← → ← → B A), o toca 5 veces seguidas el icono `</>` del logo en móvil, aparece una caja de diálogo estilo RPG de 16 bits con un mensaje y un acceso al formulario de contacto. Se cierra con Escape o con el botón "Cerrar".
@@ -78,7 +89,8 @@ Portfolio/
 |-- js/
 |   |-- animaciones.js  # nombre que se decodifica, timeline y brillo en tarjetas
 |   |-- contacto.js     # envío del formulario con FormSubmit
-|   |-- inicio.js       # pantalla de inicio estilo BIOS, consola C:\> y modo debug
+|   |-- debug.js        # modo DEBUG (minijuego), fuga e invasión de bugs y anomalías
+|   |-- inicio.js       # pantalla de inicio estilo BIOS y consola C:\>
 |   |-- menuPort.js     # menú móvil, header al hacer scroll y enlace activo
 |   |-- particles.js    # fondo de partículas sutil
 |   |-- proyectos.js    # vídeos bajo demanda y botón de copiar correo
