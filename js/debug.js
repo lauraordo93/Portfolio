@@ -28,7 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // Cada bug es de un tipo (normal, móvil, rápido, pequeño, crítico) y a veces sale un
   // falso positivo que no cuenta; arreglar bugs seguidos y rápido hace combo (solo visual).
   const TOTAL = 10; // también escrito en el HTML del modo debug
-  const TIME_LIMIT = 15; // segundos; también escrito en el HTML del modo debug
+  // Controlador de tiempo juego
+  const TIME_LIMIT = 8; // segundos; también escrito en el HTML del modo debug
   const COMBO_WINDOW = 1500; // ms desde que sale un bug hasta pulsarlo para seguir el combo
   const FAKE_TIME = 1200; // ms que se queda el falso positivo si no se pulsa
   const KINDS = {
@@ -901,13 +902,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Zonas ocupadas de la BIOS: el texto (solo donde hay letras, no la línea entera), los
   // botones, las opciones, la consola y los paneles. skip: un elemento que no cuenta.
-  const biosObstacles = (skip) => {
+  // controlsOnly: solo lo que se puede pulsar o usar (el texto del arranque no cuenta).
+  const biosObstacles = (skip, controlsOnly = false) => {
     const bios = document.getElementById('boot-screen');
     const rects = [];
     const range = document.createRange();
     const counts = (el) => !skip || (el !== skip && !skip.contains(el));
     bios.querySelectorAll('pre, p, kbd').forEach((el) => {
-      if (!counts(el)) {
+      if (controlsOnly || !counts(el)) {
         return;
       }
       range.selectNodeContents(el);
@@ -950,25 +952,29 @@ document.addEventListener('DOMContentLoaded', () => {
     return null;
   };
 
-  // Hueco libre de w × h en la BIOS (dentro de lo que se ve y del ancho de su contenido).
-  // Con soft, el logo cuenta como hueco (solo si no hay nada mejor). skip: un elemento que no
-  // cuenta como ocupado (el propio panel, al colocarlo).
-  const biosSpot = (w, h, gap, soft = false, skip = null) => {
-    const inner = document.querySelector('.boot-screen__inner');
-    const box = inner.getBoundingClientRect();
-    let obstacles = biosObstacles(skip);
+  // Huecos libres de w × h en la BIOS (dentro de lo que se ve y del ancho de su contenido).
+  // Opciones: soft (el logo cuenta como hueco), skip (un elemento que no cuenta como ocupado,
+  // como el propio panel al colocarlo) y controlsOnly (solo estorban los controles).
+  const biosSpots = (w, h, gap, { soft = false, skip = null, controlsOnly = false } = {}) => {
+    const box = document.querySelector('.boot-screen__inner').getBoundingClientRect();
+    let obstacles = biosObstacles(skip, controlsOnly);
     if (soft) {
       const logo = document.querySelector('.boot-screen__logo')?.getBoundingClientRect();
       obstacles = obstacles.filter((r) => !logo || r.top < logo.top - 1 || r.bottom > logo.bottom + 1);
     }
     const spots = [];
-    for (let y = Math.max(8, box.top); y <= window.innerHeight - h - 8; y += 8) {
+    for (let y = 8; y <= window.innerHeight - h - 8; y += 8) {
       for (let x = box.left; x <= box.right - w; x += 8) {
         if (isFree(obstacles, x, y, w, h, gap)) {
           spots.push([x, y]);
         }
       }
     }
+    return spots;
+  };
+
+  const biosSpot = (w, h, gap, options) => {
+    const spots = biosSpots(w, h, gap, options);
     return spots.length ? pick(spots) : null;
   };
 
@@ -1046,10 +1052,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // Panel de sistema junto al bug: la única forma de entrar a DEBUG desde aquí.
-  const openPanel = (bugEl, byKeyboard) => {
-    if (anomaly.panel) {
-      return;
-    }
+  const buildPanel = () => {
     const panel = document.createElement('div');
     panel.className = 'anomaly-panel';
     panel.setAttribute('role', 'dialog');
@@ -1071,6 +1074,25 @@ document.addEventListener('DOMContentLoaded', () => {
       openDebugGame(anomaly?.bios ? document.querySelector('[data-boot-anomaly]') : null, event.detail === 0);
     });
     panel.append(investigate);
+    return panel;
+  };
+
+  // Tamaño del panel en la BIOS (se mide fuera de la vista y se quita).
+  const panelSize = (inner) => {
+    const probe = buildPanel();
+    probe.style.visibility = 'hidden';
+    inner.append(probe);
+    const size = [probe.offsetWidth, probe.offsetHeight];
+    probe.remove();
+    return size;
+  };
+
+  const openPanel = (bugEl, byKeyboard) => {
+    if (anomaly.panel) {
+      return;
+    }
+    const panel = buildPanel();
+    const investigate = panel.querySelector('button');
     anomaly.panel = panel;
 
     const r = bugEl.getBoundingClientRect();
@@ -1089,10 +1111,15 @@ document.addEventListener('DOMContentLoaded', () => {
         [r.right + 8, r.top + r.height / 2 - ph / 2],
         [r.left - pw - 8, r.top + r.height / 2 - ph / 2],
       ].map(([x, y]) => [clampX(x), clampY(y)]);
-      const obstacles = biosObstacles(panel);
-      // Si alrededor del bug no cabe, en cualquier otro hueco libre que se vea.
-      const [x, y] = options.find(([px, py]) => isFree(obstacles, px, py, pw, ph, 4))
-        || biosSpot(pw, ph, 4, false, panel) || options[0];
+      // Junto al bug sin tapar nada; si no cabe, junto al bug tapando solo texto del arranque
+      // (nunca INTRO/P/S/C, la consola ni el "?"); si tampoco, en otro hueco que se vea.
+      const all = biosObstacles(panel);
+      const controls = biosObstacles(panel, true);
+      const [x, y] = options.find(([px, py]) => isFree(all, px, py, pw, ph, 4))
+        || options.find(([px, py]) => isFree(controls, px, py, pw, ph, 4))
+        || biosSpot(pw, ph, 4, { skip: panel })
+        || biosSpot(pw, ph, 4, { skip: panel, controlsOnly: true })
+        || options[0];
       panel.style.left = `${x - inner.left}px`;
       panel.style.top = `${y - inner.top}px`;
     } else {
@@ -1131,13 +1158,23 @@ document.addEventListener('DOMContentLoaded', () => {
     let side = 0;
     if (anomaly.bios) {
       const inner = document.querySelector('.boot-screen__inner');
-      const found = biosSpot(size, size, 8) || biosSpot(size, size, 8, true);
+      // Mejor un hueco con sitio para el panel justo debajo o encima sin tapar controles.
+      const [pw, ph] = panelSize(inner);
+      const box = inner.getBoundingClientRect();
+      const controls = biosObstacles(null, true);
+      const roomFor = ([x, y]) => {
+        const px = Math.min(Math.max(box.left, x + size / 2 - pw / 2), box.right - pw);
+        return [y + size + 8, y - ph - 8].some((py) => py >= 8 && py + ph <= window.innerHeight - 8
+          && isFree(controls, px, py, pw, ph, 4));
+      };
+      const spots = biosSpots(size, size, 8);
+      const roomy = spots.filter(roomFor);
+      const found = (roomy.length && pick(roomy)) || (spots.length && pick(spots)) || biosSpot(size, size, 8, { soft: true });
       if (!found) {
         // Sin hueco (por ejemplo, en un móvil muy lleno): se intenta un poco después.
         anomalyLater(() => whenCalm(processBug), 2000);
         return;
       }
-      const box = inner.getBoundingClientRect();
       spot = [found[0] - box.left, found[1] - box.top];
       el.classList.add('is-bios');
       if (!reduceMotion) {
