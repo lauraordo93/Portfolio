@@ -42,7 +42,7 @@ Si se juega desde el portfolio y se pierde, la fuga baja igualmente a Proyectos 
 
 ## Secreto
 
-Si alguien teclea el código Konami (↑ ↑ ↓ ↓ ← → ← → B A), o toca 5 veces seguidas el icono `</>` del logo en móvil, aparece una caja de diálogo estilo RPG de 16 bits con un mensaje y un acceso al formulario de contacto. Se cierra con Escape o con el botón "Cerrar".
+Si alguien teclea el código Konami (↑ ↑ ↓ ↓ ← → ← → B A), o toca 5 veces seguidas el logo `</> Laura.dev` en móvil (solo el primer toque sube al inicio; con el modo DEBUG abierto no se abre), aparece una caja de diálogo estilo RPG de 16 bits (en el footer, bajo el copyright, están las teclas del código en gris: se encienden en naranja al acertarlas y en móvil se pueden tocar en orden) con un mensaje y un acceso al formulario de contacto. Se cierra con Escape o con el botón "Cerrar".
 
 ## Animaciones
 

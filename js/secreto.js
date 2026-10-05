@@ -1,6 +1,8 @@
 // Secreto del portfolio (easter egg):
 // el código Konami (↑ ↑ ↓ ↓ ← → ← → B A) en el teclado, o 5 toques seguidos en el
-// icono </> del logo en móvil, abren una caja de diálogo estilo RPG de 16 bits.
+// logo </> Laura.dev en móvil, abren una caja de diálogo estilo RPG de 16 bits.
+// Pista: en el footer están las teclas del código, que se encienden al acertarlas y que en
+// el móvil se pueden tocar en orden.
 document.addEventListener('DOMContentLoaded', () => {
   const root = document.documentElement;
   const dialog = document.getElementById('rpg');
@@ -17,8 +19,9 @@ document.addEventListener('DOMContentLoaded', () => {
   let lastFocus = null;
 
   const open = () => {
-    // No se abre mientras está la pantalla de inicio BIOS ni si ya está abierto.
-    if (!dialog.hidden || root.classList.contains('boot')) {
+    // No se abre mientras está la pantalla de inicio BIOS o el modo DEBUG (quedaría debajo,
+    // sin verse) ni si ya está abierto.
+    if (!dialog.hidden || root.classList.contains('boot') || root.classList.contains('debug-open')) {
       return;
     }
 
@@ -61,6 +64,30 @@ document.addEventListener('DOMContentLoaded', () => {
   const code = ['arrowup', 'arrowup', 'arrowdown', 'arrowdown', 'arrowleft', 'arrowright', 'arrowleft', 'arrowright', 'b', 'a'];
   let position = 0;
 
+  // Pista en el footer: las teclas del código se encienden según se aciertan y se apagan al
+  // fallar. Al completarlo se quedan todas encendidas un momento.
+  const hintKeys = [...document.querySelectorAll('[data-konami] [data-key]')];
+  let hintTimer = null;
+  const showProgress = () => hintKeys.forEach((el, i) => el.classList.toggle('is-lit', i < position));
+
+  // Cada tecla (del teclado o tocada en el footer) avanza el código o lo reinicia.
+  const feed = (key) => {
+    position = key === code[position] ? position + 1 : (key === code[0] ? 1 : 0);
+    window.clearTimeout(hintTimer);
+
+    if (position === code.length) {
+      position = 0;
+      hintKeys.forEach((el) => el.classList.add('is-lit'));
+      hintTimer = window.setTimeout(showProgress, 1200);
+      open();
+      return;
+    }
+    showProgress();
+  };
+
+  // En móvil (o con el ratón), tocar las teclas del footer en orden también vale.
+  hintKeys.forEach((el) => el.addEventListener('click', () => feed(el.dataset.key)));
+
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && !dialog.hidden) {
       close();
@@ -73,26 +100,21 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    const key = event.key.toLowerCase();
-    position = key === code[position] ? position + 1 : (key === code[0] ? 1 : 0);
-
-    if (position === code.length) {
-      position = 0;
-      open();
-    }
+    feed(event.key.toLowerCase());
   });
 
-  // En móvil: 5 toques seguidos (en menos de 2,5 s) en el icono </> del logo del menú.
+  // En móvil: 5 toques seguidos (en menos de 2,5 s) en el logo del menú (el icono </> o el
+  // nombre). El primer toque sube al inicio, como siempre; los siguientes de la serie ya no,
+  // para que la página no salte con cada toque.
   const brand = document.querySelector('.nav-header .nav-brand');
   let taps = 0;
   let tapTimer = null;
 
   brand?.addEventListener('click', (event) => {
-    if (!event.target.closest('i')) {
-      return;
-    }
-
     taps += 1;
+    if (taps > 1) {
+      event.preventDefault();
+    }
     window.clearTimeout(tapTimer);
     tapTimer = window.setTimeout(() => { taps = 0; }, 2500);
 

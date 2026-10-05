@@ -1211,7 +1211,8 @@ html:not([data-theme="light"]) .theme-toggle__icon--moon {
     border-bottom: 1px solid var(--border);
 }
 
-.exp-card__summary h4 {
+.exp-card__summary h4,
+.exp-card__challenges h4 {
     font-size: 1.125rem;
     font-weight: 600;
     line-height: 1.4;
@@ -1225,6 +1226,21 @@ html:not([data-theme="light"]) .theme-toggle__icon--moon {
 
 .check-list--2col {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+/* Retos técnicos de una experiencia: separado de la lista como el resumen, y el código en la
+   fuente mono del portfolio */
+.exp-card__challenges {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-top: 22px;
+    border-top: 1px solid var(--border);
+}
+
+.exp-card__challenges code {
+    font-family: var(--font-mono);
+    font-size: 0.875em;
 }
 
 .edu-card {
@@ -2045,6 +2061,42 @@ html:not([data-theme="light"]) .theme-toggle__icon--moon {
 .footer__copy {
     font-size: 0.875rem;
     color: var(--text-subtle);
+}
+
+.footer__meta {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+/* Pista del código Konami: las teclas en mono, tenues, sin aspecto de botón. Cada tecla
+   acertada se enciende en naranja (también al tocarlas en orden en el móvil) */
+.konami {
+    display: flex;
+    margin-left: -6px;
+}
+
+.konami__key {
+    display: inline-grid;
+    place-items: center;
+    min-width: 24px;
+    min-height: 30px;
+    padding: 0;
+    border: 0;
+    background: none;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--text-subtle);
+    opacity: 0.6;
+    cursor: default;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    transition: color 0.15s ease, opacity 0.15s ease;
+}
+
+.konami__key.is-lit {
+    color: var(--orange);
+    opacity: 1;
 }
 
 .footer__top {

@@ -128,7 +128,7 @@
 ╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝╚═════╝ ╚══════╝  ╚═══╝</pre>
             <h2 class="visually-hidden" id="boot-title">Laura.dev · Portfolio de Laura Ordóñez de Arce</h2>
             <div class="boot-screen__log">
-                <p aria-hidden="true" style="--d: 150"><span class="hl">LauraBIOS</span> v4.04 <span class="dim">(C) 2026 Laura.dev · Desarrollo web a medida</span></p>
+                <p aria-hidden="true" style="--d: 150"><span class="hl">LauraBIOS</span> v4.04 <span class="dim">(C) <span data-anio>2026</span> Laura.dev · Desarrollo web a medida</span></p>
                 <p aria-hidden="true" style="--d: 330">CPU: Desarrolladora Full Stack @ PHP / JavaScript / MySQL</p>
                 <p aria-hidden="true" style="--d: 520">Comprobando memoria ............ <span class="ok">640K OK</span></p>
                 <p aria-hidden="true" style="--d: 720">Cargando café ................... <span class="ok">OK</span></p>
@@ -397,27 +397,35 @@
                         </header>
 
                         <div class="exp-card__summary">
-                            <h4><span class="mono-accent">ReservatorStore</span> · Plataforma web multirestaurante con arquitectura MVC</h4>
-                            <p>Desarrollo y mantenimiento de una plataforma web para la gestión de tiendas online independientes dentro de un entorno multirestaurante: backend, integración con frontend, base de datos, validaciones de negocio y flujos críticos como carrito, checkout, delivery y sesiones.</p>
+                            <h4><span class="mono-accent">ReservatorStore</span> · Plataforma e-commerce multirestaurante</h4>
+                            <p>Desarrollo desde cero de ReservatorStore, una plataforma e-commerce multirestaurante en la que cada restaurante tiene su propia tienda online. Está construida sobre ReservatorMVC, el framework MVC de la empresa, con PHP, JavaScript y MySQL/MariaDB.</p>
                         </div>
 
                         <ul class="check-list check-list--2col">
-                            <li>Desarrollo de funcionalidades backend en PHP.</li>
-                            <li>Implementación y mantenimiento de arquitectura MVC.</li>
-                            <li>Desarrollo de flujos de checkout, carrito y delivery.</li>
-                            <li>Gestión de sesiones, autenticación y validaciones.</li>
-                            <li>Funcionalidades multi-restaurante con separación de datos.</li>
-                            <li>Integración de JavaScript con AJAX y Fetch API.</li>
-                            <li>Consultas SQL y gestión de datos en MySQL/MariaDB.</li>
-                            <li>Optimización, pruebas manuales y resolución de incidencias.</li>
+                            <li>Carrito, checkout y creación de pedidos, con sus validaciones.</li>
+                            <li>Delivery y recogida, con entregas inmediatas o programadas y cálculo del precio de envío.</li>
+                            <li>Separación de datos y de sesiones por restaurante.</li>
+                            <li>Registro, inicio de sesión y verificación por SMS.</li>
+                            <li>Pagos con Redsys e integración con Stripe a través de ReservatorPay.</li>
+                            <li>Frontend en JavaScript con Fetch API y consultas SQL en MySQL/MariaDB.</li>
+                            <li>Pruebas manuales y de concurrencia, debugging y resolución de incidencias.</li>
                         </ul>
+
+                        <div class="exp-card__challenges">
+                            <h4>Retos técnicos</h4>
+                            <ul class="check-list">
+                                <li><strong>Sesiones:</strong> aislé el contexto de cada restaurante para evitar que la sesión se mezclara entre tiendas o pestañas.</li>
+                                <li><strong>Concurrencia:</strong> analicé locks y esperas en operaciones críticas del carrito y la creación de pedidos.</li>
+                                <li><strong>Reservas de productos:</strong> probé consultas con <code>FOR UPDATE</code> e índices; un índice sobre <code>oc_order_product(product_id)</code> provocaba deadlocks reales y fue descartado tras las pruebas.</li>
+                                <li><strong>Transacciones:</strong> la creación de pedidos se realiza dentro de una transacción, con <code>rollback</code> si falla algún paso.</li>
+                            </ul>
+                        </div>
 
                         <ul class="chips" aria-label="Tecnologías utilizadas">
                             <li class="chip chip--cyan chip--sm">PHP</li>
                             <li class="chip chip--cyan chip--sm">JavaScript</li>
                             <li class="chip chip--cyan chip--sm">MySQL / MariaDB</li>
                             <li class="chip chip--cyan chip--sm">MVC</li>
-                            <li class="chip chip--cyan chip--sm">AJAX</li>
                             <li class="chip chip--cyan chip--sm">Fetch API</li>
                             <li class="chip chip--cyan chip--sm">HTML5</li>
                             <li class="chip chip--cyan chip--sm">CSS3</li>
@@ -722,7 +730,11 @@
                     <i class="fas fa-code" aria-hidden="true"></i>
                     <span>Laura<span class="nav-brand__dot">.dev</span></span>
                 </a>
-                <p class="footer__copy">&copy; 2026 Laura.dev · Todos los derechos reservados</p>
+                <div class="footer__meta">
+                    <p class="footer__copy">&copy; <span data-anio>2026</span> Laura.dev · Todos los derechos reservados</p>
+                    <!-- Pista del secreto (js/secreto.js): las teclas del código Konami se encienden al acertarlas; en móvil se tocan en orden -->
+                    <p class="konami" data-konami aria-hidden="true"><button class="konami__key" type="button" tabindex="-1" data-key="arrowup">↑</button><button class="konami__key" type="button" tabindex="-1" data-key="arrowup">↑</button><button class="konami__key" type="button" tabindex="-1" data-key="arrowdown">↓</button><button class="konami__key" type="button" tabindex="-1" data-key="arrowdown">↓</button><button class="konami__key" type="button" tabindex="-1" data-key="arrowleft">←</button><button class="konami__key" type="button" tabindex="-1" data-key="arrowright">→</button><button class="konami__key" type="button" tabindex="-1" data-key="arrowleft">←</button><button class="konami__key" type="button" tabindex="-1" data-key="arrowright">→</button><button class="konami__key" type="button" tabindex="-1" data-key="b">B</button><button class="konami__key" type="button" tabindex="-1" data-key="a">A</button></p>
+                </div>
             </div>
             <div class="footer__right">
                 <div class="social-row">
@@ -753,6 +765,7 @@
 
     <script src="js/particles.js" defer></script>
     <script src="js/tema.js" defer></script>
+    <script src="js/anio.js" defer></script>
     <script src="js/menuPort.js" defer></script>
     <script src="js/reveal.js" defer></script>
     <script src="js/animaciones.js" defer></script>
