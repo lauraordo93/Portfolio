@@ -3641,6 +3641,22 @@ html:not([data-theme="light"]) .theme-toggle__icon--moon {
     display: none;
 }
 
+/* Pista: "help" escrito solo, en gris, mientras nadie usa la consola */
+.boot-screen__prompt.is-hint .boot-screen__typed {
+    color: #6F7D84;
+}
+
+/* Pista fija "type 'help'" junto al cursor: se quita al escribir y después de usar help */
+.boot-screen__tip {
+    margin-left: 3ch;
+    color: #535F66;
+}
+
+.boot-screen__typed:not(:empty) ~ .boot-screen__tip,
+.boot-screen__prompt.is-known .boot-screen__tip {
+    display: none;
+}
+
 .boot-screen__typed:not(:empty) + .boot-screen__cursor {
     margin-left: 0;
 }

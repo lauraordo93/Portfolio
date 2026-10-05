@@ -6,6 +6,8 @@
 // - Al elegir, se "apaga" como un monitor CRT y lanza el evento "inicio:fin"
 //   para que empiecen las animaciones del hero.
 // - La línea C:\> es una pequeña consola: al pulsarla se puede escribir help, debug o clear.
+//   Junto al cursor se ve "type 'help'" en gris hasta que se usa help, y mientras nadie
+//   usa la consola, de vez en cuando se escribe sola "help" como refuerzo.
 // - "debug" abre el modo debug: un minijuego en el que hay que pulsar 10 bugs.
 document.addEventListener('DOMContentLoaded', () => {
   const root = document.documentElement;
@@ -94,7 +96,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // Cada orden devuelve las líneas que imprime (texto o elementos), el retraso entre
   // ellas (ms) y, si quiere, qué hacer cuando termina de escribirlas.
   const commands = {
-    help: () => ({ lines: ['Available commands:', '', 'help', 'debug', 'clear'] }),
+    help: () => {
+      // Ya se sabe qué escribir: la pista fija de la línea C:\> deja de hacer falta.
+      promptLine.classList.add('is-known');
+      return { lines: ['Available commands:', '', 'help', 'debug', 'clear'] };
+    },
     debug: () => {
       const start = document.createElement('button');
       start.type = 'button';
@@ -139,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // INTRO sin nada escrito solo deja otra línea C:\>, como en un terminal.
     const result = Object.hasOwn(commands, name)
       ? commands[name]()
-      : { lines: text ? ['Unknown command.'] : [] };
+      : { lines: text ? ['Unknown command.', "Type 'help' for available commands."] : [] };
 
     if (result?.lines.length) {
       const step = reduceMotion ? 0 : result.step || 0;
@@ -162,6 +168,54 @@ document.addEventListener('DOMContentLoaded', () => {
   input?.addEventListener('input', () => {
     typed.textContent = input.value;
   });
+
+  // Refuerzo de la pista: mientras nadie use la consola, "help" se escribe solo en gris en
+  // la línea C:\> (en lugar de "type 'help'") y se borra, para que se note que se puede
+  // escribir. Sale 3 veces como mucho y deja de salir en cuanto se pulsa la consola.
+  const HINT = 'help';
+  const hintFrames = reduceMotion
+    ? [[HINT, 2500], ['', 0]]
+    : [
+      ...[...HINT].map((_, i) => [HINT.slice(0, i + 1), i < HINT.length - 1 ? 130 : 1600]),
+      ...[...HINT].map((_, i) => [HINT.slice(0, HINT.length - 1 - i), 70]),
+    ];
+  let hintsLeft = 3;
+  let hintTimer = null;
+
+  const playHint = (frame = 0) => {
+    if (!hintsLeft || closing) {
+      return;
+    }
+    // Con la pestaña en segundo plano no se gasta una pista: se vuelve a intentar luego.
+    if (frame === 0 && document.hidden) {
+      hintTimer = window.setTimeout(() => playHint(), 5000);
+      return;
+    }
+
+    const [text, wait] = hintFrames[frame];
+    promptLine.classList.add('is-hint');
+    typed.textContent = text;
+
+    if (frame < hintFrames.length - 1) {
+      hintTimer = window.setTimeout(() => playHint(frame + 1), wait);
+    } else {
+      promptLine.classList.remove('is-hint');
+      hintsLeft -= 1;
+      if (hintsLeft) {
+        hintTimer = window.setTimeout(() => playHint(), 20000);
+      }
+    }
+  };
+
+  if (input) {
+    hintTimer = window.setTimeout(() => playHint(), 6000);
+    input.addEventListener('focus', () => {
+      hintsLeft = 0;
+      window.clearTimeout(hintTimer);
+      promptLine.classList.remove('is-hint');
+      typed.textContent = input.value;
+    }, { once: true });
+  }
 
   // Modo debug: tapa la BIOS con una zona en la que aparece un bug en un sitio al azar.
   // Cada bug pulsado suma uno y el siguiente sale en otro sitio; al llegar a 10 se
