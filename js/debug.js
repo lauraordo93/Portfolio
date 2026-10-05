@@ -22,8 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Modo debug: tapa la BIOS o el portfolio con una zona en la que aparece un bug en un
   // sitio al azar.
-  // Cada bug pulsado suma uno y el siguiente sale en otro sitio. Hay 15 s desde que se
-  // pulsa START DEBUGGING: con 10 a tiempo se muestra DEBUG COMPLETE y, si se acaba el
+  // Cada bug pulsado suma uno y el siguiente sale en otro sitio. Hay TIME_LIMIT segundos desde
+  // que se pulsa START DEBUGGING: con 10 a tiempo se muestra DEBUG COMPLETE y, si se acaba el
   // tiempo, DEBUG FAILED con TRY AGAIN. Al salir, la BIOS y la consola siguen como estaban.
   // Cada bug es de un tipo (normal, móvil, rápido, pequeño, crítico) y a veces sale un
   // falso positivo que no cuenta; arreglar bugs seguidos y rápido hace combo (solo visual).
@@ -267,7 +267,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  // Empieza (o vuelve a empezar) una partida: 0 / 10, 15 s, orden de bugs nuevo y el
+  // Empieza (o vuelve a empezar) una partida: 0 / 10, el tiempo entero, orden de bugs nuevo y el
   // primero en un sitio al azar.
   // byKeyboard: si se ha pulsado con el teclado, el foco va al bug para seguir jugando con INTRO.
   const startRound = (byKeyboard) => {
@@ -315,7 +315,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('boot-screen')?.classList.toggle('is-debug', on);
   };
 
-  // Pantalla previa: 0 / 10 y 15 s parados hasta pulsar START DEBUGGING.
+  // Pantalla previa: 0 / 10 y el tiempo entero, parado hasta pulsar START DEBUGGING.
   const showReady = () => {
     stopTimer();
     stopMotion();
