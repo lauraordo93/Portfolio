@@ -4395,11 +4395,10 @@ html:not([data-theme="light"]) .theme-toggle__icon--moon {
         transition: none;
     }
 
-    /* Sin parpadeo, el "?" sigue destacando: más claro, en negrita y con halo */
+    /* El "?" parpadea igual aunque se pida reducir movimiento (es la pista para descubrir
+       DEBUG); !important para ganar a la regla global que quita todas las animaciones */
     .boot-anomaly {
-        color: #FFB04D;
-        font-weight: 700;
-        text-shadow: 0 0 8px rgba(255, 148, 18, 0.85);
+        animation: anomalyBlink 2.4s steps(1) 1s infinite !important;
     }
 
     .boot-screen__bar span {
