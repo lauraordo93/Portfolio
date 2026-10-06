@@ -23,8 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // Modo debug: tapa la BIOS o el portfolio con una zona en la que aparece un bug en un
   // sitio al azar.
   // Cada bug pulsado suma uno y el siguiente sale en otro sitio. Hay TIME_LIMIT segundos desde
-  // que se pulsa START DEBUGGING: con 10 a tiempo se muestra DEBUG COMPLETE y, si se acaba el
-  // tiempo, DEBUG FAILED con TRY AGAIN. Al salir, la BIOS y la consola siguen como estaban.
+  // que se pulsa START DEBUGGING: con 10 a tiempo se muestra DEBUG COMPLETE y, al rato, se vuelve
+  // al portfolio principal (como INTRO en la BIOS); si se acaba el tiempo, DEBUG FAILED con
+  // TRY AGAIN. Al salir con EXIT, la BIOS y la consola siguen como estaban.
   // Cada bug es de un tipo (normal, móvil, rápido, pequeño, crítico) y a veces sale un
   // falso positivo que no cuenta; arreglar bugs seguidos y rápido hace combo (solo visual).
   const TOTAL = 10; // también escrito en el HTML del modo debug
@@ -32,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const TIME_LIMIT = 8; // segundos; también escrito en el HTML del modo debug
   const COMBO_WINDOW = 1500; // ms desde que sale un bug hasta pulsarlo para seguir el combo
   const FAKE_TIME = 1200; // ms que se queda el falso positivo si no se pulsa
+  const WIN_LEAVE_AT = 5500; // ms desde DEBUG COMPLETE: se vuelve al portfolio (su última línea sale a los 3,7 s)
   const KINDS = {
     normal: { label: 'BUG', name: 'Bug' },
     moving: { label: 'MOVING BUG', name: 'Moving bug', speed: 75 },
@@ -71,6 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let bestCombo = 0;
   let motion = 0; // requestAnimationFrame del bug que se mueve
   let fakeTimer = null;
+  let winTimer = null; // vuelta al portfolio tras ganar (se cancela al cerrar el modo debug)
 
   const say = (...parts) => {
     const span = document.createElement('span');
@@ -362,6 +365,7 @@ document.addEventListener('DOMContentLoaded', () => {
     stopTimer();
     stopMotion();
     window.clearTimeout(fakeTimer);
+    window.clearTimeout(winTimer);
     debugLayer.hidden = true;
     debugLayer.classList.remove('is-off');
     lockPage(false);
@@ -374,6 +378,43 @@ document.addEventListener('DOMContentLoaded', () => {
     closeDebug();
     if (returnFocus?.isConnected) {
       returnFocus.focus({ preventScroll: true });
+    }
+  };
+
+  // Sale del modo debug a una sección del portfolio (al perder, Proyectos; al ganar, el inicio).
+  // Se "apaga" como un monitor CRT y, con la BIOS delante, se va con su navegación (como las
+  // teclas INTRO/P/S/C) y se espera a que acabe (inicio:fin); desde el portfolio, se baja a la
+  // sección cuando se ha apagado. later: temporizador para esperar (así se puede cancelar);
+  // onArrive: al llegar (cierra el modo debug y quita su escucha de inicio:fin).
+  const leaveDebug = (target, later, onArrive) => {
+    if (debugging && !reduceMotion) {
+      debugLayer.classList.add('is-off');
+    }
+    if (root.classList.contains('boot')) {
+      document.addEventListener('inicio:fin', onArrive);
+      document.dispatchEvent(new CustomEvent('inicio:ir', { detail: { target } }));
+      return;
+    }
+    later(() => {
+      const section = document.querySelector(target);
+      if (section) {
+        section.scrollIntoView({ behavior: 'instant' });
+        history.replaceState(null, '', target);
+      }
+      onArrive();
+    }, debugging && !reduceMotion ? 480 : 0);
+  };
+
+  // Tras ganar: vuelta al portfolio principal. Si se sale antes (EXIT o Escape), closeDebug la
+  // cancela y no pasa nada.
+  const winLater = (fn, ms) => {
+    winTimer = window.setTimeout(fn, ms);
+  };
+
+  const arriveHome = () => {
+    document.removeEventListener('inicio:fin', arriveHome);
+    if (debugging) {
+      closeDebug();
     }
   };
 
@@ -427,7 +468,8 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      // 10 de 10: de momento el logro solo se muestra; se avisa por si otra parte lo quiere guardar.
+      // 10 de 10: se muestra el logro (y se avisa por si otra parte lo quiere guardar) y, tras
+      // un momento, se vuelve al portfolio principal.
       bug.hidden = true;
       usedTime.textContent = seconds.toFixed(1);
       complete.hidden = false;
@@ -435,6 +477,7 @@ document.addEventListener('DOMContentLoaded', () => {
         exitButton.focus({ preventScroll: true });
       }
       document.dispatchEvent(new CustomEvent('debug:completo', { detail: { seconds, combo: bestCombo } }));
+      winLater(() => leaveDebug('#inicio', winLater, arriveHome), reduceMotion ? 3000 : WIN_LEAVE_AT);
     }, reduceMotion ? 0 : 200);
   });
 
@@ -771,26 +814,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Fuera del modo debug (se "apaga" como un monitor CRT) y a Proyectos; la invasión
     // empieza al llegar.
-    invasionLater(() => {
-      if (debugging && !reduceMotion) {
-        debugLayer.classList.add('is-off');
-      }
-      // Con la BIOS delante, se va con su navegación (como la tecla P) y se espera a que acabe.
-      if (root.classList.contains('boot')) {
-        document.addEventListener('inicio:fin', arrive);
-        document.dispatchEvent(new CustomEvent('inicio:ir', { detail: { target: '#proyectos' } }));
-        return;
-      }
-      // Desde el portfolio: se cierra el modo debug y se baja a Proyectos.
-      invasionLater(() => {
-        const section = document.getElementById('proyectos');
-        if (section) {
-          section.scrollIntoView({ behavior: 'instant' });
-          history.replaceState(null, '', '#proyectos');
-        }
-        arrive();
-      }, debugging && !reduceMotion ? 480 : 0);
-    }, reduceMotion ? 3000 : LEAVE_AT);
+    invasionLater(() => leaveDebug('#proyectos', invasionLater, arrive), reduceMotion ? 3000 : LEAVE_AT);
   });
 
   // Teclado dentro del modo debug: Escape sale y Tab da la vuelta entre sus botones visibles

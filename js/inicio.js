@@ -11,7 +11,8 @@
 // - El modo DEBUG (minijuego) está en debug.js. Desde aquí se abre de dos formas, con el
 //   evento "debug:abrir": la orden "debug" de la consola y el "?" de "Modo DEBUG", que
 //   muestra DEBUG MODE DETECTED / [ INVESTIGATE ]. Mientras está abierto, la BIOS no
-//   responde al teclado; si al perder hay que ir a Proyectos, lo pide con "inicio:ir".
+//   responde al teclado; para salir de la BIOS al acabar la partida (al ganar, al portfolio;
+//   al perder, a Proyectos), lo pide con "inicio:ir".
 document.addEventListener('DOMContentLoaded', () => {
   const root = document.documentElement;
   const screen = document.getElementById('boot-screen');
@@ -81,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // El modo debug pide salir de la BIOS a una sección (al perder, a Proyectos).
+  // El modo debug pide salir de la BIOS a una sección (al ganar, al portfolio; al perder, a Proyectos).
   document.addEventListener('inicio:ir', (event) => go(event.detail.target));
 
   const openDebug = (trigger, byKeyboard) => {
