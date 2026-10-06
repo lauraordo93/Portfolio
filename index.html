@@ -391,20 +391,20 @@
                     <article class="card exp-card">
                         <header class="exp-card__head">
                             <div>
-                                <h3 class="exp-card__company"><a href="https://reservator.es" target="_blank" rel="noopener noreferrer">Reservator S.L.<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"></path></svg><span class="visually-hidden"> (se abre en una pestaña nueva)</span></a></h3>
-                                <p class="exp-card__tagline">Plataforma de gestión para bares y restaurantes</p>
+                                <h3 class="exp-card__company"><a href="https://reservator.es" target="_blank" rel="noopener noreferrer"><img class="exp-card__logo" src="img/logo-reservator.webp" alt="" width="128" height="128" loading="lazy" decoding="async">Reservator S.L.<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"></path></svg><span class="visually-hidden"> (se abre en una pestaña nueva)</span></a></h3>
+                                <p class="exp-card__tagline">Plataforma de gestión para Restaurantes</p>
                                 <p class="exp-card__role">Desarrolladora Full Stack</p>
                             </div>
                         </header>
 
                         <div class="exp-card__summary">
-                            <p>Desarrollé desde cero <span class="mono-accent">ReservatorStore</span>, la plataforma e-commerce con la que cada restaurante tiene su propia tienda online. Está construida sobre ReservatorMVC, el framework MVC de la empresa. Sustituye a OpenCart, una solución genérica cargada de módulos que no se usaban, por una plataforma propia más ligera y centrada en lo que necesitan los restaurantes. Además, mantengo y amplío el libro de reservas de la empresa.</p>
+                            <p>Desarrollé desde cero <span class="mono-accent">ReservatorStore</span>, la plataforma e-commerce con la que cada restaurante tiene su propia tienda online. Está construida sobre <span class="mono-accent">ReservatorMVC</span>, el framework MVC de la empresa. Sustituye a OpenCart, una solución genérica cargada de módulos que no se utilizaban, por una plataforma propia más ligera y adaptada a las necesidades de los restaurantes. Además, mantengo y amplío el libro de reservas de la empresa.</p>
                         </div>
 
                         <ul class="check-list">
                             <li>Flujo completo de compra: carrito, checkout y entregas a domicilio o recogida, inmediatas o programadas.</li>
-                            <li>Integración de pasarelas de pago con Redsys y Stripe.</li>
-                            <li>Sesiones y datos aislados por restaurante, y pedidos protegidos con transacciones y control de concurrencia.</li>
+                            <li>Integración de pasarelas de pago con <strong>Redsys y Stripe</strong>.</li>
+                            <li>Separación de sesiones y datos por restaurante, con protección de pedidos mediante transacciones y control de concurrencia.</li>
                             <li>Nuevas funcionalidades y corrección de incidencias en el libro de reservas.</li>
                         </ul>
 
@@ -421,9 +421,9 @@
                         <details class="exp-card__challenges">
                             <summary>Ver retos técnicos<i class="fas fa-chevron-down" aria-hidden="true"></i></summary>
                             <ul class="check-list">
-                                <li>Aislé la sesión de cada restaurante para que no se mezclara entre tiendas ni pestañas.</li>
-                                <li>Probé reservas de productos con <code>FOR UPDATE</code> e índices, y descarté uno al detectar que provocaba deadlocks.</li>
-                                <li>La creación de pedidos va dentro de una transacción, con <code>rollback</code> si falla algún paso.</li>
+                                <li>Aislé las sesiones por restaurante para evitar contaminación de datos entre tiendas y pestañas.</li>
+                                <li>Analicé la concurrencia en la reserva de productos mediante <code>FOR UPDATE</code> e índices y descarté un índice tras detectar que provocaba deadlocks.</li>
+                                <li>Implementé la creación de pedidos dentro de transacciones, utilizando <code>rollback</code> ante errores para evitar estados inconsistentes.</li>
                             </ul>
                         </details>
                     </article>

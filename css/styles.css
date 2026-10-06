@@ -1193,6 +1193,21 @@ html:not([data-theme="light"]) .theme-toggle__icon--moon {
     color: var(--cyan);
 }
 
+/* Logo de la empresa delante del nombre: centrado con las mayúsculas y con un pequeño giro al
+   pasar por encima del enlace */
+.exp-card__logo {
+    display: inline-block;
+    width: 1.45em;
+    height: 1.45em;
+    margin-right: 12px;
+    vertical-align: -0.38em;
+    transition: transform 0.3s var(--ease);
+}
+
+.exp-card__company a:hover .exp-card__logo {
+    transform: rotate(-8deg) scale(1.08);
+}
+
 .exp-card__company svg {
     width: 0.6em;
     height: 0.6em;
@@ -2857,6 +2872,20 @@ html:not([data-theme="light"]) .theme-toggle__icon--moon {
 
     .email-box {
         padding: 12px 14px;
+    }
+}
+
+/* Móvil pequeño: logo, nombre de la empresa y flecha en una sola línea */
+@media (max-width: 420px) {
+    .exp-card__company {
+        font-size: 1.375rem;
+    }
+
+    .exp-card__logo {
+        width: 1.2em;
+        height: 1.2em;
+        margin-right: 8px;
+        vertical-align: -0.25em;
     }
 }
 
