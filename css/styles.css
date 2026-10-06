@@ -1183,6 +1183,35 @@ html:not([data-theme="light"]) .theme-toggle__icon--moon {
     line-height: 1.2;
 }
 
+/* Nombre de la empresa enlazado: mantiene el color del título y el icono indica que es un enlace
+   externo (también en táctil, donde no hay hover) */
+.exp-card__company a {
+    color: inherit;
+}
+
+.exp-card__company a:hover {
+    color: var(--cyan);
+}
+
+.exp-card__company svg {
+    width: 0.6em;
+    height: 0.6em;
+    margin-left: 6px;
+    color: var(--cyan);
+    vertical-align: 0.05em;
+    transition: transform 0.25s var(--ease);
+}
+
+.exp-card__company a:hover svg {
+    transform: translate(2px, -2px);
+}
+
+.exp-card__tagline {
+    margin-top: -4px;
+    font-size: 0.9375rem;
+    color: var(--text-muted);
+}
+
 .exp-card__role {
     font-size: 1.0625rem;
     font-weight: 600;
@@ -1228,14 +1257,46 @@ html:not([data-theme="light"]) .theme-toggle__icon--moon {
     grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-/* Retos técnicos de una experiencia: separado de la lista como el resumen, y el código en la
-   fuente mono del portfolio */
+/* Retos técnicos de una experiencia: desplegable (<details>) cerrado por defecto, separado del
+   resto de la tarjeta como el resumen, y el código en la fuente mono del portfolio */
 .exp-card__challenges {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    padding-top: 22px;
+    padding-top: 10px;
     border-top: 1px solid var(--border);
+}
+
+.exp-card__challenges summary {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 44px;
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--cyan);
+    list-style: none;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.exp-card__challenges summary::-webkit-details-marker {
+    display: none;
+}
+
+.exp-card__challenges summary:hover {
+    color: var(--cyan-hi);
+}
+
+.exp-card__challenges summary i {
+    font-size: 0.75rem;
+    transition: transform 0.25s var(--ease);
+}
+
+.exp-card__challenges[open] summary i {
+    transform: rotate(180deg);
+}
+
+.exp-card__challenges .check-list {
+    padding: 8px 0 4px;
 }
 
 .exp-card__challenges code {
@@ -3429,6 +3490,14 @@ html:not([data-theme="light"]) .theme-toggle__icon--moon {
 
 .code-item:hover .code-logo {
     transform: scale(1.2);
+}
+
+/* Tecnologías sin logo en devicon (AJAX): icono de Font Awesome del mismo tamaño que los logos */
+i.code-logo {
+    font-size: 0.875rem;
+    line-height: 18px;
+    text-align: center;
+    color: var(--cyan);
 }
 
 .syn-c { color: var(--syn-comment); font-style: italic; }
