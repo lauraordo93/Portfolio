@@ -416,7 +416,7 @@
                             <ul class="check-list">
                                 <li><strong>Sesiones:</strong> aislé el contexto de cada restaurante para evitar que la sesión se mezclara entre tiendas o pestañas.</li>
                                 <li><strong>Concurrencia:</strong> analicé locks y esperas en operaciones críticas del carrito y la creación de pedidos.</li>
-                                <li><strong>Reservas de productos:</strong> probé consultas con <code>FOR UPDATE</code> e índices; un índice sobre <code>oc_order_product(product_id)</code> provocaba deadlocks reales y fue descartado tras las pruebas.</li>
+                                <li><strong>Reservas de productos:</strong> probé consultas con <code>FOR UPDATE</code> e índices; uno de los índices provocaba deadlocks reales y fue descartado tras las pruebas.</li>
                                 <li><strong>Transacciones:</strong> la creación de pedidos se realiza dentro de una transacción, con <code>rollback</code> si falla algún paso.</li>
                             </ul>
                         </div>
