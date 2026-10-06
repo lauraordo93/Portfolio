@@ -60,6 +60,7 @@
     --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
+
 /* ---------- 1b. Tema claro ----------
    Se activa con data-theme="light" en <html> (lo gestiona js/tema.js).
    El hero mantiene siempre la paleta oscura para que la foto y el texto se lean bien. */
@@ -126,7 +127,7 @@
     color: var(--text);
 }
 
-/* ---------- 2. Base ---------- */
+/* --------- 2. Base --------- */
 *,
 *::before,
 *::after {
